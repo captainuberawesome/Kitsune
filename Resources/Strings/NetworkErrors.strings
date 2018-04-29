@@ -1,0 +1,11 @@
+/* 
+  NetworkErrors.strings
+  Kitsune
+*/
+
+//custom
+
+"unknown" = "Unknown network error";
+"parsing" = "Wrong server response";
+"no.internet" = "Please check your internet connection";
+"timeout" = "No response from server";

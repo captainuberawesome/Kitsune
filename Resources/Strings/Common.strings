@@ -1,0 +1,18 @@
+/* 
+  Common.strings
+  Kitsune
+*/
+
+"app.name" = "BumpBowl";
+"error" = "Error";
+"ok" = "OK";
+"cancel" = "Cancel";
+"success" = "Success";
+"close" = "Close";
+"done" = "Done";
+"delete" = "Delete";
+"save" = "Save";
+"yes" = "Yes";
+
+"not.implemented.message" = "Will be available in the next milestone.";
+"continue" = "Continue";

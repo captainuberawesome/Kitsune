@@ -1,0 +1,39 @@
+disabled_rules: # rule identifiers to exclude from running
+  - trailing_whitespace
+  - todo
+  - large_tuple
+opt_in_rules:
+  - empty_count
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - GeneratedCode
+  - Resources/R.generated.swift
+
+empty_count: warning
+
+function_parameter_count:
+  warning: 10
+  error: 10
+
+variable_name:  
+  excluded:
+    - row
+    - key
+    - id
+    - url
+    - uri
+    - db
+    - bar
+    - red
+    - lhs
+    - rhs
+    - tag
+    - rs
+    - URI
+    - URL
+    - me
+type_name: 
+  excluded:
+    - T
+
+line_length: 130

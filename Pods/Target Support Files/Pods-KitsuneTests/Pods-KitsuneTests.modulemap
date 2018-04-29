@@ -1,0 +1,6 @@
+framework module Pods_KitsuneTests {
+  umbrella header "Pods-KitsuneTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

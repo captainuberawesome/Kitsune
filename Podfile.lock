@@ -1,0 +1,71 @@
+PODS:
+  - Alamofire (4.7.2)
+  - KeychainAccess (3.1.1)
+  - Mockingjay (2.0.1):
+    - Mockingjay/Core (= 2.0.1)
+    - Mockingjay/XCTest (= 2.0.1)
+  - Mockingjay/Core (2.0.1):
+    - URITemplate (~> 2.0)
+  - Mockingjay/XCTest (2.0.1):
+    - Mockingjay/Core
+  - Nimble (7.1.0)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - Realm (3.3.2):
+    - Realm/Headers (= 3.3.2)
+  - Realm/Headers (3.3.2)
+  - RealmSwift (3.3.2):
+    - Realm (= 3.3.2)
+  - SnapKit (4.0.0)
+  - SwiftLint (0.25.1)
+  - SwiftyBeaver (1.5.2)
+  - SwiftyJSON (4.0.0)
+  - URITemplate (2.0.3)
+
+DEPENDENCIES:
+  - Alamofire
+  - KeychainAccess
+  - Mockingjay
+  - Nimble
+  - R.swift
+  - RealmSwift
+  - SnapKit
+  - SwiftLint
+  - SwiftyBeaver
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - KeychainAccess
+    - Mockingjay
+    - Nimble
+    - R.swift
+    - R.swift.Library
+    - Realm
+    - RealmSwift
+    - SnapKit
+    - SwiftLint
+    - SwiftyBeaver
+    - SwiftyJSON
+    - URITemplate
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  Nimble: 9c6651c3021af6de54c3ed90a4a0a87d548f7359
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
+  RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+  SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
+
+PODFILE CHECKSUM: 0b2d5fcfe60ce16558cf02c2d64ab8cfe0b6101a
+
+COCOAPODS: 1.5.0
