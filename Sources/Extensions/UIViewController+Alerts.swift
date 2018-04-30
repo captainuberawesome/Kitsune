@@ -64,6 +64,7 @@ extension UIViewController {
   }
   
   private func showAlert(_ alertController: UIAlertController) {
+    alertController.view.tintColor = .appDarkColor
     present(alertController, animated: true, completion: nil)
   }
 

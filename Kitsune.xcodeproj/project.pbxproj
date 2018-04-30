@@ -58,6 +58,11 @@
 		FDFCF7E42096EB0E00F7A901 /* AnimeListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E32096EB0E00F7A901 /* AnimeListDataSource.swift */; };
 		FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */; };
 		FDFCF7E92096F03700F7A901 /* NetworkService+AnimeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */; };
+		FDFCF7ED2097344600F7A901 /* UIFont+AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7EC2097344600F7A901 /* UIFont+AppFonts.swift */; };
+		FDFCF7F32097349100F7A901 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7EF2097349100F7A901 /* JosefinSans-Bold.ttf */; };
+		FDFCF7F42097349100F7A901 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */; };
+		FDFCF7F52097349100F7A901 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */; };
+		FDFCF7F62097349100F7A901 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +151,11 @@
 		FDFCF7E32096EB0E00F7A901 /* AnimeListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListDataSource.swift; sourceTree = "<group>"; };
 		FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListTableViewCell.swift; sourceTree = "<group>"; };
 		FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+AnimeList.swift"; sourceTree = "<group>"; };
+		FDFCF7EC2097344600F7A901 /* UIFont+AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AppFonts.swift"; sourceTree = "<group>"; };
+		FDFCF7EF2097349100F7A901 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
+		FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Light.ttf"; sourceTree = "<group>"; };
+		FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3506852092D09700586986 /* R.generated.swift */,
+				FDFCF7EE2097349100F7A901 /* Fonts */,
 				8B2814272043BA0F00636DE8 /* Strings */,
 				44D7704B1D48BDA300D5EB72 /* Assets.xcassets */,
 				FD6ABCB52096187800B117E5 /* Credentials.swift */,
@@ -247,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				8BD264A32043C5A500095E68 /* UIColor+AppColors.swift */,
+				FDFCF7EC2097344600F7A901 /* UIFont+AppFonts.swift */,
 				8BD264A62043C5A600095E68 /* UIViewController+Alerts.swift */,
 				8BD2649E2043C5A500095E68 /* UIViewController+ErrorHandling.swift */,
 				8BD264F120441A6700095E68 /* Realm+Stores.swift */,
@@ -484,6 +496,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FDFCF7EE2097349100F7A901 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FDFCF7EF2097349100F7A901 /* JosefinSans-Bold.ttf */,
+				FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */,
+				FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */,
+				FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -577,10 +600,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDFCF7F52097349100F7A901 /* JosefinSans-SemiBold.ttf in Resources */,
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
+				FDFCF7F42097349100F7A901 /* JosefinSans-Light.ttf in Resources */,
+				FDFCF7F62097349100F7A901 /* JosefinSans-Regular.ttf in Resources */,
 				8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */,
+				FDFCF7F32097349100F7A901 /* JosefinSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +781,7 @@
 				8BD264882043C05E00095E68 /* Logger.swift in Sources */,
 				FDFCF7E92096F03700F7A901 /* NetworkService+AnimeList.swift in Sources */,
 				FDFCF7E42096EB0E00F7A901 /* AnimeListDataSource.swift in Sources */,
+				FDFCF7ED2097344600F7A901 /* UIFont+AppFonts.swift in Sources */,
 				FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */,
 				8B8758FC208D888D00D1BBF5 /* NavigationController.swift in Sources */,
 				FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */,
