@@ -12,7 +12,7 @@ class AuthViewModel {
   
   private let dependencies: Dependencies
   
-  var onErrorEncountered: ((NSError?) -> Void)?
+  var onErrorEncountered: ((Error?) -> Void)?
   
   init(dependencies: Dependencies) {
     self.dependencies = dependencies

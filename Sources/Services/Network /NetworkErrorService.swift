@@ -1,5 +1,5 @@
 //
-//  NetworkErrorManager.swift
+//  NetworkErrorService.swift
 //  Kitsune
 //
 //  Created by Daria Novodon on 29/04/2018.
@@ -11,7 +11,7 @@ private extension Constants {
   static let networkErrorsTableName = "NetworkErrors"
 }
 
-class NetworkErrorManager: NSObject {
+class NetworkErrorService: NSObject {
 
   static let networkErrorDomain = "KitsuneNetworkError"
   
@@ -27,25 +27,25 @@ class NetworkErrorManager: NSObject {
     case badGateway = 502
   }
   
-  class func error(from errorResponse: ErrorResponse) -> NSError {
+  class func error(from errorResponse: ErrorResponse) -> Error {
     let message = errorResponse.message ?? R.string.networkErrors.unknown()
     let userInfo = [NSLocalizedDescriptionKey: message]
-    return NSError(domain: networkErrorDomain, code: errorResponse.code, userInfo: userInfo)
+    return NSError(domain: networkErrorDomain, code: errorResponse.code, userInfo: userInfo) as Error
   }
   
-  class func offlineError() -> NSError {
+  class func offlineError() -> Error {
     let message = R.string.networkErrors.noInternet()
     let userInfo = [NSLocalizedDescriptionKey: message]
-    return NSError(domain: networkErrorDomain, code: NSURLErrorNotConnectedToInternet, userInfo: userInfo)
+    return NSError(domain: networkErrorDomain, code: NSURLErrorNotConnectedToInternet, userInfo: userInfo) as Error
   }
   
-  class func unknownError() -> NSError {
+  class func unknownError() -> Error {
     let userInfo = [NSLocalizedDescriptionKey: R.string.networkErrors.unknown()]
-    return NSError(domain: networkErrorDomain, code: 0, userInfo: userInfo)
+    return NSError(domain: networkErrorDomain, code: 0, userInfo: userInfo) as Error
   }
   
-  class func parseError() -> NSError {
+  class func parseError() -> Error {
     let userInfo = [NSLocalizedDescriptionKey: R.string.networkErrors.parsing()]
-    return NSError(domain: networkErrorDomain, code: 0, userInfo: userInfo)
+    return NSError(domain: networkErrorDomain, code: 0, userInfo: userInfo) as Error
   }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 private extension Constants {
-  static let defaultURL = ""
+  static let defaultURL = "https://kitsu.io/api/edge/"
   static let defaultreachabilityHost = "www.apple.com"
   static let authorizeURL = "https://kitsu.io/api/oauth"
 }

@@ -19,4 +19,8 @@ struct URLFactory {
     static let oauth = environment.authorizeURL
     static let accessToken = oauth + "/token"
   }
+  
+  struct Anime {
+    static let list = baseRestURLString + "/anime"
+  }
 }

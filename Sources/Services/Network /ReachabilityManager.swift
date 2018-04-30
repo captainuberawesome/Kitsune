@@ -12,8 +12,7 @@ class ReachabilityManager {
   
   private(set) var isReachable: Bool = false {
     didSet {
-      listeners.forEach { (entry: ListenerEntry) in
-        let (listener, block) = entry
+      listeners.forEach { listener, block in
         if listener.value != nil {
           block(isReachable)
         }

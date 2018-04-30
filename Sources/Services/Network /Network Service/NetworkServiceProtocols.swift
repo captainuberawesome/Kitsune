@@ -1,5 +1,5 @@
 //
-//  NetworkManagerProtocols.swift
+//  NetworkServiceProtocols.swift
 //  Kitsune
 //
 //  Created by Daria Novodon on 29/04/2018.
@@ -11,7 +11,7 @@ import Alamofire.Swift
 
 enum Response<T: Decodable> {
   case success(T)
-  case failure(NSError?)
+  case failure(Error?)
 }
 
 // MARK: - Protocols
@@ -20,4 +20,9 @@ enum Response<T: Decodable> {
 
 protocol AuthNetworkProtocol {
   func authorize(username: String, password: String, completion: @escaping (Response<EmptyResponse>) -> Void)
+  func signOut(completion: @escaping (Response<EmptyResponse>) -> Void)
+}
+
+protocol AnimeListNetworkProtocol {
+  func animeList(completion: @escaping (Response<EmptyResponse>) -> Void)
 }

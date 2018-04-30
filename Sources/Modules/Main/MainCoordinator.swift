@@ -17,8 +17,6 @@ class MainCoordinator: NSObject, BaseCoordinator {
   private var rootNavigationController = NavigationController()
   private let utility: MainCoordinatorUtility
   
-  private var onDatabaseUpdated: (() -> Void)?
-  
   var presentationType: PresentationType = .push
   var parentCoordinator: BaseCoordinator?
   var childCoordinators: [BaseCoordinator] = []
@@ -50,81 +48,25 @@ class MainCoordinator: NSObject, BaseCoordinator {
   // MARK: - Navigation
 
   func start() {
-    utility.updateDataBase {
-      self.onDatabaseUpdated?()
-    }
     window.makeKeyAndVisible()
     UIViewController.attemptRotationToDeviceOrientation()
     utility.start()
-    if utility.isLoggedIn {
-      didLogIn()
-    } else {
-      showAuthorization()
-    }
-  }
-  
-  private func didLogIn() {
     showHome()
   }
   
-  private func showAuthorization() {
-    childCoordinators = []
-    let authCoordinator = AuthCoordinator(appDependency: appDependency, navigationController: rootNavigationController)
-    addChildCoordinator(authCoordinator)
-    authCoordinator.start()
-  }
-  
   private func showHome() {
-//    childCoordinators = []
-//    let coordinator =
-//    onDatabaseUpdated = { [weak coordinator] in
-//      coordinator?.handleDatabaseUpdate()
-//    }
-//    addChildCoordinator(coordinator)
-//    rootNavigationController.viewControllers = []
-//    coordinator.start()
-  }
-  
-  // MARK: - Change Root Controller
-  
-  private func resetCoordinatorsToAuth() {
     childCoordinators = []
-    utility.clearUserData {
-      self.rootNavigationController = NavigationController()
-      self.showAuthorization()
-      self.changeRootViewController(of: self.window, to: self.rootNavigationController)
-      self.loggingOut = false
-    }
-  }
-  
-  private func changeRootViewController(of window: UIWindow,
-                                        to viewController: UIViewController,
-                                        animationDuration: TimeInterval = 0.5) {
-    let animations = {
-      window.rootViewController = self.rootNavigationController
-    }
-    UIView.transition(with: window, duration: animationDuration, options: .transitionFlipFromLeft,
-                      animations: animations, completion: nil)
+    let coordinator = HomeCoordinator(appDependency: appDependency, navigationController: rootNavigationController)
+    addChildCoordinator(coordinator)
+    rootNavigationController.viewControllers = []
+    coordinator.start()
   }
 }
 
 // MARK: - LogoutHandler
 
 extension MainCoordinator: LogoutHandler {
-  private func resetToAuth() {
-    loggingOut = true
-    resetCoordinatorsToAuth()
-  }
-  
-  func handleAuthorizationError(error: NSError) {
-    self.resetCoordinatorsToAuth()
-  }
-  
   func logout() {
-    guard !loggingOut else { return }
-    loggingOut = true
-    utility.signOut { _ in
-      self.resetToAuth()
-    }
+    utility.signOut()
   }
 }

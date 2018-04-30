@@ -11,46 +11,42 @@ protocol HasReachabilityManager {
   var reachabilityManager: ReachabilityManager? { get }
 }
 
-protocol HasUserDataStore {
-  var userDataStore: UserDataStore { get }
-}
-
-protocol HasRealmWrapper {
-  var realmWrapper: RealmWrapper { get }
+protocol HasRealmService {
+  var realmService: RealmService { get }
 }
 
 protocol HasAuthService {
   var authService: AuthNetworkProtocol { get }
 }
 
-class AppDependency: HasUserDataStore, HasRealmWrapper, HasReachabilityManager {
-  let userDataStore: UserDataStore
-  let realmWrapper: RealmWrapper
-  let networkManager: NetworkManager
+protocol HasAnimeListService {
+  var animeListService: AnimeListNetworkProtocol { get }
+}
+
+class AppDependency: HasRealmService, HasReachabilityManager {
+  let realmService: RealmService
+  let networkManager: NetworkService
   private(set) var reachabilityManager: ReachabilityManager?
   
-  init(userDataStore: UserDataStore,
-       realmWrapper: RealmWrapper,
-       networkManager: NetworkManager,
+  init(realmService: RealmService,
+       networkManager: NetworkService,
        reachabilityManager: ReachabilityManager?) {
-    self.userDataStore = userDataStore
-    self.realmWrapper = realmWrapper
+    self.realmService = realmService
     self.networkManager = networkManager
     self.reachabilityManager = reachabilityManager
   }
   
   static func makeDefault() -> AppDependency {
-    let userDataStore = UserDataStore()
-    let realmWrapper = RealmWrapper()
-    let networkManager = NetworkManager()
+    let realmService = RealmService()
+    let networkManager = NetworkService()
     let reachabilityManager = ReachabilityManager(host: URLFactory.ReachabilityChecking.host)
-    return AppDependency(userDataStore: userDataStore,
-                         realmWrapper: realmWrapper,
+    return AppDependency(realmService: realmService,
                          networkManager: networkManager,
                          reachabilityManager: reachabilityManager)
   }
 }
 
-extension AppDependency: HasAuthService {
+extension AppDependency: HasAuthService, HasAnimeListService {
   var authService: AuthNetworkProtocol { return networkManager }
+  var animeListService: AnimeListNetworkProtocol { return networkManager }
 }

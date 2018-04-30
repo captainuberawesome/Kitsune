@@ -8,7 +8,7 @@
 import Foundation
 
 class MainCoordinatorUtility {
-  typealias Dependencies = HasUserDataStore & HasReachabilityManager & HasRealmWrapper & HasAuthService
+  typealias Dependencies = HasReachabilityManager & HasRealmService & HasAuthService
   
   private struct Constants {
     static let hadFirstRunAlreadyUserDefaultsKey = "hadFirstRunAlready"
@@ -25,19 +25,9 @@ class MainCoordinatorUtility {
     self.userDefaults = userDefaults
   }
   
-  var isLoggedIn: Bool {
-    return dependencies.userDataStore.token != nil
-  }
-  
   func start() {
     startListeningForReachabilityUpdates()
     resetDataOnFirstRun()
-  }
-  
-  func updateDataBase(completion: VoidBlock? = nil) {
-    dependencies.realmWrapper.overwriteInMemoryDataWithPersistent {
-      completion?()
-    }
   }
   
   private func startListeningForReachabilityUpdates() {
@@ -53,11 +43,12 @@ class MainCoordinatorUtility {
   }
   
   func clearUserData(completion: (() -> Void)? = nil) {
-    dependencies.userDataStore.clearData()
-    dependencies.realmWrapper.clearAll(completion: completion)
+    dependencies.realmService.clear(completion: completion)
   }
   
-  func signOut(completion: @escaping ((Error?) -> Void)) {
-    
+  func signOut(completion: (() -> Void)? = nil) {
+    dependencies.authService.signOut { _ in
+      self.clearUserData(completion: completion)
+    }
   }
 }

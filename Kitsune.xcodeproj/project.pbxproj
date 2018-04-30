@@ -37,21 +37,27 @@
 		FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DB2095E5320000675D /* AppDependency.swift */; };
 		FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */; };
 		FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DD2095E5320000675D /* MainCoordinator.swift */; };
-		FDCAB3FB2095E6210000675D /* UserDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3E82095E6210000675D /* UserDataStore.swift */; };
 		FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EA2095E6210000675D /* NetworkEnvironment.swift */; };
 		FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EB2095E6210000675D /* ReachabilityManager.swift */; };
 		FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EC2095E6210000675D /* RequestLogger.swift */; };
 		FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3ED2095E6210000675D /* URLFactory.swift */; };
-		FDCAB4002095E6210000675D /* NetworkErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EE2095E6210000675D /* NetworkErrorManager.swift */; };
+		FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */; };
 		FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F02095E6210000675D /* EmptyResponse.swift */; };
 		FDCAB4022095E6210000675D /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F12095E6210000675D /* UserResponse.swift */; };
 		FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F22095E6210000675D /* ErrorResponse.swift */; };
-		FDCAB4042095E6210000675D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F42095E6210000675D /* NetworkManager.swift */; };
-		FDCAB4052095E6210000675D /* NetworkManagerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F52095E6210000675D /* NetworkManagerProtocols.swift */; };
-		FDCAB4062095E6210000675D /* NetworkManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F62095E6210000675D /* NetworkManager+Auth.swift */; };
-		FDCAB4072095E6210000675D /* RealmWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F82095E6210000675D /* RealmWrapper.swift */; };
-		FDCAB4082095E6210000675D /* RealmWrapper+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F92095E6210000675D /* RealmWrapper+Generics.swift */; };
-		FDCAB4092095E6210000675D /* RealmWrapper+Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3FA2095E6210000675D /* RealmWrapper+Getters.swift */; };
+		FDCAB4042095E6210000675D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F42095E6210000675D /* NetworkService.swift */; };
+		FDCAB4052095E6210000675D /* NetworkServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F52095E6210000675D /* NetworkServiceProtocols.swift */; };
+		FDCAB4062095E6210000675D /* NetworkService+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F62095E6210000675D /* NetworkService+Auth.swift */; };
+		FDCAB4072095E6210000675D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F82095E6210000675D /* RealmService.swift */; };
+		FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F92095E6210000675D /* RealmService+Generics.swift */; };
+		FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */; };
+		FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */; };
+		FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */; };
+		FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */; };
+		FDFCF7E22096EB0100F7A901 /* AnimeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DF2096EB0100F7A901 /* AnimeListViewModel.swift */; };
+		FDFCF7E42096EB0E00F7A901 /* AnimeListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E32096EB0E00F7A901 /* AnimeListDataSource.swift */; };
+		FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */; };
+		FDFCF7E92096F03700F7A901 /* NetworkService+AnimeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,21 +125,27 @@
 		FDCAB3DB2095E5320000675D /* AppDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinatorUtility.swift; sourceTree = "<group>"; };
 		FDCAB3DD2095E5320000675D /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		FDCAB3E82095E6210000675D /* UserDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataStore.swift; sourceTree = "<group>"; };
 		FDCAB3EA2095E6210000675D /* NetworkEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
 		FDCAB3EB2095E6210000675D /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		FDCAB3EC2095E6210000675D /* RequestLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestLogger.swift; sourceTree = "<group>"; };
 		FDCAB3ED2095E6210000675D /* URLFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
-		FDCAB3EE2095E6210000675D /* NetworkErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorManager.swift; sourceTree = "<group>"; };
+		FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorService.swift; sourceTree = "<group>"; };
 		FDCAB3F02095E6210000675D /* EmptyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		FDCAB3F12095E6210000675D /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		FDCAB3F22095E6210000675D /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
-		FDCAB3F42095E6210000675D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		FDCAB3F52095E6210000675D /* NetworkManagerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocols.swift; sourceTree = "<group>"; };
-		FDCAB3F62095E6210000675D /* NetworkManager+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkManager+Auth.swift"; sourceTree = "<group>"; };
-		FDCAB3F82095E6210000675D /* RealmWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmWrapper.swift; sourceTree = "<group>"; };
-		FDCAB3F92095E6210000675D /* RealmWrapper+Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmWrapper+Generics.swift"; sourceTree = "<group>"; };
-		FDCAB3FA2095E6210000675D /* RealmWrapper+Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmWrapper+Getters.swift"; sourceTree = "<group>"; };
+		FDCAB3F42095E6210000675D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		FDCAB3F52095E6210000675D /* NetworkServiceProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocols.swift; sourceTree = "<group>"; };
+		FDCAB3F62095E6210000675D /* NetworkService+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Auth.swift"; sourceTree = "<group>"; };
+		FDCAB3F82095E6210000675D /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		FDCAB3F92095E6210000675D /* RealmService+Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Generics.swift"; sourceTree = "<group>"; };
+		FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Getters.swift"; sourceTree = "<group>"; };
+		FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeListViewController.swift; sourceTree = "<group>"; };
+		FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
+		FDFCF7DF2096EB0100F7A901 /* AnimeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeListViewModel.swift; sourceTree = "<group>"; };
+		FDFCF7E32096EB0E00F7A901 /* AnimeListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListDataSource.swift; sourceTree = "<group>"; };
+		FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListTableViewCell.swift; sourceTree = "<group>"; };
+		FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+AnimeList.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +260,7 @@
 				8BD2648B2043C2FB00095E68 /* Base */,
 				FDCAB3DA2095E5320000675D /* Main */,
 				FD6ABCAD20960EBC00B117E5 /* Auth */,
+				FDFCF7CE2096DE1300F7A901 /* Home */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -315,8 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				FD6ABCB2209613CA00B117E5 /* View Model */,
-				FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */,
 				FD6ABCB02096109300B117E5 /* AuthViewController.swift */,
+				FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -374,19 +387,10 @@
 		FDCAB3E62095E6210000675D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				FDCAB3E72095E6210000675D /* User Data Store */,
 				FDCAB3E92095E6210000675D /* Network  */,
-				FDCAB3F72095E6210000675D /* Realm Wrapper */,
+				FDCAB3F72095E6210000675D /* Realm Service */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		FDCAB3E72095E6210000675D /* User Data Store */ = {
-			isa = PBXGroup;
-			children = (
-				FDCAB3E82095E6210000675D /* UserDataStore.swift */,
-			);
-			path = "User Data Store";
 			sourceTree = "<group>";
 		};
 		FDCAB3E92095E6210000675D /* Network  */ = {
@@ -396,10 +400,10 @@
 				FDCAB3EB2095E6210000675D /* ReachabilityManager.swift */,
 				FDCAB3EC2095E6210000675D /* RequestLogger.swift */,
 				FDCAB3ED2095E6210000675D /* URLFactory.swift */,
-				FDCAB3EE2095E6210000675D /* NetworkErrorManager.swift */,
+				FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */,
 				FD6ABCB7209630F500B117E5 /* RetryHandler.swift */,
 				FDCAB3EF2095E6210000675D /* Responses */,
-				FDCAB3F32095E6210000675D /* Network Manager */,
+				FDCAB3F32095E6210000675D /* Network Service */,
 			);
 			path = "Network ";
 			sourceTree = "<group>";
@@ -414,24 +418,70 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
-		FDCAB3F32095E6210000675D /* Network Manager */ = {
+		FDCAB3F32095E6210000675D /* Network Service */ = {
 			isa = PBXGroup;
 			children = (
-				FDCAB3F42095E6210000675D /* NetworkManager.swift */,
-				FDCAB3F52095E6210000675D /* NetworkManagerProtocols.swift */,
-				FDCAB3F62095E6210000675D /* NetworkManager+Auth.swift */,
+				FDCAB3F42095E6210000675D /* NetworkService.swift */,
+				FDCAB3F52095E6210000675D /* NetworkServiceProtocols.swift */,
+				FDCAB3F62095E6210000675D /* NetworkService+Auth.swift */,
+				FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */,
 			);
-			path = "Network Manager";
+			path = "Network Service";
 			sourceTree = "<group>";
 		};
-		FDCAB3F72095E6210000675D /* Realm Wrapper */ = {
+		FDCAB3F72095E6210000675D /* Realm Service */ = {
 			isa = PBXGroup;
 			children = (
-				FDCAB3F82095E6210000675D /* RealmWrapper.swift */,
-				FDCAB3F92095E6210000675D /* RealmWrapper+Generics.swift */,
-				FDCAB3FA2095E6210000675D /* RealmWrapper+Getters.swift */,
+				FDCAB3F82095E6210000675D /* RealmService.swift */,
+				FDCAB3F92095E6210000675D /* RealmService+Generics.swift */,
+				FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */,
 			);
-			path = "Realm Wrapper";
+			path = "Realm Service";
+			sourceTree = "<group>";
+		};
+		FDFCF7CE2096DE1300F7A901 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FDFCF7DA2096EB0100F7A901 /* Anime List */,
+				FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FDFCF7DA2096EB0100F7A901 /* Anime List */ = {
+			isa = PBXGroup;
+			children = (
+				FDFCF7DC2096EB0100F7A901 /* Data Source */,
+				FDFCF7DD2096EB0100F7A901 /* View Model */,
+				FDFCF7E52096EC3600F7A901 /* Views */,
+				FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */,
+			);
+			path = "Anime List";
+			sourceTree = "<group>";
+		};
+		FDFCF7DC2096EB0100F7A901 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				FDFCF7E32096EB0E00F7A901 /* AnimeListDataSource.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		FDFCF7DD2096EB0100F7A901 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */,
+				FDFCF7DF2096EB0100F7A901 /* AnimeListViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		FDFCF7E52096EC3600F7A901 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -702,42 +752,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD264882043C05E00095E68 /* Logger.swift in Sources */,
+				FDFCF7E92096F03700F7A901 /* NetworkService+AnimeList.swift in Sources */,
+				FDFCF7E42096EB0E00F7A901 /* AnimeListDataSource.swift in Sources */,
 				FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */,
 				8B8758FC208D888D00D1BBF5 /* NavigationController.swift in Sources */,
 				FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */,
 				FD6ABCAF20960EC900B117E5 /* AuthCoordinator.swift in Sources */,
+				FDFCF7E22096EB0100F7A901 /* AnimeListViewModel.swift in Sources */,
 				FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */,
 				8B8758FB208D888D00D1BBF5 /* NavigationFlowCoordinator.swift in Sources */,
 				FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */,
+				FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */,
 				FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */,
 				FD6ABCB4209613D600B117E5 /* AuthViewModel.swift in Sources */,
 				8BD2648D2043C2FB00095E68 /* BaseCoordinator.swift in Sources */,
 				FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */,
-				FDCAB3FB2095E6210000675D /* UserDataStore.swift in Sources */,
 				8BC4AE092043A9DB0093E231 /* AppDelegate.swift in Sources */,
 				8BD264AF2043C5A700095E68 /* UIColor+AppColors.swift in Sources */,
-				FDCAB4052095E6210000675D /* NetworkManagerProtocols.swift in Sources */,
-				FDCAB4092095E6210000675D /* RealmWrapper+Getters.swift in Sources */,
+				FDCAB4052095E6210000675D /* NetworkServiceProtocols.swift in Sources */,
+				FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */,
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
 				FDCAB4022095E6210000675D /* UserResponse.swift in Sources */,
 				FD6ABCB12096109300B117E5 /* AuthViewController.swift in Sources */,
-				FDCAB4072095E6210000675D /* RealmWrapper.swift in Sources */,
+				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
 				FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */,
+				FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */,
 				FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */,
 				FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */,
 				8BD264AA2043C5A700095E68 /* UIViewController+ErrorHandling.swift in Sources */,
-				FDCAB4042095E6210000675D /* NetworkManager.swift in Sources */,
+				FDCAB4042095E6210000675D /* NetworkService.swift in Sources */,
 				8B61C7972091E026005FD0F7 /* ReuseIdentifiable.swift in Sources */,
 				FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */,
-				FDCAB4082095E6210000675D /* RealmWrapper+Generics.swift in Sources */,
+				FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */,
 				FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */,
 				8B3506862092D09700586986 /* R.generated.swift in Sources */,
-				FDCAB4002095E6210000675D /* NetworkErrorManager.swift in Sources */,
+				FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */,
+				FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */,
+				FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */,
 				8B8758FD208D888D00D1BBF5 /* BaseViewController.swift in Sources */,
 				8BD264912043C3A700095E68 /* Constants.swift in Sources */,
 				FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */,
 				8BD264B22043C5A700095E68 /* UIViewController+Alerts.swift in Sources */,
-				FDCAB4062095E6210000675D /* NetworkManager+Auth.swift in Sources */,
+				FDCAB4062095E6210000675D /* NetworkService+Auth.swift in Sources */,
 				8BD264F220441A6800095E68 /* Realm+Stores.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

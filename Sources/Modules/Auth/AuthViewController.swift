@@ -90,6 +90,6 @@ class AuthViewController: BaseViewController {
   // MARK: - Actions
   
   @objc private func didTapLoginButton(_ sender: UIButton) {
-    viewModel.login()
+    viewModel.login(username: loginTextField.text, password: passwordTextField.text)
   }
 }
