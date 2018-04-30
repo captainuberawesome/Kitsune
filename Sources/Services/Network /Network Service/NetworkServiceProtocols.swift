@@ -6,10 +6,11 @@
 //
 
 import Alamofire.Swift
+import Marshal
 
 // MARK: - Types
 
-enum Response<T: Decodable> {
+enum Response<T: Unmarshaling> {
   case success(T)
   case failure(Error?)
 }
@@ -24,5 +25,5 @@ protocol AuthNetworkProtocol {
 }
 
 protocol AnimeListNetworkProtocol {
-  func animeList(completion: @escaping (Response<EmptyResponse>) -> Void)
+   func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
 }

@@ -42,7 +42,6 @@ class MainCoordinator: NSObject, BaseCoordinator {
     self.utility = MainCoordinatorUtility(dependencies: appDependency)
     super.init()
     window.rootViewController = rootNavigationController
-    rootNavigationController.navigationBar.isTranslucent = false
   }
   
   // MARK: - Navigation
@@ -51,14 +50,13 @@ class MainCoordinator: NSObject, BaseCoordinator {
     window.makeKeyAndVisible()
     UIViewController.attemptRotationToDeviceOrientation()
     utility.start()
+    rootNavigationController.setupNavigationBarAppearance()
     showHome()
   }
   
   private func showHome() {
-    childCoordinators = []
     let coordinator = HomeCoordinator(appDependency: appDependency, navigationController: rootNavigationController)
     addChildCoordinator(coordinator)
-    rootNavigationController.viewControllers = []
     coordinator.start()
   }
 }

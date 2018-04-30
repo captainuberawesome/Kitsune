@@ -7,11 +7,12 @@
 
 import Foundation
 import Alamofire
+import Marshal
 import p2_OAuth2
 
 struct PaginationKeys {
-  static let limit = "limit"
-  static let offset = "offset"
+  static let limit = "page[limit]"
+  static let offset = "page[offset]"
 }
 
 private extension Constants {
@@ -73,19 +74,14 @@ class NetworkService: NSObject {
       
       switch response.result {
       case .success(let value):
-        var valueObject = value as? [String: AnyHashable]
-        if T.self == EmptyResponse.self && valueObject == nil {
-          valueObject = [:]
+        var marshaledObject = value as? MarshaledObject
+        if T.self == EmptyResponse.self && marshaledObject == nil {
+          marshaledObject = [:]
         }
-        if let code = response.response?.statusCode, let valueObject = valueObject {
-          do {
-            let jsonData = try JSONSerialization.data(withJSONObject: valueObject, options: .prettyPrinted)
-            self.handleBaseRequestSuccessResponse(jsonData: jsonData,
-                                                  statusCode: code,
-                                                  completion: completion)
-          } catch let error {
-            completion(.failure(error))
-          }
+        if let code = response.response?.statusCode, let marshaledObject = marshaledObject {
+          self.handleBaseRequestSuccessResponse(marshaledObject: marshaledObject,
+                                                statusCode: code,
+                                                completion: completion)
         } else {
           completion(.failure(NetworkErrorService.unknownError()))
         }
@@ -103,7 +99,7 @@ class NetworkService: NSObject {
     oauth.password = password
     oauth.authorize { authParameters, error in
       if authParameters != nil {
-        completion(Response.success(EmptyResponse()))
+        completion(Response.success(EmptyResponse(object: [:])))
       } else {
         completion(Response.failure(error))
       }
@@ -112,32 +108,30 @@ class NetworkService: NSObject {
   
   func baseSignOutRequest(completion: @escaping (Response<EmptyResponse>) -> Void) {
     oauth.forgetTokens()
-    completion(Response.success(EmptyResponse()))
+    completion(Response.success(EmptyResponse(object: [:])))
   }
 
   // MARK: - Response Handler
   
-  private func handleBaseRequestSuccessResponse<T>(jsonData: Data,
+  private func handleBaseRequestSuccessResponse<T>(marshaledObject: MarshaledObject,
                                                    statusCode code: Int,
                                                    completion: @escaping ((Response<T>) -> Void)) {
     let statusCode = NetworkErrorService.StatusCode(rawValue: code) ?? NetworkErrorService.StatusCode.internalError
     switch statusCode {
     case .okStatus, .okNoContent:
-      let decoder = JSONDecoder()
-      if let object = try? decoder.decode(T.self, from: jsonData) {
+      if let object = try? T(object: marshaledObject) {
         completion(.success(object))
       } else {
         completion(.failure(NetworkErrorService.parseError()))
       }
     default:
-      handleBaseRequestErrorResponse(jsonData: jsonData, completion: completion)
+      handleBaseRequestErrorResponse(marshaledObject: marshaledObject, completion: completion)
     }
   }
   
-  private func handleBaseRequestErrorResponse<T>(jsonData: Data,
+  private func handleBaseRequestErrorResponse<T>(marshaledObject: MarshaledObject,
                                                  completion: @escaping ((Response<T>) -> Void)) {
-    let decoder = JSONDecoder()
-    if let errorResponse = try? decoder.decode(ErrorResponse.self, from: jsonData) {
+    if let errorResponse = try? ErrorResponse(object: marshaledObject) {
       let networkError = NetworkErrorService.error(from: errorResponse)
       completion(.failure(networkError))
     } else {

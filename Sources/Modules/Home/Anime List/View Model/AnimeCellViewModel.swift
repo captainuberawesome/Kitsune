@@ -9,8 +9,27 @@ import Foundation
 
 class AnimeCellViewModel {
   let cellReuseIdentifier: String
+  private let anime: Anime
   
-  init(cellReuseIdentifier: String) {
+  // MARK: - Public computed propeties
+  
+  var smallPosterURL: URL? {
+    guard let smallPosterURLString = anime.posterImageSmall else { return nil }
+    return URL(string: smallPosterURLString)
+  }
+  
+  var animeTitle: String? {
+    return anime.englishTitle
+  }
+  
+  var animeSynopsis: String? {
+    return anime.synopsis
+  }
+  
+  // MARK: - Init
+  
+  init(anime: Anime, cellReuseIdentifier: String) {
+    self.anime = anime
     self.cellReuseIdentifier = cellReuseIdentifier
   }
 }

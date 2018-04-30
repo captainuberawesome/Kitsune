@@ -28,9 +28,6 @@
 		B204EA422934EEDDD2BC728F /* Pods_Kitsune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341F67BE0D6957E6519F3FB5 /* Pods_Kitsune.framework */; };
 		FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA52095EA7100B117E5 /* Common.swift */; };
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
-		FD6ABCAF20960EC900B117E5 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */; };
-		FD6ABCB12096109300B117E5 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB02096109300B117E5 /* AuthViewController.swift */; };
-		FD6ABCB4209613D600B117E5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB3209613D600B117E5 /* AuthViewModel.swift */; };
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
 		FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB7209630F500B117E5 /* RetryHandler.swift */; };
 		FDCAB3CC2095C6EB0000675D /* KitsuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */; };
@@ -43,7 +40,6 @@
 		FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3ED2095E6210000675D /* URLFactory.swift */; };
 		FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */; };
 		FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F02095E6210000675D /* EmptyResponse.swift */; };
-		FDCAB4022095E6210000675D /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F12095E6210000675D /* UserResponse.swift */; };
 		FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F22095E6210000675D /* ErrorResponse.swift */; };
 		FDCAB4042095E6210000675D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F42095E6210000675D /* NetworkService.swift */; };
 		FDCAB4052095E6210000675D /* NetworkServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F52095E6210000675D /* NetworkServiceProtocols.swift */; };
@@ -63,6 +59,12 @@
 		FDFCF7F42097349100F7A901 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */; };
 		FDFCF7F52097349100F7A901 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */; };
 		FDFCF7F62097349100F7A901 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */; };
+		FDFCF7FA20973AAF00F7A901 /* Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7F920973AAF00F7A901 /* Anime.swift */; };
+		FDFCF7FE2097438B00F7A901 /* RealmAnime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7FD2097438B00F7A901 /* RealmAnime.swift */; };
+		FDFCF800209753B200F7A901 /* Date+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */; };
+		FDFCF80420975A9800F7A901 /* AnimeListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF80320975A9800F7A901 /* AnimeListResponse.swift */; };
+		FDFCF8062097676E00F7A901 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF8052097676D00F7A901 /* UIImageView+Kingfisher.swift */; };
+		FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF807209769E500F7A901 /* AnimeList.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,9 +119,6 @@
 		FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutHandler.swift; sourceTree = "<group>"; };
 		FD6ABCAA2095F30200B117E5 /* Kitsune-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kitsune-Bridging-Header.h"; sourceTree = "<group>"; };
 		FD6ABCAB2095F30200B117E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		FD6ABCB02096109300B117E5 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		FD6ABCB3209613D600B117E5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		FD6ABCB52096187800B117E5 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		FD6ABCB7209630F500B117E5 /* RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
 		FDCAB3C92095C6EB0000675D /* KitsuneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitsuneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +135,6 @@
 		FDCAB3ED2095E6210000675D /* URLFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
 		FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorService.swift; sourceTree = "<group>"; };
 		FDCAB3F02095E6210000675D /* EmptyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
-		FDCAB3F12095E6210000675D /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		FDCAB3F22095E6210000675D /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		FDCAB3F42095E6210000675D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FDCAB3F52095E6210000675D /* NetworkServiceProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocols.swift; sourceTree = "<group>"; };
@@ -156,6 +154,12 @@
 		FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Light.ttf"; sourceTree = "<group>"; };
 		FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
+		FDFCF7F920973AAF00F7A901 /* Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime.swift; sourceTree = "<group>"; };
+		FDFCF7FD2097438B00F7A901 /* RealmAnime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAnime.swift; sourceTree = "<group>"; };
+		FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Marshal.swift"; sourceTree = "<group>"; };
+		FDFCF80320975A9800F7A901 /* AnimeListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListResponse.swift; sourceTree = "<group>"; };
+		FDFCF8052097676D00F7A901 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
+		FDFCF807209769E500F7A901 /* AnimeList.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AnimeList.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3506892092D21100586986 /* NetworkErrors.strings */,
+				FDFCF807209769E500F7A901 /* AnimeList.strings */,
 				8B60AAAA208DBF1D00E6986C /* Common.strings */,
 			);
 			path = Strings;
@@ -261,7 +266,9 @@
 				FDFCF7EC2097344600F7A901 /* UIFont+AppFonts.swift */,
 				8BD264A62043C5A600095E68 /* UIViewController+Alerts.swift */,
 				8BD2649E2043C5A500095E68 /* UIViewController+ErrorHandling.swift */,
+				FDFCF8052097676D00F7A901 /* UIImageView+Kingfisher.swift */,
 				8BD264F120441A6700095E68 /* Realm+Stores.swift */,
+				FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,7 +278,6 @@
 			children = (
 				8BD2648B2043C2FB00095E68 /* Base */,
 				FDCAB3DA2095E5320000675D /* Main */,
-				FD6ABCAD20960EBC00B117E5 /* Auth */,
 				FDFCF7CE2096DE1300F7A901 /* Home */,
 			);
 			path = Modules;
@@ -336,24 +342,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FD6ABCAD20960EBC00B117E5 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				FD6ABCB2209613CA00B117E5 /* View Model */,
-				FD6ABCB02096109300B117E5 /* AuthViewController.swift */,
-				FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		FD6ABCB2209613CA00B117E5 /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-				FD6ABCB3209613D600B117E5 /* AuthViewModel.swift */,
-			);
-			path = "View Model";
-			sourceTree = "<group>";
-		};
 		FDCAB3CA2095C6EB0000675D /* KitsuneTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +373,7 @@
 		FDCAB3E42095E5780000675D /* Transient */ = {
 			isa = PBXGroup;
 			children = (
+				FDFCF7F920973AAF00F7A901 /* Anime.swift */,
 			);
 			path = Transient;
 			sourceTree = "<group>";
@@ -392,6 +381,7 @@
 		FDCAB3E52095E5780000675D /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				FDFCF7FD2097438B00F7A901 /* RealmAnime.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -424,8 +414,8 @@
 			isa = PBXGroup;
 			children = (
 				FDCAB3F02095E6210000675D /* EmptyResponse.swift */,
-				FDCAB3F12095E6210000675D /* UserResponse.swift */,
 				FDCAB3F22095E6210000675D /* ErrorResponse.swift */,
+				FDFCF80320975A9800F7A901 /* AnimeListResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -602,6 +592,7 @@
 			files = (
 				FDFCF7F52097349100F7A901 /* JosefinSans-SemiBold.ttf in Resources */,
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
+				FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
 				FDFCF7F42097349100F7A901 /* JosefinSans-Light.ttf in Resources */,
@@ -708,22 +699,28 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kitsune/Pods-Kitsune-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,11 +737,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-KitsuneTests/Pods-KitsuneTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
@@ -755,11 +755,14 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
@@ -785,23 +788,23 @@
 				FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */,
 				8B8758FC208D888D00D1BBF5 /* NavigationController.swift in Sources */,
 				FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */,
-				FD6ABCAF20960EC900B117E5 /* AuthCoordinator.swift in Sources */,
 				FDFCF7E22096EB0100F7A901 /* AnimeListViewModel.swift in Sources */,
+				FDFCF7FA20973AAF00F7A901 /* Anime.swift in Sources */,
 				FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */,
 				8B8758FB208D888D00D1BBF5 /* NavigationFlowCoordinator.swift in Sources */,
 				FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */,
 				FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */,
 				FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */,
-				FD6ABCB4209613D600B117E5 /* AuthViewModel.swift in Sources */,
 				8BD2648D2043C2FB00095E68 /* BaseCoordinator.swift in Sources */,
 				FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */,
 				8BC4AE092043A9DB0093E231 /* AppDelegate.swift in Sources */,
 				8BD264AF2043C5A700095E68 /* UIColor+AppColors.swift in Sources */,
+				FDFCF800209753B200F7A901 /* Date+Marshal.swift in Sources */,
 				FDCAB4052095E6210000675D /* NetworkServiceProtocols.swift in Sources */,
+				FDFCF8062097676E00F7A901 /* UIImageView+Kingfisher.swift in Sources */,
 				FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */,
+				FDFCF80420975A9800F7A901 /* AnimeListResponse.swift in Sources */,
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
-				FDCAB4022095E6210000675D /* UserResponse.swift in Sources */,
-				FD6ABCB12096109300B117E5 /* AuthViewController.swift in Sources */,
 				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
 				FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */,
 				FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */,
@@ -816,6 +819,7 @@
 				8B3506862092D09700586986 /* R.generated.swift in Sources */,
 				FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */,
 				FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */,
+				FDFCF7FE2097438B00F7A901 /* RealmAnime.swift in Sources */,
 				FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */,
 				8B8758FD208D888D00D1BBF5 /* BaseViewController.swift in Sources */,
 				8BD264912043C3A700095E68 /* Constants.swift in Sources */,

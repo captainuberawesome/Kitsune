@@ -30,6 +30,7 @@ class HomeCoordinator: NavigationFlowCoordinator {
   private func showAnimeListScreen() {
     let viewModel = AnimeListViewModel(dependencies: appDependency)
     let viewController = AnimeListViewController(viewModel: viewModel)
+    viewController.navigationItem.title = R.string.animeList.title()
     switch presentationType {
     case .push:
       navigationController.pushViewController(viewController, animated: true)

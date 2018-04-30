@@ -12,6 +12,9 @@ def shared_pods
   pod 'p2.OAuth2'
   pod 'RealmSwift'
   pod 'R.swift'
+  pod 'Marshal', :git => 'https://github.com/utahiosmac/Marshal.git', :branch => 'master'
+  pod 'UIScrollView-InfiniteScroll'
+  pod 'Kingfisher'
 end
 
 target 'Kitsune' do

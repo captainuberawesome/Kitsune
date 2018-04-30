@@ -9,7 +9,7 @@ import UIKit
 
 class NavigationController: UINavigationController {
   override var preferredStatusBarStyle: UIStatusBarStyle {
-    return topViewController?.preferredStatusBarStyle ?? .default
+    return topViewController?.preferredStatusBarStyle ?? .lightContent
   }
   
   override var prefersStatusBarHidden: Bool {
@@ -30,5 +30,18 @@ class NavigationController: UINavigationController {
   
   override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
     return topViewController?.preferredStatusBarUpdateAnimation ?? .slide
+  }
+  
+  // MARK: - Navigation Bar Appearance
+  
+  func setupNavigationBarAppearance() {
+    navigationBar.isTranslucent = false
+    navigationBar.tintColor = .white
+    navigationBar.backgroundColor = .appPrimary
+    navigationBar.barTintColor = .appPrimary
+    navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationBar.shadowImage = UIImage()
+    navigationBar.titleTextAttributes = [.font: UIFont.boldAppFont(ofSize: 17),
+                                         .foregroundColor: UIColor.white]
   }
 }

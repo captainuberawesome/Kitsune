@@ -3,8 +3,10 @@
 //  BumpBowl
 //
 
-import Foundation
+import Marshal
 
-struct EmptyResponse: Codable {
+struct EmptyResponse: Unmarshaling {
+  
+  init(object: MarshaledObject) { }
   
 }
