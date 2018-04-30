@@ -5,8 +5,9 @@
 //  Created by Daria Novodon on 29/04/2018.
 //
 
-import Alamofire.Swift
 import Foundation
+import Alamofire
+import p2_OAuth2
 
 struct PaginationKeys {
   static let limit = "limit"
@@ -15,6 +16,15 @@ struct PaginationKeys {
 
 private extension Constants {
   static let requestTimeout: TimeInterval = 10
+  static let oauthResponseType = "password"
+}
+
+private struct OAuth2ParameterKeys {
+  static let clientId = "client_id"
+  static let clientSecret = "client_secret"
+  static let authorizeURI = "authorize_uri"
+  static let tokenURI = "token_uri"
+  static let keychain = "keychain"
 }
 
 class NetworkManager: NSObject {
@@ -24,6 +34,7 @@ class NetworkManager: NSObject {
     static let token = "token"
   }
   
+  private let oauth: OAuth2PasswordGrant
   private let userDataStore: UserDataStore
   private let manager: Alamofire.SessionManager
   private let logger = RequestLogger()
@@ -32,9 +43,17 @@ class NetworkManager: NSObject {
   
   required init(userDataStore: UserDataStore = UserDataStore()) {
     self.userDataStore = userDataStore
+    oauth = OAuth2PasswordGrant(settings: [OAuth2ParameterKeys.clientId: Credentials.appClientID,
+                                           OAuth2ParameterKeys.clientSecret: Credentials.appClientSecret,
+                                           OAuth2ParameterKeys.authorizeURI: URLFactory.Auth.oauth,
+                                           OAuth2ParameterKeys.tokenURI: URLFactory.Auth.accessToken,
+                                           OAuth2ParameterKeys.keychain: false] as OAuth2JSON)
     let configuration = URLSessionConfiguration.default
     configuration.timeoutIntervalForRequest = Constants.requestTimeout
     manager = Alamofire.SessionManager(configuration: configuration)
+    let retrier = OAuth2RetryHandler(oauth2: oauth)
+    manager.adapter = retrier
+    manager.retrier = retrier
     super.init()
   }
   
@@ -143,28 +162,17 @@ class NetworkManager: NSObject {
     return request
   }
   
-  @discardableResult
-  func baseAuthorizationRequest(method: HTTPMethod,
-                                url: String,
-                                parameters: [String: Any],
-                                encoding: ParameterEncoding = JSONEncoding.default,
-                                headers: [String: String] = [:],
-                                completion: @escaping (Response<EmptyResponse>) -> Void) -> Request {
-    
-    let completionForBaseRequest: (URLRequest?, HTTPURLResponse?, Response<EmptyResponse>) -> Void
-    
-    completionForBaseRequest = { (_, response, result) in
-      if let token = response?.allHeaderFields[HeaderKeys.token] as? String, !token.isEmpty {
-        self.userDataStore.token = token
+  func baseAuthorizationRequest(username: String, password: String,
+                                completion: @escaping (Response<EmptyResponse>) -> Void) {
+    oauth.username = username
+    oauth.password = password
+    oauth.authorize { authParameters, error in
+      if authParameters != nil {
+        completion(Response.success(EmptyResponse()))
+      } else {
+        completion(Response.failure(error as NSError?))
       }
-      completion(result)
     }
-    
-    return baseRequest(manager: manager,
-                       method: method,
-                       url: url,
-                       parameters: parameters,
-                       completion: completionForBaseRequest)
   }
 
   // MARK: - Response Handler

@@ -28,9 +28,12 @@
 		B204EA422934EEDDD2BC728F /* Pods_Kitsune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341F67BE0D6957E6519F3FB5 /* Pods_Kitsune.framework */; };
 		FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA52095EA7100B117E5 /* Common.swift */; };
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
-		FD6ABCAC2095F30200B117E5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD6ABCAB2095F30200B117E5 /* Info.plist */; };
+		FD6ABCAF20960EC900B117E5 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */; };
+		FD6ABCB12096109300B117E5 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB02096109300B117E5 /* AuthViewController.swift */; };
+		FD6ABCB4209613D600B117E5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB3209613D600B117E5 /* AuthViewModel.swift */; };
+		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
+		FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB7209630F500B117E5 /* RetryHandler.swift */; };
 		FDCAB3CC2095C6EB0000675D /* KitsuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */; };
-		FDCAB3D72095C7260000675D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDCAB3D52095C7260000675D /* Info.plist */; };
 		FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DB2095E5320000675D /* AppDependency.swift */; };
 		FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */; };
 		FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DD2095E5320000675D /* MainCoordinator.swift */; };
@@ -103,6 +106,11 @@
 		FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutHandler.swift; sourceTree = "<group>"; };
 		FD6ABCAA2095F30200B117E5 /* Kitsune-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kitsune-Bridging-Header.h"; sourceTree = "<group>"; };
 		FD6ABCAB2095F30200B117E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		FD6ABCB02096109300B117E5 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		FD6ABCB3209613D600B117E5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		FD6ABCB52096187800B117E5 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		FD6ABCB7209630F500B117E5 /* RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
 		FDCAB3C92095C6EB0000675D /* KitsuneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitsuneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuneTests.swift; sourceTree = "<group>"; };
 		FDCAB3CD2095C6EB0000675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 				8B3506852092D09700586986 /* R.generated.swift */,
 				8B2814272043BA0F00636DE8 /* Strings */,
 				44D7704B1D48BDA300D5EB72 /* Assets.xcassets */,
+				FD6ABCB52096187800B117E5 /* Credentials.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 			children = (
 				8BD2648B2043C2FB00095E68 /* Base */,
 				FDCAB3DA2095E5320000675D /* Main */,
+				FD6ABCAD20960EBC00B117E5 /* Auth */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -299,6 +309,24 @@
 				FD6ABCAB2095F30200B117E5 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FD6ABCAD20960EBC00B117E5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FD6ABCB2209613CA00B117E5 /* View Model */,
+				FD6ABCAE20960EC900B117E5 /* AuthCoordinator.swift */,
+				FD6ABCB02096109300B117E5 /* AuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FD6ABCB2209613CA00B117E5 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				FD6ABCB3209613D600B117E5 /* AuthViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		FDCAB3CA2095C6EB0000675D /* KitsuneTests */ = {
@@ -369,6 +397,7 @@
 				FDCAB3EC2095E6210000675D /* RequestLogger.swift */,
 				FDCAB3ED2095E6210000675D /* URLFactory.swift */,
 				FDCAB3EE2095E6210000675D /* NetworkErrorManager.swift */,
+				FD6ABCB7209630F500B117E5 /* RetryHandler.swift */,
 				FDCAB3EF2095E6210000675D /* Responses */,
 				FDCAB3F32095E6210000675D /* Network Manager */,
 			);
@@ -463,9 +492,9 @@
 				TargetAttributes = {
 					444B9CF41D48B35500D44465 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = QM38B4ADFA;
+						DevelopmentTeam = RBAQY4C72X;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					FDCAB3C82095C6EB0000675D = {
 						CreatedOnToolsVersion = 9.3;
@@ -501,7 +530,6 @@
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
-				FD6ABCAC2095F30200B117E5 /* Info.plist in Resources */,
 				8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,7 +538,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDCAB3D72095C7260000675D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +636,7 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -619,6 +647,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -639,6 +668,7 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -653,6 +683,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -674,9 +705,12 @@
 				FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */,
 				8B8758FC208D888D00D1BBF5 /* NavigationController.swift in Sources */,
 				FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */,
+				FD6ABCAF20960EC900B117E5 /* AuthCoordinator.swift in Sources */,
+				FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */,
 				8B8758FB208D888D00D1BBF5 /* NavigationFlowCoordinator.swift in Sources */,
 				FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */,
 				FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */,
+				FD6ABCB4209613D600B117E5 /* AuthViewModel.swift in Sources */,
 				8BD2648D2043C2FB00095E68 /* BaseCoordinator.swift in Sources */,
 				FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */,
 				FDCAB3FB2095E6210000675D /* UserDataStore.swift in Sources */,
@@ -686,6 +720,7 @@
 				FDCAB4092095E6210000675D /* RealmWrapper+Getters.swift in Sources */,
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
 				FDCAB4022095E6210000675D /* UserResponse.swift in Sources */,
+				FD6ABCB12096109300B117E5 /* AuthViewController.swift in Sources */,
 				FDCAB4072095E6210000675D /* RealmWrapper.swift in Sources */,
 				FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */,
 				FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */,
@@ -700,6 +735,7 @@
 				FDCAB4002095E6210000675D /* NetworkErrorManager.swift in Sources */,
 				8B8758FD208D888D00D1BBF5 /* BaseViewController.swift in Sources */,
 				8BD264912043C3A700095E68 /* Constants.swift in Sources */,
+				FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */,
 				8BD264B22043C5A700095E68 /* UIViewController+Alerts.swift in Sources */,
 				FDCAB4062095E6210000675D /* NetworkManager+Auth.swift in Sources */,
 				8BD264F220441A6800095E68 /* Realm+Stores.swift in Sources */,
@@ -789,11 +825,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = QM38B4ADFA;
+				DEVELOPMENT_TEAM = RBAQY4C72X;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
@@ -801,8 +837,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dnovodon.kitsune;
 				PRODUCT_NAME = Kitsune;
-				PROVISIONING_PROFILE = "2a40d62e-faa7-4ba8-8574-d07a306b1063";
-				PROVISIONING_PROFILE_SPECIFIER = "General Development Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/Kitsune-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -874,11 +910,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = QM38B4ADFA;
+				DEVELOPMENT_TEAM = RBAQY4C72X;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = s;
@@ -888,8 +924,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dnovodon.kitsune;
 				PRODUCT_NAME = Kitsune;
-				PROVISIONING_PROFILE = "2a40d62e-faa7-4ba8-8574-d07a306b1063";
-				PROVISIONING_PROFILE_SPECIFIER = "General Development Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/Kitsune-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;

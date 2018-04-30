@@ -9,6 +9,7 @@ def shared_pods
   pod 'SwiftyBeaver'
   pod 'KeychainAccess'
   pod 'Alamofire'
+  pod 'p2.OAuth2'
   pod 'RealmSwift'
   pod 'R.swift'
 end

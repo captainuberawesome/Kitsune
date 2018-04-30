@@ -22,8 +22,9 @@ protocol BaseCoordinator: BaseCoordinatorDelegate {
   var baseDelegate: BaseCoordinatorDelegate? { get set }
   var topController: UIViewController { get }
   var topCoordinator: BaseCoordinator? { get }
-  var presentationType: PresentationType { get }
+  var presentationType: PresentationType { get set }
 
+  func start()
   func start(presentationType: PresentationType)
 }
 
@@ -35,8 +36,9 @@ extension BaseCoordinator {
 
 extension BaseCoordinator {
   
-  func start() {
-    return start(presentationType: .push)
+  func start(presentationType: PresentationType) {
+    self.presentationType = presentationType
+    start()
   }
 
   func remove(child coordinator: BaseCoordinator) {

@@ -10,11 +10,13 @@ import Foundation
 private extension Constants {
   static let defaultURL = ""
   static let defaultreachabilityHost = "www.apple.com"
+  static let authorizeURL = "https://kitsu.io/api/oauth"
 }
 
 class NetworkEnvironment {
   let baseRestURLString: String
   let reachabilityHost: String
+  let authorizeURL: String
   
   class var current: NetworkEnvironment {
     return NetworkEnvironment()
@@ -23,5 +25,6 @@ class NetworkEnvironment {
   private init() {
     baseRestURLString = Constants.defaultURL
     reachabilityHost = Constants.defaultreachabilityHost
+    authorizeURL = Constants.authorizeURL
   }
 }

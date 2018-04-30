@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainCoordinator: NSObject, BaseCoordinator {
   // MARK: - Properties
@@ -43,15 +44,11 @@ class MainCoordinator: NSObject, BaseCoordinator {
     self.utility = MainCoordinatorUtility(dependencies: appDependency)
     super.init()
     window.rootViewController = rootNavigationController
+    rootNavigationController.navigationBar.isTranslucent = false
   }
   
   // MARK: - Navigation
-  
-  func start(presentationType: PresentationType) {
-    self.presentationType = presentationType
-    start()
-  }
-  
+
   func start() {
     utility.updateDataBase {
       self.onDatabaseUpdated?()
@@ -71,11 +68,10 @@ class MainCoordinator: NSObject, BaseCoordinator {
   }
   
   private func showAuthorization() {
-//    childCoordinators = []
-//    let authCoordinator =
-//    authCoordinator.delegate = self
-//    addChildCoordinator(authCoordinator)
-//    authCoordinator.start()
+    childCoordinators = []
+    let authCoordinator = AuthCoordinator(appDependency: appDependency, navigationController: rootNavigationController)
+    addChildCoordinator(authCoordinator)
+    authCoordinator.start()
   }
   
   private func showHome() {

@@ -19,5 +19,5 @@ enum Response<T: Decodable> {
 // MARK: Auth
 
 protocol AuthNetworkProtocol {
-  
+  func authorize(username: String, password: String, completion: @escaping (Response<EmptyResponse>) -> Void)
 }

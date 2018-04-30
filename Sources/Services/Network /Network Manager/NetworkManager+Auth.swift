@@ -8,5 +8,9 @@
 import Alamofire.Swift
 
 extension NetworkManager: AuthNetworkProtocol {
-
+  
+  func authorize(username: String, password: String, completion: @escaping (Response<EmptyResponse>) -> Void) {
+    baseAuthorizationRequest(username: username, password: password, completion: completion)
+  }
+  
 }

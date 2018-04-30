@@ -8,19 +8,20 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - Nimble (7.1.0)
+  - Nimble (7.1.1)
+  - p2.OAuth2 (4.0.1)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - Realm (3.3.2):
-    - Realm/Headers (= 3.3.2)
-  - Realm/Headers (3.3.2)
-  - RealmSwift (3.3.2):
-    - Realm (= 3.3.2)
+  - Realm (3.5.0):
+    - Realm/Headers (= 3.5.0)
+  - Realm/Headers (3.5.0)
+  - RealmSwift (3.5.0):
+    - Realm (= 3.5.0)
   - SnapKit (4.0.0)
   - SwiftLint (0.25.1)
   - SwiftyBeaver (1.5.2)
-  - SwiftyJSON (4.0.0)
+  - SwiftyJSON (4.1.0)
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - KeychainAccess
   - Mockingjay
   - Nimble
+  - p2.OAuth2
   - R.swift
   - RealmSwift
   - SnapKit
@@ -41,6 +43,7 @@ SPEC REPOS:
     - KeychainAccess
     - Mockingjay
     - Nimble
+    - p2.OAuth2
     - R.swift
     - R.swift.Library
     - Realm
@@ -55,17 +58,18 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Nimble: 9c6651c3021af6de54c3ed90a4a0a87d548f7359
+  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
+  p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
-  RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
+  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
+  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 0b2d5fcfe60ce16558cf02c2d64ab8cfe0b6101a
+PODFILE CHECKSUM: 08b9478a3fe934f0d9979891bec04f408e3fad37
 
 COCOAPODS: 1.5.0

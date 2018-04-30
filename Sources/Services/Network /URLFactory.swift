@@ -16,6 +16,7 @@ struct URLFactory {
   }
 
   struct Auth {
-    static let auth = baseRestURLString + "functions/newUser"
+    static let oauth = environment.authorizeURL
+    static let accessToken = oauth + "/token"
   }
 }
