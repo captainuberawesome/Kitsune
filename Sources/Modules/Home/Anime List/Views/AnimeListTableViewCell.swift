@@ -55,9 +55,11 @@ class AnimeListTableViewCell: UITableViewCell {
     contentView.addSubview(titleLabel)
     titleLabel.snp.makeConstraints { make in
       make.leading.equalTo(posterImageView.snp.trailing).offset(20)
-      make.top.equalTo(posterImageView)
+      make.top.equalTo(posterImageView).offset(-5)
       make.trailing.equalToSuperview().offset(-20)
     }
+    titleLabel.numberOfLines = 0
+    titleLabel.lineBreakMode = .byWordWrapping
     titleLabel.font = UIFont.boldAppFont(ofSize: 17)
     titleLabel.textColor = .appDarkColor
   }
@@ -66,9 +68,12 @@ class AnimeListTableViewCell: UITableViewCell {
     contentView.addSubview(descriptionLabel)
     descriptionLabel.snp.makeConstraints { make in
       make.leading.trailing.equalTo(titleLabel)
-      make.top.equalTo(descriptionLabel.snp.bottom)
-      make.bottom.lessThanOrEqualToSuperview().offset(-20)
+      make.top.equalTo(titleLabel.snp.bottom)
+      make.bottom.lessThanOrEqualToSuperview().offset(-8)
+      make.height.lessThanOrEqualTo(100)
     }
+    descriptionLabel.numberOfLines = 0
+    descriptionLabel.lineBreakMode = .byWordWrapping
     descriptionLabel.font = UIFont.appFont(ofSize: 15)
     descriptionLabel.textColor = .appDarkColor
   }

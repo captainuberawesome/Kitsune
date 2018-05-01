@@ -19,7 +19,7 @@ class AnimeCellViewModel {
   }
   
   var animeTitle: String? {
-    return anime.englishTitle
+    return anime.canonicalTitle ?? anime.englishTitle
   }
   
   var animeSynopsis: String? {

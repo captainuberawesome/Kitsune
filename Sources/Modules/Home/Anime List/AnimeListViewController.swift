@@ -9,7 +9,7 @@ import UIKit
 import UIScrollView_InfiniteScroll
 
 class AnimeListViewController: BaseViewController {
-  private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+  private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
   private let tableView = UITableView(frame: .zero, style: .plain)
   private let emptyView = UIView()
   private var infiniteScrollAdded = false
@@ -44,7 +44,7 @@ class AnimeListViewController: BaseViewController {
   // MARK: - Setup
   
   private func setup() {
-    view.backgroundColor = .appTertiaryLight
+    view.backgroundColor = .white
     setupTableView()
     view.addSubview(activityIndicatorView)
     activityIndicatorView.snp.makeConstraints { make in
@@ -57,7 +57,6 @@ class AnimeListViewController: BaseViewController {
     viewModel.dataSource.configure(withTableView: tableView)
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
-    tableView.separatorStyle = .none
     tableView.backgroundColor = .clear
     tableView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
@@ -98,7 +97,7 @@ extension AnimeListViewController {
     if infiniteScrollAdded {
       return
     }
-    tableView.infiniteScrollIndicatorStyle = .white
+    tableView.infiniteScrollIndicatorStyle = .gray
     infiniteScrollAdded = true
     tableView.addInfiniteScroll { [weak self] _ in
       self?.viewModel.loadNextPage()

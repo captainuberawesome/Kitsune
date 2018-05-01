@@ -55,16 +55,14 @@
 		FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */; };
 		FDFCF7E92096F03700F7A901 /* NetworkService+AnimeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */; };
 		FDFCF7ED2097344600F7A901 /* UIFont+AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7EC2097344600F7A901 /* UIFont+AppFonts.swift */; };
-		FDFCF7F32097349100F7A901 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7EF2097349100F7A901 /* JosefinSans-Bold.ttf */; };
-		FDFCF7F42097349100F7A901 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */; };
-		FDFCF7F52097349100F7A901 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */; };
-		FDFCF7F62097349100F7A901 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */; };
 		FDFCF7FA20973AAF00F7A901 /* Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7F920973AAF00F7A901 /* Anime.swift */; };
 		FDFCF7FE2097438B00F7A901 /* RealmAnime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7FD2097438B00F7A901 /* RealmAnime.swift */; };
 		FDFCF800209753B200F7A901 /* Date+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */; };
 		FDFCF80420975A9800F7A901 /* AnimeListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF80320975A9800F7A901 /* AnimeListResponse.swift */; };
 		FDFCF8062097676E00F7A901 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF8052097676D00F7A901 /* UIImageView+Kingfisher.swift */; };
 		FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFCF807209769E500F7A901 /* AnimeList.strings */; };
+		FDFD6D5C2098BB3C00D08F2E /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFD6D5B2098BB3B00D08F2E /* RobotoCondensed-Bold.ttf */; };
+		FDFD6D5D2098BB3E00D08F2E /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDFD6D5A2098BB3A00D08F2E /* RobotoCondensed-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,16 +148,14 @@
 		FDFCF7E62096EC5200F7A901 /* AnimeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListTableViewCell.swift; sourceTree = "<group>"; };
 		FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+AnimeList.swift"; sourceTree = "<group>"; };
 		FDFCF7EC2097344600F7A901 /* UIFont+AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AppFonts.swift"; sourceTree = "<group>"; };
-		FDFCF7EF2097349100F7A901 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
-		FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Light.ttf"; sourceTree = "<group>"; };
-		FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
 		FDFCF7F920973AAF00F7A901 /* Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime.swift; sourceTree = "<group>"; };
 		FDFCF7FD2097438B00F7A901 /* RealmAnime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAnime.swift; sourceTree = "<group>"; };
 		FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Marshal.swift"; sourceTree = "<group>"; };
 		FDFCF80320975A9800F7A901 /* AnimeListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListResponse.swift; sourceTree = "<group>"; };
 		FDFCF8052097676D00F7A901 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		FDFCF807209769E500F7A901 /* AnimeList.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AnimeList.strings; sourceTree = "<group>"; };
+		FDFD6D5A2098BB3A00D08F2E /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		FDFD6D5B2098BB3B00D08F2E /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,10 +485,8 @@
 		FDFCF7EE2097349100F7A901 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				FDFCF7EF2097349100F7A901 /* JosefinSans-Bold.ttf */,
-				FDFCF7F02097349100F7A901 /* JosefinSans-Light.ttf */,
-				FDFCF7F12097349100F7A901 /* JosefinSans-SemiBold.ttf */,
-				FDFCF7F22097349100F7A901 /* JosefinSans-Regular.ttf */,
+				FDFD6D5B2098BB3B00D08F2E /* RobotoCondensed-Bold.ttf */,
+				FDFD6D5A2098BB3A00D08F2E /* RobotoCondensed-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -590,15 +584,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDFCF7F52097349100F7A901 /* JosefinSans-SemiBold.ttf in Resources */,
+				FDFD6D5C2098BB3C00D08F2E /* RobotoCondensed-Bold.ttf in Resources */,
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
+				FDFD6D5D2098BB3E00D08F2E /* RobotoCondensed-Regular.ttf in Resources */,
 				FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
-				FDFCF7F42097349100F7A901 /* JosefinSans-Light.ttf in Resources */,
-				FDFCF7F62097349100F7A901 /* JosefinSans-Regular.ttf in Resources */,
 				8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */,
-				FDFCF7F32097349100F7A901 /* JosefinSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

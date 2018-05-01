@@ -9,19 +9,11 @@ import UIKit
 
 extension UIFont {
   static func appFont(ofSize size: CGFloat) -> UIFont {
-    return font(withName: R.font.josefinSans.fontName, ofSize: size)
+    return font(withName: R.font.robotoCondensedRegular.fontName, ofSize: size)
   }
   
   static func boldAppFont(ofSize size: CGFloat) -> UIFont {
-    return font(withName: R.font.josefinSansBold.fontName, ofSize: size)
-  }
-  
-  static func semiBoldAppFont(ofSize size: CGFloat) -> UIFont {
-    return font(withName: R.font.josefinSansSemiBold.fontName, ofSize: size)
-  }
-  
-  static func lightAppFont(ofSize size: CGFloat) -> UIFont {
-    return font(withName: R.font.josefinSansLight.fontName, ofSize: size)
+    return font(withName: R.font.robotoCondensedBold.fontName, ofSize: size)
   }
   
   private static func font(withName name: String, ofSize size: CGFloat) -> UIFont {

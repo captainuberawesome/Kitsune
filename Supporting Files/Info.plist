@@ -38,10 +38,8 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>JosefinSans-Bold.ttf</string>
-		<string>JosefinSans-SemiBold.ttf</string>
-		<string>JosefinSans-Light.ttf</string>
-		<string>JosefinSans-Regular.ttf</string>
+		<string>RobotoCondensed-Regular.ttf</string>
+		<string>RobotoCondensed-Bold.ttf</string>
 	</array>
 </dict>
 </plist>
