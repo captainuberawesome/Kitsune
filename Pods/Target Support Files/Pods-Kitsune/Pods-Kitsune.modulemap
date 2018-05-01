@@ -1,6 +1,0 @@
-framework module Pods_Kitsune {
-  umbrella header "Pods-Kitsune-umbrella.h"
-
-  export *
-  module * { export * }
-}
