@@ -27,12 +27,6 @@ class AnimeListViewController: BaseViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Deinit
-  
-  deinit {
-    
-  }
-  
   // MARK: - View Life Cycle
   
   override func viewDidLoad() {

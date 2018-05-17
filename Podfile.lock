@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.7.2)
   - KeychainAccess (3.1.1)
   - Kingfisher (4.7.0)
-  - Marshal (1.2.5)
+  - Marshal (1.2.7)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -69,14 +69,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Marshal:
-    :commit: 3b9c03274a0166e0956300ea92c863625ca2a98d
+    :commit: 132eec0999fdd7324ed02c231a59abb42336db90
     :git: https://github.com/utahiosmac/Marshal.git
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
-  Marshal: 15a5c9f397223ba72bcac89c834770f1e7849918
+  Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956

@@ -30,6 +30,14 @@
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
 		FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB7209630F500B117E5 /* RetryHandler.swift */; };
+		FDA4185220ADCBBB00B41819 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185120ADCBBB00B41819 /* TabBarController.swift */; };
+		FDA4185620ADCC7A00B41819 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185520ADCC7A00B41819 /* LoginViewController.swift */; };
+		FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */; };
+		FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */; };
+		FDA4185C20ADD1A200B41819 /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDA4185B20ADD1A200B41819 /* Login.strings */; };
+		FDA4185E20ADD23000B41819 /* Library.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDA4185D20ADD23000B41819 /* Library.strings */; };
+		FDA4186220ADD8F500B41819 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */; };
+		FDA4186420ADD90000B41819 /* MyLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */; };
 		FDCAB3CC2095C6EB0000675D /* KitsuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */; };
 		FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DB2095E5320000675D /* AppDependency.swift */; };
 		FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */; };
@@ -119,6 +127,14 @@
 		FD6ABCAB2095F30200B117E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6ABCB52096187800B117E5 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		FD6ABCB7209630F500B117E5 /* RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
+		FDA4185120ADCBBB00B41819 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FDA4185520ADCC7A00B41819 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		FDA4185B20ADD1A200B41819 /* Login.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Login.strings; sourceTree = "<group>"; };
+		FDA4185D20ADD23000B41819 /* Library.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Library.strings; sourceTree = "<group>"; };
+		FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewController.swift; sourceTree = "<group>"; };
+		FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewModel.swift; sourceTree = "<group>"; };
 		FDCAB3C92095C6EB0000675D /* KitsuneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitsuneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuneTests.swift; sourceTree = "<group>"; };
 		FDCAB3CD2095C6EB0000675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -227,6 +243,8 @@
 			children = (
 				8B3506892092D21100586986 /* NetworkErrors.strings */,
 				FDFCF807209769E500F7A901 /* AnimeList.strings */,
+				FDA4185B20ADD1A200B41819 /* Login.strings */,
+				FDA4185D20ADD23000B41819 /* Library.strings */,
 				8B60AAAA208DBF1D00E6986C /* Common.strings */,
 			);
 			path = Strings;
@@ -313,6 +331,7 @@
 				8BD2648C2043C2FB00095E68 /* BaseCoordinator.swift */,
 				8B8758FA208D888D00D1BBF5 /* BaseViewController.swift */,
 				8B8758F9208D888D00D1BBF5 /* NavigationController.swift */,
+				FDA4185120ADCBBB00B41819 /* TabBarController.swift */,
 				8B8758F8208D888D00D1BBF5 /* NavigationFlowCoordinator.swift */,
 			);
 			path = Base;
@@ -336,6 +355,40 @@
 				FD6ABCAB2095F30200B117E5 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDA4185320ADCC6100B41819 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4185420ADCC6D00B41819 /* View Model */,
+				FDA4185520ADCC7A00B41819 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FDA4185420ADCC6D00B41819 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		FDA4185F20ADD8E300B41819 /* My Library */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4186020ADD8E300B41819 /* View Model */,
+				FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */,
+			);
+			path = "My Library";
+			sourceTree = "<group>";
+		};
+		FDA4186020ADD8E300B41819 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		FDCAB3CA2095C6EB0000675D /* KitsuneTests */ = {
@@ -441,7 +494,10 @@
 			isa = PBXGroup;
 			children = (
 				FDFCF7DA2096EB0100F7A901 /* Anime List */,
+				FDA4185F20ADD8E300B41819 /* My Library */,
+				FDA4185320ADCC6100B41819 /* Login */,
 				FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */,
+				FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -586,10 +642,12 @@
 			files = (
 				FDFD6D5C2098BB3C00D08F2E /* RobotoCondensed-Bold.ttf in Resources */,
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
+				FDA4185E20ADD23000B41819 /* Library.strings in Resources */,
 				FDFD6D5D2098BB3E00D08F2E /* RobotoCondensed-Regular.ttf in Resources */,
 				FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
+				FDA4185C20ADD1A200B41819 /* Login.strings in Resources */,
 				8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -775,6 +833,7 @@
 			files = (
 				8BD264882043C05E00095E68 /* Logger.swift in Sources */,
 				FDFCF7E92096F03700F7A901 /* NetworkService+AnimeList.swift in Sources */,
+				FDA4185220ADCBBB00B41819 /* TabBarController.swift in Sources */,
 				FDFCF7E42096EB0E00F7A901 /* AnimeListDataSource.swift in Sources */,
 				FDFCF7ED2097344600F7A901 /* UIFont+AppFonts.swift in Sources */,
 				FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */,
@@ -784,11 +843,13 @@
 				FDFCF7FA20973AAF00F7A901 /* Anime.swift in Sources */,
 				FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */,
 				8B8758FB208D888D00D1BBF5 /* NavigationFlowCoordinator.swift in Sources */,
+				FDA4185620ADCC7A00B41819 /* LoginViewController.swift in Sources */,
 				FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */,
 				FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */,
 				FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */,
 				8BD2648D2043C2FB00095E68 /* BaseCoordinator.swift in Sources */,
 				FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */,
+				FDA4186420ADD90000B41819 /* MyLibraryViewModel.swift in Sources */,
 				8BC4AE092043A9DB0093E231 /* AppDelegate.swift in Sources */,
 				8BD264AF2043C5A700095E68 /* UIColor+AppColors.swift in Sources */,
 				FDFCF800209753B200F7A901 /* Date+Marshal.swift in Sources */,
@@ -800,14 +861,17 @@
 				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
 				FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */,
 				FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */,
+				FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */,
 				FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */,
 				FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */,
 				8BD264AA2043C5A700095E68 /* UIViewController+ErrorHandling.swift in Sources */,
 				FDCAB4042095E6210000675D /* NetworkService.swift in Sources */,
 				8B61C7972091E026005FD0F7 /* ReuseIdentifiable.swift in Sources */,
+				FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */,
 				FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */,
 				FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */,
 				FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */,
+				FDA4186220ADD8F500B41819 /* MyLibraryViewController.swift in Sources */,
 				8B3506862092D09700586986 /* R.generated.swift in Sources */,
 				FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */,
 				FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */,
