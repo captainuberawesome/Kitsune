@@ -22,4 +22,12 @@ extension UIFont {
     }
     return font
   }
+  
+  static var titleFont: UIFont {
+    return UIFont.boldAppFont(ofSize: 17)
+  }
+  
+  static var textFont: UIFont {
+    return UIFont.appFont(ofSize: 15)
+  }
 }

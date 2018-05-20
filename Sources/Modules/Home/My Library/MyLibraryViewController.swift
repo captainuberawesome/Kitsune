@@ -52,6 +52,14 @@ class MyLibraryViewController: BaseViewController {
     addChildViewController(loginViewController, toView: loginContainerView)
   }
   
+  // MARK: - Public
+  
+  func configureForLoggedIn() {
+    guard let loginViewController = self.loginViewController else { return }
+    removeChildController(loginViewController)
+    loginContainerView.removeFromSuperview()
+  }
+  
   // MARK: - View Model
   
   private func bindViewModel() {

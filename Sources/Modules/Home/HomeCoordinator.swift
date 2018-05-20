@@ -16,6 +16,8 @@ class HomeCoordinator: NavigationFlowCoordinator {
   var presentationType: PresentationType = .push
   weak var baseDelegate: BaseCoordinatorDelegate?
   
+  var onFinishedLogin: (() -> Void)?
+  
   init(appDependency: AppDependency, navigationController: UINavigationController) {
     self.appDependency = appDependency
     self.navigationController = navigationController
@@ -67,11 +69,15 @@ class HomeCoordinator: NavigationFlowCoordinator {
     viewController.navigationItem.title = R.string.library.title()
     viewController.tabBarItem = UITabBarItem(title: R.string.library.title(), image: R.image.myLibrary(),
                                              selectedImage: nil)
+    onFinishedLogin = { [weak viewController] in
+      viewController?.configureForLoggedIn()
+    }
     return viewController
   }
   
   private func createLoginViewController() -> LoginViewController {
     let viewModel = LoginViewModel(dependencies: appDependency)
+    viewModel.delegate = self
     let viewController = LoginViewController(viewModel: viewModel)
     return viewController
   }
@@ -90,5 +96,13 @@ extension HomeCoordinator: HomeTabBarControllerDelegate {
 extension HomeCoordinator: MyLibraryViewControllerDataSource {
   func getLoginViewController() -> LoginViewController? {
     return createLoginViewController()
+  }
+}
+
+// MARK: - LoginViewModel Delegate
+
+extension HomeCoordinator: LoginViewModelDelegate {
+  func loginViewModelDidFinishLogin(_ viewModel: LoginViewModel) {
+    onFinishedLogin?()
   }
 }

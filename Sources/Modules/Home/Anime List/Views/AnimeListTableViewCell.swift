@@ -60,7 +60,7 @@ class AnimeListTableViewCell: UITableViewCell {
     }
     titleLabel.numberOfLines = 0
     titleLabel.lineBreakMode = .byWordWrapping
-    titleLabel.font = UIFont.boldAppFont(ofSize: 17)
+    titleLabel.font = .titleFont
     titleLabel.textColor = .appDarkColor
   }
   
@@ -74,7 +74,7 @@ class AnimeListTableViewCell: UITableViewCell {
     }
     descriptionLabel.numberOfLines = 0
     descriptionLabel.lineBreakMode = .byWordWrapping
-    descriptionLabel.font = UIFont.appFont(ofSize: 15)
+    descriptionLabel.font = .textFont
     descriptionLabel.textColor = .appDarkColor
   }
   

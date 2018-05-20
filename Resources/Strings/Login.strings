@@ -4,3 +4,6 @@
 */
 
 "title" = "LOGIN";
+"button.title" = "Sign In";
+"email.placeholder" = "Email";
+"password.placeholder" = "Password";

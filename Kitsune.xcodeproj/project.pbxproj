@@ -34,11 +34,11 @@
 		FDA4185620ADCC7A00B41819 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185520ADCC7A00B41819 /* LoginViewController.swift */; };
 		FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */; };
 		FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */; };
-		FDA4185C20ADD1A200B41819 /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDA4185B20ADD1A200B41819 /* Login.strings */; };
 		FDA4185E20ADD23000B41819 /* Library.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDA4185D20ADD23000B41819 /* Library.strings */; };
 		FDA4186220ADD8F500B41819 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */; };
 		FDA4186420ADD90000B41819 /* MyLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */; };
 		FDB1C31F20B1AEDE0044ACA4 /* UIViewController+Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1C31E20B1AEDE0044ACA4 /* UIViewController+Children.swift */; };
+		FDB1C32720B1C0180044ACA4 /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDB1C32620B1C0180044ACA4 /* Login.strings */; };
 		FDCAB3CC2095C6EB0000675D /* KitsuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */; };
 		FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DB2095E5320000675D /* AppDependency.swift */; };
 		FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */; };
@@ -132,11 +132,11 @@
 		FDA4185520ADCC7A00B41819 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
-		FDA4185B20ADD1A200B41819 /* Login.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Login.strings; sourceTree = "<group>"; };
 		FDA4185D20ADD23000B41819 /* Library.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Library.strings; sourceTree = "<group>"; };
 		FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewController.swift; sourceTree = "<group>"; };
 		FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewModel.swift; sourceTree = "<group>"; };
 		FDB1C31E20B1AEDE0044ACA4 /* UIViewController+Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Children.swift"; sourceTree = "<group>"; };
+		FDB1C32620B1C0180044ACA4 /* Login.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Login.strings; sourceTree = "<group>"; };
 		FDCAB3C92095C6EB0000675D /* KitsuneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitsuneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuneTests.swift; sourceTree = "<group>"; };
 		FDCAB3CD2095C6EB0000675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 			children = (
 				8B3506892092D21100586986 /* NetworkErrors.strings */,
 				FDFCF807209769E500F7A901 /* AnimeList.strings */,
-				FDA4185B20ADD1A200B41819 /* Login.strings */,
+				FDB1C32620B1C0180044ACA4 /* Login.strings */,
 				FDA4185D20ADD23000B41819 /* Library.strings */,
 				8B60AAAA208DBF1D00E6986C /* Common.strings */,
 			);
@@ -650,7 +650,7 @@
 				FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
-				FDA4185C20ADD1A200B41819 /* Login.strings in Resources */,
+				FDB1C32720B1C0180044ACA4 /* Login.strings in Resources */,
 				8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
