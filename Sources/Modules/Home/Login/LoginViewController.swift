@@ -55,6 +55,8 @@ class LoginViewController: BaseViewController {
     emailTextField.tintColor = .appPrimary
     emailTextField.textColor = .appDarkColor
     emailTextField.placeholder = R.string.login.emailPlaceholder()
+    emailTextField.font = .textFont
+    emailTextField.titleFont = .smallTextFont
     emailTextField.snp.makeConstraints { make in
       make.top.equalToSuperview().offset(50)
       make.leading.trailing.equalToSuperview().inset(30)
@@ -72,6 +74,8 @@ class LoginViewController: BaseViewController {
     passwordTextField.textColor = .appDarkColor
     passwordTextField.isSecureTextEntry = true
     passwordTextField.placeholder = R.string.login.passwordPlaceholder()
+    passwordTextField.font = .textFont
+    passwordTextField.titleFont = .smallTextFont
     passwordTextField.snp.makeConstraints { make in
       make.top.equalTo(emailTextField.snp.bottom).offset(10)
       make.leading.trailing.equalTo(emailTextField)

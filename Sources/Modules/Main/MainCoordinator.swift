@@ -55,7 +55,8 @@ class MainCoordinator: NSObject, BaseCoordinator {
   }
   
   private func showHome() {
-    let coordinator = HomeCoordinator(appDependency: appDependency, navigationController: rootNavigationController)
+    let coordinator = HomeCoordinator(appDependency: appDependency, logoutHandler: self,
+                                      navigationController: rootNavigationController)
     addChildCoordinator(coordinator)
     coordinator.start()
   }
@@ -64,7 +65,7 @@ class MainCoordinator: NSObject, BaseCoordinator {
 // MARK: - LogoutHandler
 
 extension MainCoordinator: LogoutHandler {
-  func logout() {
-    utility.signOut()
+  func logout(completion: (() -> Void)?) {
+    utility.signOut(completion: completion)
   }
 }

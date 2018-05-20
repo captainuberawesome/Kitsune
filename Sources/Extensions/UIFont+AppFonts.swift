@@ -30,4 +30,8 @@ extension UIFont {
   static var textFont: UIFont {
     return UIFont.appFont(ofSize: 15)
   }
+  
+  static var smallTextFont: UIFont {
+    return UIFont.appFont(ofSize: 12)
+  }
 }

@@ -60,6 +60,10 @@ class MyLibraryViewController: BaseViewController {
     loginContainerView.removeFromSuperview()
   }
   
+  func configureForLoggedOut() {
+    addLoginViewController()
+  }
+  
   // MARK: - View Model
   
   private func bindViewModel() {

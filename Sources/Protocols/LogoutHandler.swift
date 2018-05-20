@@ -8,5 +8,5 @@
 import Foundation
 
 protocol LogoutHandler: class {
-  func logout()
+  func logout(completion: (() -> Void)?)
 }
