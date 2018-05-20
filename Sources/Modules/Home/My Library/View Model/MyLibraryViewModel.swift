@@ -8,5 +8,17 @@
 import Foundation
 
 class MyLibraryViewModel {
+  typealias Dependencies = HasLoginStateService
   
+  private let dependencies: Dependencies
+  
+  var isLoggedIn: Bool {
+    return dependencies.loginStateService.isLoggedIn
+  }
+  
+  // MARK: - Init
+  
+  init(dependencies: Dependencies) {
+    self.dependencies = dependencies
+  }
 }

@@ -61,8 +61,9 @@ class HomeCoordinator: NavigationFlowCoordinator {
   }
   
   private func createMyLibraryViewController() -> MyLibraryViewController {
-    let viewModel = MyLibraryViewModel()
+    let viewModel = MyLibraryViewModel(dependencies: appDependency)
     let viewController = MyLibraryViewController(viewModel: viewModel)
+    viewController.dataSource = self
     viewController.navigationItem.title = R.string.library.title()
     viewController.tabBarItem = UITabBarItem(title: R.string.library.title(), image: R.image.myLibrary(),
                                              selectedImage: nil)
@@ -70,14 +71,24 @@ class HomeCoordinator: NavigationFlowCoordinator {
   }
   
   private func createLoginViewController() -> LoginViewController {
-    let viewModel = LoginViewModel()
+    let viewModel = LoginViewModel(dependencies: appDependency)
     let viewController = LoginViewController(viewModel: viewModel)
     return viewController
   }
 }
 
+// MARK: - HomeTabBarController Delegate
+
 extension HomeCoordinator: HomeTabBarControllerDelegate {
   func homeTabBarControllerDidDeinit(_ viewController: HomeTabBarController) {
     baseDelegate?.coordinatorRootViewControllerDidDeinit(coordinator: self)
+  }
+}
+
+// MARK: - MyLibraryViewController DataSource
+
+extension HomeCoordinator: MyLibraryViewControllerDataSource {
+  func getLoginViewController() -> LoginViewController? {
+    return createLoginViewController()
   }
 }

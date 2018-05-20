@@ -24,6 +24,8 @@ class HomeTabBarController: TabBarController {
     tabBar.backgroundColor = .appPrimary
     tabBar.tintColor = .white
     tabBar.barTintColor = .appPrimary
+    tabBar.shadowImage = UIImage()
+    tabBar.backgroundImage = UIImage()
     tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.5)
   }
 }

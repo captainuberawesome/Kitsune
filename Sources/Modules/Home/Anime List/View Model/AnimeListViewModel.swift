@@ -29,6 +29,8 @@ class AnimeListViewModel {
   var onLoadingFinished: (() -> Void)?
   var onUIReloadRequested: (() -> Void)?
   
+  // MARK: - Init
+  
   init(dependencies: Dependencies) {
     self.dependencies = dependencies
   }

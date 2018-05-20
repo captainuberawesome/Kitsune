@@ -23,6 +23,19 @@ class LoginViewController: BaseViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - View life cycle
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setup()
+  }
+  
+  // MARK: - Setup
+  
+  private func setup() {
+    view.backgroundColor = .appSecondaryDark
+  }
+  
   // MARK: - View Model
   
   private func bindViewModel() {

@@ -24,6 +24,10 @@ protocol AuthNetworkProtocol {
   func signOut(completion: @escaping (Response<EmptyResponse>) -> Void)
 }
 
+protocol LoginStateNetworkProtocol {
+  var isLoggedIn: Bool { get }
+}
+
 protocol AnimeListNetworkProtocol {
    func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
 }

@@ -19,6 +19,10 @@ protocol HasAuthService {
   var authService: AuthNetworkProtocol { get }
 }
 
+protocol HasLoginStateService {
+  var loginStateService: LoginStateNetworkProtocol { get }
+}
+
 protocol HasAnimeListService {
   var animeListService: AnimeListNetworkProtocol { get }
 }
@@ -46,7 +50,8 @@ class AppDependency: HasRealmService, HasReachabilityManager {
   }
 }
 
-extension AppDependency: HasAuthService, HasAnimeListService {
+extension AppDependency: HasAuthService, HasAnimeListService, HasLoginStateService {
   var authService: AuthNetworkProtocol { return networkManager }
   var animeListService: AnimeListNetworkProtocol { return networkManager }
+  var loginStateService: LoginStateNetworkProtocol { return networkManager }
 }

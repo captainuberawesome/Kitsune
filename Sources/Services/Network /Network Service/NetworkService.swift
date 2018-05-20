@@ -28,7 +28,7 @@ private struct OAuth2ParameterKeys {
   static let keychain = "keychain"
 }
 
-class NetworkService: NSObject {
+class NetworkService: NSObject, LoginStateNetworkProtocol {
 
   struct HeaderKeys {
     static let authorization = "Authorization"
@@ -38,6 +38,10 @@ class NetworkService: NSObject {
   private let oauth: OAuth2PasswordGrant
   private let manager: Alamofire.SessionManager
   private let logger = RequestLogger()
+  
+  var isLoggedIn: Bool {
+    return oauth.accessToken != nil
+  }
   
   // MARK: - Init
   
