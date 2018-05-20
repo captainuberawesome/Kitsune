@@ -15,6 +15,7 @@ def shared_pods
   pod 'Marshal', :git => 'https://github.com/utahiosmac/Marshal.git', :branch => 'master'
   pod 'UIScrollView-InfiniteScroll'
   pod 'Kingfisher'
+  pod 'SkyFloatingLabelTextField'
 end
 
 target 'Kitsune' do
