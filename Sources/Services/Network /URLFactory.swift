@@ -20,7 +20,13 @@ struct URLFactory {
     static let accessToken = oauth + "/token"
   }
   
-  struct Anime {
-    static let list = baseRestURLString + "/anime"
+  struct Media {
+    static let anime = baseRestURLString + "/anime"
+  }
+  
+  struct UserLibraies {
+    static func libraryEntries(forUserWithId id: Int) -> String {
+      return baseRestURLString + "users/\(id)/library-entries"
+    }
   }
 }

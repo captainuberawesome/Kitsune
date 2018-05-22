@@ -17,6 +17,7 @@ class NetworkErrorService: NSObject {
   
   enum StatusCode: Int {
     case okStatus = 200
+    case createdStatus = 201
     case okNoContent = 204
     case badRequest = 400
     case unauthorized = 401

@@ -31,3 +31,8 @@ protocol LoginStateNetworkProtocol {
 protocol AnimeListNetworkProtocol {
    func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
 }
+
+protocol LibraryEntriesNetworkProtocol {
+  func libraryEntries(forUserWithId userId: Int, withLimit limit: Int, offset: Int,
+                      completion: @escaping (Response<EmptyResponse>) -> Void)
+}

@@ -27,6 +27,10 @@ protocol HasAnimeListService {
   var animeListService: AnimeListNetworkProtocol { get }
 }
 
+protocol HasLibraryEntriesService {
+  var libraryEntriesService: LibraryEntriesNetworkProtocol { get }
+}
+
 class AppDependency: HasRealmService, HasReachabilityManager {
   let realmService: RealmService
   let networkManager: NetworkService
@@ -50,8 +54,9 @@ class AppDependency: HasRealmService, HasReachabilityManager {
   }
 }
 
-extension AppDependency: HasAuthService, HasAnimeListService, HasLoginStateService {
+extension AppDependency: HasAuthService, HasAnimeListService, HasLoginStateService, HasLibraryEntriesService {
   var authService: AuthNetworkProtocol { return networkManager }
   var animeListService: AnimeListNetworkProtocol { return networkManager }
   var loginStateService: LoginStateNetworkProtocol { return networkManager }
+  var libraryEntriesService: LibraryEntriesNetworkProtocol { return networkManager }
 }

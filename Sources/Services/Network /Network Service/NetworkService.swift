@@ -122,7 +122,7 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
                                                    completion: @escaping ((Response<T>) -> Void)) {
     let statusCode = NetworkErrorService.StatusCode(rawValue: code) ?? NetworkErrorService.StatusCode.internalError
     switch statusCode {
-    case .okStatus, .okNoContent:
+    case .okStatus, .createdStatus, .okNoContent:
       if let object = try? T(object: marshaledObject) {
         completion(.success(object))
       } else {
