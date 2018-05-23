@@ -24,6 +24,7 @@ final class User: NSObject, TransientEntity {
   var website: String = ""
   var avatarThumb: String = ""
   var avatar: String = ""
+  var coverImage: String = ""
   
   // MARK: Init
   
@@ -51,6 +52,7 @@ extension User: Unmarshaling {
     static let website = "attributes.website"
     static let avatarThumb = "attributes.avatar.small"
     static let avatar = "attributes.avatar.large"
+    static let coverImage = "attributes.coverImage.original"
   }
   
   func unmarshal(object: MarshaledObject) throws {
@@ -66,5 +68,6 @@ extension User: Unmarshaling {
     try? website = object.value(for: Keys.website)
     try? avatarThumb = object.value(for: Keys.avatarThumb)
     try? avatar = object.value(for: Keys.avatar)
+    try? coverImage = object.value(for: Keys.coverImage)
   }
 }

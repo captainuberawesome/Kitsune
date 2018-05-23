@@ -26,6 +26,7 @@ final class RealmUser: Object, RealmEntity {
   @objc dynamic var website: String = ""
   @objc dynamic var avatarThumb: String = ""
   @objc dynamic var avatar: String = ""
+  @objc dynamic var coverImage: String = ""
   
   // MARK: - Methods
   
@@ -56,6 +57,7 @@ final class RealmUser: Object, RealmEntity {
     user.website = transient.website
     user.avatarThumb = transient.avatarThumb
     user.avatar = transient.avatar
+    user.coverImage = transient.coverImage
     return user
   }
   
@@ -75,6 +77,7 @@ final class RealmUser: Object, RealmEntity {
     transient.website = website
     transient.avatarThumb = avatarThumb
     transient.avatar = avatar
+    transient.coverImage = coverImage
     return transient
   }
 }
