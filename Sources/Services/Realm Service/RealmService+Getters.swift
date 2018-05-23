@@ -10,4 +10,11 @@ import RealmSwift
 
 extension RealmService {
   
+  // MARK: - Get User by id
+  
+  func user(withId id: String) -> User? {
+    let user = persistentRealm.object(ofType: RealmUser.self, forPrimaryKey: id)
+    return user?.transient()
+  }
+  
 }

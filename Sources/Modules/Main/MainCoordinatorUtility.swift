@@ -9,6 +9,7 @@ import Foundation
 
 class MainCoordinatorUtility {
   typealias Dependencies = HasReachabilityManager & HasRealmService & HasAuthService
+    & HasUserDataService
   
   private struct Constants {
     static let hadFirstRunAlreadyUserDefaultsKey = "hadFirstRunAlready"
@@ -43,6 +44,7 @@ class MainCoordinatorUtility {
   }
   
   func clearUserData(completion: (() -> Void)? = nil) {
+    dependencies.userDataService.clearData()
     dependencies.realmService.clear(completion: completion)
   }
   

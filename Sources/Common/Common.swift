@@ -13,3 +13,13 @@ struct WeakWrapper<T: AnyObject> {
     self.value = value
   }
 }
+
+extension Bool {
+  var stringValue: String {
+    if self {
+      return "true"
+    } else {
+      return "false"
+    }
+  }
+}

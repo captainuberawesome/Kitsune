@@ -24,9 +24,8 @@ struct URLFactory {
     static let anime = baseRestURLString + "/anime"
   }
   
-  struct UserLibraies {
-    static func libraryEntries(forUserWithId id: Int) -> String {
-      return baseRestURLString + "users/\(id)/library-entries"
-    }
+  struct Users {
+    static let users = baseRestURLString + "/users"
   }
+  
 }

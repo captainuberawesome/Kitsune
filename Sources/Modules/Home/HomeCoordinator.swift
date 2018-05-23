@@ -41,11 +41,11 @@ class HomeCoordinator: NavigationFlowCoordinator {
     let animeListNavigationController = NavigationController(rootViewController: animeListViewController)
     animeListNavigationController.setupNavigationBarAppearance()
     
-    let myLibraryViewController = createMyLibraryViewController()
-    let libraryNavigationController = NavigationController(rootViewController: myLibraryViewController)
-    libraryNavigationController.setupNavigationBarAppearance()
+    let myProfileViewController = createMyProfileViewController()
+    let myProfileNavigationController = NavigationController(rootViewController: myProfileViewController)
+    myProfileNavigationController.setupNavigationBarAppearance()
     
-    tabBarController.viewControllers = [animeListNavigationController, libraryNavigationController]
+    tabBarController.viewControllers = [animeListNavigationController, myProfileNavigationController]
     tabBarController.setupTabBarAppearance()
     
     switch presentationType {
@@ -67,14 +67,14 @@ class HomeCoordinator: NavigationFlowCoordinator {
     return viewController
   }
   
-  private func createMyLibraryViewController() -> MyLibraryViewController {
-    let viewModel = MyLibraryViewModel(dependencies: appDependency)
-    let viewController = MyLibraryViewController(viewModel: viewModel)
+  private func createMyProfileViewController() -> MyProfileViewController {
+    let viewModel = MyProfileViewModel(dependencies: appDependency)
+    let viewController = MyProfileViewController(viewModel: viewModel)
     viewController.dataSource = self
-    viewController.navigationItem.title = R.string.library.title()
-    viewController.tabBarItem = UITabBarItem(title: R.string.library.title(), image: R.image.myLibrary(),
+    viewController.navigationItem.title = R.string.profile.title()
+    viewController.tabBarItem = UITabBarItem(title: R.string.profile.title(), image: R.image.myProfile(),
                                              selectedImage: nil)
-    let logoutButton = UIBarButtonItem(title: R.string.library.logoutButtonTitle(), style: .plain,
+    let logoutButton = UIBarButtonItem(title: R.string.profile.logoutButtonTitle(), style: .plain,
                                        target: self, action: #selector(self.logoutButtonTapped(_:)))
     logoutButton.setTitleTextAttributes([.font: UIFont.textFont], for: .normal)
     logoutButton.setTitleTextAttributes([.font: UIFont.textFont], for: .highlighted)
@@ -116,9 +116,9 @@ extension HomeCoordinator: HomeTabBarControllerDelegate {
   }
 }
 
-// MARK: - MyLibraryViewController DataSource
+// MARK: - MyProfileViewController DataSource
 
-extension HomeCoordinator: MyLibraryViewControllerDataSource {
+extension HomeCoordinator: MyProfileViewControllerDataSource {
   func getLoginViewController() -> LoginViewController? {
     return createLoginViewController()
   }

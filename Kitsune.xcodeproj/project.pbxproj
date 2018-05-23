@@ -26,6 +26,11 @@
 		8BD264B22043C5A700095E68 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD264A62043C5A600095E68 /* UIViewController+Alerts.swift */; };
 		8BD264F220441A6800095E68 /* Realm+Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD264F120441A6700095E68 /* Realm+Stores.swift */; };
 		B204EA422934EEDDD2BC728F /* Pods_Kitsune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341F67BE0D6957E6519F3FB5 /* Pods_Kitsune.framework */; };
+		FD35925220B5A25C00EA634D /* NetworkService+MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925120B5A25C00EA634D /* NetworkService+MyProfile.swift */; };
+		FD35925420B5A71800EA634D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925320B5A71800EA634D /* User.swift */; };
+		FD35925620B5A9BE00EA634D /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925520B5A9BE00EA634D /* RealmUser.swift */; };
+		FD35925820B5AAEA00EA634D /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925720B5AAEA00EA634D /* UserResponse.swift */; };
+		FD35925B20B5ADF000EA634D /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925A20B5ADF000EA634D /* UserDataService.swift */; };
 		FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA52095EA7100B117E5 /* Common.swift */; };
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
@@ -34,9 +39,9 @@
 		FDA4185620ADCC7A00B41819 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185520ADCC7A00B41819 /* LoginViewController.swift */; };
 		FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */; };
 		FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */; };
-		FDA4185E20ADD23000B41819 /* Library.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDA4185D20ADD23000B41819 /* Library.strings */; };
-		FDA4186220ADD8F500B41819 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */; };
-		FDA4186420ADD90000B41819 /* MyLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */; };
+		FDA4185E20ADD23000B41819 /* Profile.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDA4185D20ADD23000B41819 /* Profile.strings */; };
+		FDA4186220ADD8F500B41819 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186120ADD8F500B41819 /* MyProfileViewController.swift */; };
+		FDA4186420ADD90000B41819 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4186320ADD90000B41819 /* MyProfileViewModel.swift */; };
 		FDB1C31F20B1AEDE0044ACA4 /* UIViewController+Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1C31E20B1AEDE0044ACA4 /* UIViewController+Children.swift */; };
 		FDB1C32720B1C0180044ACA4 /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDB1C32620B1C0180044ACA4 /* Login.strings */; };
 		FDCAB3CC2095C6EB0000675D /* KitsuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3CB2095C6EB0000675D /* KitsuneTests.swift */; };
@@ -56,7 +61,6 @@
 		FDCAB4072095E6210000675D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F82095E6210000675D /* RealmService.swift */; };
 		FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F92095E6210000675D /* RealmService+Generics.swift */; };
 		FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */; };
-		FDEEB73520B471BC0067B6D5 /* NetworkService+MyLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEB73420B471BC0067B6D5 /* NetworkService+MyLibrary.swift */; };
 		FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */; };
 		FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */; };
 		FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */; };
@@ -123,6 +127,11 @@
 		8BD264A62043C5A600095E68 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		8BD264F120441A6700095E68 /* Realm+Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Stores.swift"; sourceTree = "<group>"; };
 		C1AEE1F130218758FAF3E36C /* Pods-KitsuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitsuneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KitsuneTests/Pods-KitsuneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD35925120B5A25C00EA634D /* NetworkService+MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+MyProfile.swift"; sourceTree = "<group>"; };
+		FD35925320B5A71800EA634D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FD35925520B5A9BE00EA634D /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		FD35925720B5AAEA00EA634D /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		FD35925A20B5ADF000EA634D /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		FD6ABCA52095EA7100B117E5 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutHandler.swift; sourceTree = "<group>"; };
 		FD6ABCAA2095F30200B117E5 /* Kitsune-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kitsune-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -133,9 +142,9 @@
 		FDA4185520ADCC7A00B41819 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
-		FDA4185D20ADD23000B41819 /* Library.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Library.strings; sourceTree = "<group>"; };
-		FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewController.swift; sourceTree = "<group>"; };
-		FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewModel.swift; sourceTree = "<group>"; };
+		FDA4185D20ADD23000B41819 /* Profile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Profile.strings; sourceTree = "<group>"; };
+		FDA4186120ADD8F500B41819 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		FDA4186320ADD90000B41819 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		FDB1C31E20B1AEDE0044ACA4 /* UIViewController+Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Children.swift"; sourceTree = "<group>"; };
 		FDB1C32620B1C0180044ACA4 /* Login.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Login.strings; sourceTree = "<group>"; };
 		FDCAB3C92095C6EB0000675D /* KitsuneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitsuneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +168,6 @@
 		FDCAB3F82095E6210000675D /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		FDCAB3F92095E6210000675D /* RealmService+Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Generics.swift"; sourceTree = "<group>"; };
 		FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Getters.swift"; sourceTree = "<group>"; };
-		FDEEB73420B471BC0067B6D5 /* NetworkService+MyLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+MyLibrary.swift"; sourceTree = "<group>"; };
 		FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeListViewController.swift; sourceTree = "<group>"; };
 		FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
@@ -248,7 +256,7 @@
 				8B3506892092D21100586986 /* NetworkErrors.strings */,
 				FDFCF807209769E500F7A901 /* AnimeList.strings */,
 				FDB1C32620B1C0180044ACA4 /* Login.strings */,
-				FDA4185D20ADD23000B41819 /* Library.strings */,
+				FDA4185D20ADD23000B41819 /* Profile.strings */,
 				8B60AAAA208DBF1D00E6986C /* Common.strings */,
 			);
 			path = Strings;
@@ -353,6 +361,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FD35925920B5ADE500EA634D /* User Data Service */ = {
+			isa = PBXGroup;
+			children = (
+				FD35925A20B5ADF000EA634D /* UserDataService.swift */,
+			);
+			path = "User Data Service";
+			sourceTree = "<group>";
+		};
 		FD6ABCA92095F30200B117E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,19 +395,19 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
-		FDA4185F20ADD8E300B41819 /* My Library */ = {
+		FDA4185F20ADD8E300B41819 /* My Profile */ = {
 			isa = PBXGroup;
 			children = (
 				FDA4186020ADD8E300B41819 /* View Model */,
-				FDA4186120ADD8F500B41819 /* MyLibraryViewController.swift */,
+				FDA4186120ADD8F500B41819 /* MyProfileViewController.swift */,
 			);
-			path = "My Library";
+			path = "My Profile";
 			sourceTree = "<group>";
 		};
 		FDA4186020ADD8E300B41819 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				FDA4186320ADD90000B41819 /* MyLibraryViewModel.swift */,
+				FDA4186320ADD90000B41819 /* MyProfileViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -428,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				FDFCF7F920973AAF00F7A901 /* Anime.swift */,
+				FD35925320B5A71800EA634D /* User.swift */,
 			);
 			path = Transient;
 			sourceTree = "<group>";
@@ -436,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				FDFCF7FD2097438B00F7A901 /* RealmAnime.swift */,
+				FD35925520B5A9BE00EA634D /* RealmUser.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -445,6 +463,7 @@
 			children = (
 				FDCAB3E92095E6210000675D /* Network  */,
 				FDCAB3F72095E6210000675D /* Realm Service */,
+				FD35925920B5ADE500EA634D /* User Data Service */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -470,6 +489,7 @@
 				FDCAB3F02095E6210000675D /* EmptyResponse.swift */,
 				FDCAB3F22095E6210000675D /* ErrorResponse.swift */,
 				FDFCF80320975A9800F7A901 /* AnimeListResponse.swift */,
+				FD35925720B5AAEA00EA634D /* UserResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -481,7 +501,7 @@
 				FDCAB3F52095E6210000675D /* NetworkServiceProtocols.swift */,
 				FDCAB3F62095E6210000675D /* NetworkService+Auth.swift */,
 				FDFCF7E82096F03700F7A901 /* NetworkService+AnimeList.swift */,
-				FDEEB73420B471BC0067B6D5 /* NetworkService+MyLibrary.swift */,
+				FD35925120B5A25C00EA634D /* NetworkService+MyProfile.swift */,
 			);
 			path = "Network Service";
 			sourceTree = "<group>";
@@ -500,7 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				FDFCF7DA2096EB0100F7A901 /* Anime List */,
-				FDA4185F20ADD8E300B41819 /* My Library */,
+				FDA4185F20ADD8E300B41819 /* My Profile */,
 				FDA4185320ADCC6100B41819 /* Login */,
 				FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */,
 				FDA4185920ADCD4700B41819 /* HomeTabBarController.swift */,
@@ -648,7 +668,7 @@
 			files = (
 				FDFD6D5C2098BB3C00D08F2E /* RobotoCondensed-Bold.ttf in Resources */,
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
-				FDA4185E20ADD23000B41819 /* Library.strings in Resources */,
+				FDA4185E20ADD23000B41819 /* Profile.strings in Resources */,
 				FDFD6D5D2098BB3E00D08F2E /* RobotoCondensed-Regular.ttf in Resources */,
 				FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
@@ -859,8 +879,10 @@
 				FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */,
 				8BD2648D2043C2FB00095E68 /* BaseCoordinator.swift in Sources */,
 				FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */,
-				FDA4186420ADD90000B41819 /* MyLibraryViewModel.swift in Sources */,
+				FDA4186420ADD90000B41819 /* MyProfileViewModel.swift in Sources */,
+				FD35925820B5AAEA00EA634D /* UserResponse.swift in Sources */,
 				8BC4AE092043A9DB0093E231 /* AppDelegate.swift in Sources */,
+				FD35925420B5A71800EA634D /* User.swift in Sources */,
 				8BD264AF2043C5A700095E68 /* UIColor+AppColors.swift in Sources */,
 				FDFCF800209753B200F7A901 /* Date+Marshal.swift in Sources */,
 				FDCAB4052095E6210000675D /* NetworkServiceProtocols.swift in Sources */,
@@ -868,7 +890,9 @@
 				FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */,
 				FDFCF80420975A9800F7A901 /* AnimeListResponse.swift in Sources */,
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
+				FD35925B20B5ADF000EA634D /* UserDataService.swift in Sources */,
 				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
+				FD35925220B5A25C00EA634D /* NetworkService+MyProfile.swift in Sources */,
 				FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */,
 				FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */,
 				FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */,
@@ -879,16 +903,16 @@
 				8B61C7972091E026005FD0F7 /* ReuseIdentifiable.swift in Sources */,
 				FDB1C31F20B1AEDE0044ACA4 /* UIViewController+Children.swift in Sources */,
 				FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */,
-				FDEEB73520B471BC0067B6D5 /* NetworkService+MyLibrary.swift in Sources */,
 				FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */,
 				FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */,
 				FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */,
-				FDA4186220ADD8F500B41819 /* MyLibraryViewController.swift in Sources */,
+				FDA4186220ADD8F500B41819 /* MyProfileViewController.swift in Sources */,
 				8B3506862092D09700586986 /* R.generated.swift in Sources */,
 				FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */,
 				FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */,
 				FDFCF7FE2097438B00F7A901 /* RealmAnime.swift in Sources */,
 				FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */,
+				FD35925620B5A9BE00EA634D /* RealmUser.swift in Sources */,
 				8B8758FD208D888D00D1BBF5 /* BaseViewController.swift in Sources */,
 				8BD264912043C3A700095E68 /* Constants.swift in Sources */,
 				FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */,

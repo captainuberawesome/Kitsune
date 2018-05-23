@@ -14,9 +14,7 @@ struct Constants {
   
   static let realmInMemoryStoreIdentifier = "inMemoryRealm"
   static let appLocale = Locale(identifier: "en_US")
-  
-  static let defaultUserId = 0
-  
+
   static var parsingDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"

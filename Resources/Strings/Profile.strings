@@ -1,7 +1,7 @@
 /* 
-  Library.strings
+  Profile.strings
   Kitsune
 */
 
-"title" = "MY LIBRARY";
+"title" = "MY PROFILE";
 "logout.button.title" = "Logout";
