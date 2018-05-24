@@ -61,8 +61,9 @@ class MyProfileViewController: BaseViewController {
   }
   
   private func setupProfileHeaderView() {
+    view.layoutIfNeeded()
     view.addSubview(profileHeaderView)
-    profileHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: view.frame.height * 0.35)
+    profileHeaderView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.height * 0.35)
     tableView.tableHeaderView = profileHeaderView
   }
   

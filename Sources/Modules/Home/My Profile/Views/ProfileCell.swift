@@ -40,7 +40,7 @@ class ProfileCell: UITableViewCell {
     iconImageView.tintColor = .appPrimary
     iconImageView.snp.makeConstraints { make in
       make.leading.equalToSuperview().offset(20)
-      make.centerY.equalToSuperview()
+      make.top.bottom.equalToSuperview().inset(10)
       make.height.width.equalTo(30)
     }
   }
