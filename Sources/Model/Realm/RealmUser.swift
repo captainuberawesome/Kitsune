@@ -20,6 +20,9 @@ final class RealmUser: Object, RealmEntity {
   @objc dynamic var about: String = ""
   @objc dynamic var bio: String = ""
   @objc dynamic var location: String = ""
+  @objc dynamic var gender: String = ""
+  @objc dynamic var birthday: Date?
+  @objc dynamic var joinDate: Date?
   @objc dynamic var followersCount: Int = 0
   @objc dynamic var followingCount: Int = 0
   @objc dynamic var lifeSpentOnAnime: Int = 0
@@ -51,6 +54,9 @@ final class RealmUser: Object, RealmEntity {
     user.about = transient.about
     user.bio = transient.bio
     user.location = transient.location
+    user.gender = transient.gender
+    user.birthday = transient.birthday
+    user.joinDate = transient.joinDate
     user.followersCount = transient.followersCount
     user.followingCount = transient.followingCount
     user.lifeSpentOnAnime = transient.lifeSpentOnAnime
@@ -78,6 +84,9 @@ final class RealmUser: Object, RealmEntity {
     transient.avatarThumb = avatarThumb
     transient.avatar = avatar
     transient.coverImage = coverImage
+    transient.gender = gender
+    transient.birthday = birthday
+    transient.joinDate = joinDate
     return transient
   }
 }

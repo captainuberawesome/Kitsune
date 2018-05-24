@@ -31,6 +31,12 @@
 		FD35925620B5A9BE00EA634D /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925520B5A9BE00EA634D /* RealmUser.swift */; };
 		FD35925820B5AAEA00EA634D /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925720B5AAEA00EA634D /* UserResponse.swift */; };
 		FD35925B20B5ADF000EA634D /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925A20B5ADF000EA634D /* UserDataService.swift */; };
+		FD3AE28820B6E7BE0079636B /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE28720B6E7BE0079636B /* ProfileHeaderView.swift */; };
+		FD3AE28B20B6E84F0079636B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE28A20B6E84F0079636B /* AvatarView.swift */; };
+		FD3AE28D20B6F6CD0079636B /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE28C20B6F6CD0079636B /* ProfileCell.swift */; };
+		FD3AE29020B6FB7F0079636B /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE28F20B6FB7F0079636B /* ProfileDataSource.swift */; };
+		FD3AE29220B6FBE90079636B /* ProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE29120B6FBE90079636B /* ProfileCellViewModel.swift */; };
+		FD3AE29420B702D10079636B /* Date+DaySuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE29320B702D10079636B /* Date+DaySuffix.swift */; };
 		FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA52095EA7100B117E5 /* Common.swift */; };
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
@@ -132,6 +138,12 @@
 		FD35925520B5A9BE00EA634D /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		FD35925720B5AAEA00EA634D /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		FD35925A20B5ADF000EA634D /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
+		FD3AE28720B6E7BE0079636B /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		FD3AE28A20B6E84F0079636B /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		FD3AE28C20B6F6CD0079636B /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		FD3AE28F20B6FB7F0079636B /* ProfileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
+		FD3AE29120B6FBE90079636B /* ProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModel.swift; sourceTree = "<group>"; };
+		FD3AE29320B702D10079636B /* Date+DaySuffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DaySuffix.swift"; sourceTree = "<group>"; };
 		FD6ABCA52095EA7100B117E5 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutHandler.swift; sourceTree = "<group>"; };
 		FD6ABCAA2095F30200B117E5 /* Kitsune-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kitsune-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -296,6 +308,7 @@
 				FDFCF8052097676D00F7A901 /* UIImageView+Kingfisher.swift */,
 				8BD264F120441A6700095E68 /* Realm+Stores.swift */,
 				FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */,
+				FD3AE29320B702D10079636B /* Date+DaySuffix.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,6 +382,24 @@
 			path = "User Data Service";
 			sourceTree = "<group>";
 		};
+		FD3AE28620B6E7B20079636B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD3AE28A20B6E84F0079636B /* AvatarView.swift */,
+				FD3AE28C20B6F6CD0079636B /* ProfileCell.swift */,
+				FD3AE28720B6E7BE0079636B /* ProfileHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FD3AE28E20B6FB7F0079636B /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				FD3AE28F20B6FB7F0079636B /* ProfileDataSource.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
 		FD6ABCA92095F30200B117E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +429,8 @@
 		FDA4185F20ADD8E300B41819 /* My Profile */ = {
 			isa = PBXGroup;
 			children = (
+				FD3AE28E20B6FB7F0079636B /* Data Source */,
+				FD3AE28620B6E7B20079636B /* Views */,
 				FDA4186020ADD8E300B41819 /* View Model */,
 				FDA4186120ADD8F500B41819 /* MyProfileViewController.swift */,
 			);
@@ -408,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				FDA4186320ADD90000B41819 /* MyProfileViewModel.swift */,
+				FD3AE29120B6FBE90079636B /* ProfileCellViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -874,6 +908,7 @@
 				FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */,
 				8B8758FB208D888D00D1BBF5 /* NavigationFlowCoordinator.swift in Sources */,
 				FDA4185620ADCC7A00B41819 /* LoginViewController.swift in Sources */,
+				FD3AE28B20B6E84F0079636B /* AvatarView.swift in Sources */,
 				FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */,
 				FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */,
 				FDCAB4032095E6210000675D /* ErrorResponse.swift in Sources */,
@@ -897,15 +932,20 @@
 				FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */,
 				FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */,
 				FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */,
+				FD3AE29020B6FB7F0079636B /* ProfileDataSource.swift in Sources */,
 				FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */,
 				8BD264AA2043C5A700095E68 /* UIViewController+ErrorHandling.swift in Sources */,
 				FDCAB4042095E6210000675D /* NetworkService.swift in Sources */,
 				8B61C7972091E026005FD0F7 /* ReuseIdentifiable.swift in Sources */,
 				FDB1C31F20B1AEDE0044ACA4 /* UIViewController+Children.swift in Sources */,
+				FD3AE29420B702D10079636B /* Date+DaySuffix.swift in Sources */,
 				FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */,
 				FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */,
+				FD3AE29220B6FBE90079636B /* ProfileCellViewModel.swift in Sources */,
 				FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */,
+				FD3AE28820B6E7BE0079636B /* ProfileHeaderView.swift in Sources */,
 				FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */,
+				FD3AE28D20B6F6CD0079636B /* ProfileCell.swift in Sources */,
 				FDA4186220ADD8F500B41819 /* MyProfileViewController.swift in Sources */,
 				8B3506862092D09700586986 /* R.generated.swift in Sources */,
 				FDFCF7E72096EC5200F7A901 /* AnimeListTableViewCell.swift in Sources */,

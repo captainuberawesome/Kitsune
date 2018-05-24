@@ -15,6 +15,8 @@ class MyProfileViewController: BaseViewController {
   
   private let loginContainerView = UIView()
   private var loginViewController: LoginViewController?
+  private let profileHeaderView = ProfileHeaderView()
+  private let tableView = UITableView()
   private let viewModel: MyProfileViewModel
   
   weak var dataSource: MyProfileViewControllerDataSource?
@@ -35,6 +37,7 @@ class MyProfileViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    setup()
     if !viewModel.isLoggedIn {
       addLoginViewController()
     } else {
@@ -47,6 +50,33 @@ class MyProfileViewController: BaseViewController {
     if viewModel.isLoggedIn {
       viewModel.reloadData()
     }
+  }
+  
+  // MARK: - Setup
+  
+  private func setup() {
+    view.backgroundColor = .white
+    setupTableView()
+    setupProfileHeaderView()
+  }
+  
+  private func setupProfileHeaderView() {
+    view.addSubview(profileHeaderView)
+    profileHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: view.frame.height * 0.35)
+    tableView.tableHeaderView = profileHeaderView
+  }
+  
+  private func setupTableView() {
+    viewModel.dataSource.configure(withTableView: tableView)
+    view.addSubview(tableView)
+    tableView.showsVerticalScrollIndicator = false
+    tableView.separatorStyle = .none
+    tableView.backgroundColor = .clear
+    tableView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+    tableView.tableFooterView = UIView(frame: .zero)
+    tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
   }
   
   // MARK: - Configure
@@ -77,6 +107,9 @@ class MyProfileViewController: BaseViewController {
   // MARK: - View Model
   
   private func bindViewModel() {
-
+    viewModel.onUIReloadRequested = { [weak self, unowned viewModel] in
+      self?.profileHeaderView.configure(viewModel: viewModel)
+      self?.tableView.reloadData()
+    }
   }
 }

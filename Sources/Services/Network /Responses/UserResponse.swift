@@ -12,9 +12,11 @@ struct UserResponse: Unmarshaling {
     static let data = "data"
   }
   
-  var user: User
+  var user: User?
+  private var users: [User]
   
   init(object: MarshaledObject) throws {
-    try user = object.value(for: Keys.data)
+    try users = object.value(for: Keys.data)
+    user = users.first
   }
 }

@@ -13,8 +13,11 @@ extension Date: ValueType {
     guard let dateString = object as? String else {
       throw MarshalError.typeMismatch(expected: String.self, actual: type(of: object))
     }
-    guard let date = Constants.parsingDateFormatter.date(from: dateString) else {
-      throw MarshalError.typeMismatch(expected: "yyyy-MM-dd date string", actual: dateString)
+    if let date = Constants.parsingDateFormatterShort.date(from: dateString) {
+      return date
+    }
+    guard let date = Constants.parsingDateFormatterLong.date(from: dateString) else {
+      throw MarshalError.typeMismatch(expected: "yyyy-MM-dd or yyyy-MM-dd'T'HH:mm:ss.SSS'Z' date string", actual: dateString)
     }
     return date
   }

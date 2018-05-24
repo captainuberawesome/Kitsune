@@ -17,7 +17,10 @@ final class User: NSObject, TransientEntity {
   var slug: String = ""
   var about: String = ""
   var bio: String = ""
+  var gender: String = ""
   var location: String = ""
+  var birthday: Date?
+  var joinDate: Date?
   var followersCount: Int = 0
   var followingCount: Int = 0
   var lifeSpentOnAnime: Int = 0
@@ -46,6 +49,9 @@ extension User: Unmarshaling {
     static let about = "attributes.about"
     static let bio = "attributes.bio"
     static let location = "attributes.location"
+    static let gender = "attributes.gender"
+    static let birthday = "attributes.birthday"
+    static let joinDate = "attributes.createdAt"
     static let followersCount = "attributes.followersCount"
     static let followingCount = "attributes.followingCount"
     static let lifeSpentOnAnime = "attributes.lifeSpentOnAnime"
@@ -69,5 +75,8 @@ extension User: Unmarshaling {
     try? avatarThumb = object.value(for: Keys.avatarThumb)
     try? avatar = object.value(for: Keys.avatar)
     try? coverImage = object.value(for: Keys.coverImage)
+    try? gender = object.value(for: Keys.gender)
+    try? birthday = object.value(for: Keys.birthday)
+    try? joinDate = object.value(for: Keys.joinDate)
   }
 }

@@ -5,3 +5,9 @@
 
 "title" = "MY PROFILE";
 "logout.button.title" = "Logout";
+
+"gender" = "Gender";
+"location" = "Location";
+"birthday" = "Birthday";
+"join.date" = "Join Date";
+"default.value" = "It's a secret";
