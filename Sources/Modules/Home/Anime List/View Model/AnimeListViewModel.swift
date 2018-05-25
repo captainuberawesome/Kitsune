@@ -12,13 +12,27 @@ private extension Constants {
 }
 
 class AnimeListViewModel {
+  
   typealias Dependencies = HasAnimeListService
   
+  enum Mode {
+    case searching, `default`
+  }
+  
   private let dependencies: Dependencies
+  private var defaultModeCellViewModels: [AnimeCellViewModel] = []
   private(set) var cellViewModels: [AnimeCellViewModel] = []
   var paginationLimit = Constants.defaultPaginationLimit
   var canLoadMorePages = true
   let dataSource = AnimeListDataSource()
+  
+  var mode: Mode = .default {
+    didSet {
+      if oldValue != mode {
+        configureFor(mode: mode)
+      }
+    }
+  }
   
   var hasData: Bool {
     return !cellViewModels.isEmpty
@@ -87,6 +101,21 @@ class AnimeListViewModel {
           self.onErrorEncountered?(error)
         }
       }
+    }
+  }
+  
+  // MARK: - Search
+  
+  private func configureFor(mode: Mode) {
+    switch mode {
+    case .searching:
+      defaultModeCellViewModels = cellViewModels
+      cellViewModels = []
+      dataSource.updateData(with: self)
+    case .default:
+      cellViewModels = defaultModeCellViewModels
+      dataSource.updateData(with: self)
+      defaultModeCellViewModels = []
     }
   }
   

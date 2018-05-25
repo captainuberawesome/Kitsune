@@ -11,6 +11,7 @@ import UIScrollView_InfiniteScroll
 class AnimeListViewController: BaseViewController {
   private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
   private let tableView = UITableView(frame: .zero, style: .plain)
+  private let searchBar = UISearchBar()
   private let emptyView = UIView()
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
@@ -39,6 +40,7 @@ class AnimeListViewController: BaseViewController {
   
   private func setup() {
     view.backgroundColor = .white
+    setupSearchBar()
     setupTableView()
     view.addSubview(activityIndicatorView)
     activityIndicatorView.snp.makeConstraints { make in
@@ -47,16 +49,33 @@ class AnimeListViewController: BaseViewController {
     activityIndicatorView.isHidden = true
   }
   
+  private func setupSearchBar() {
+    searchBar.backgroundColor = .appPrimary
+    searchBar.barTintColor = .appPrimary
+    searchBar.tintColor = .appPrimary
+    searchBar.barStyle = .black
+    searchBar.delegate = self
+    searchBar.backgroundImage = UIImage()
+    searchBar.placeholder = R.string.animeList.searchBarPlaceholder()
+    view.addSubview(searchBar)
+    searchBar.snp.makeConstraints { make in
+      make.leading.trailing.top.equalToSuperview()
+    }
+  }
+  
   private func setupTableView() {
     viewModel.dataSource.configure(withTableView: tableView)
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
     tableView.backgroundColor = .clear
     tableView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.leading.trailing.bottom.equalToSuperview()
+      make.top.equalTo(searchBar.snp.bottom)
     }
     tableView.tableFooterView = UIView(frame: .zero)
     tableView.register(AnimeListTableViewCell.self, forCellReuseIdentifier: AnimeListTableViewCell.reuseIdentifier)
+    let tap = UITapGestureRecognizer(target: self, action: #selector(didTapTableView(_:)))
+    tableView.addGestureRecognizer(tap)
   }
   
   // MARK: - View Model
@@ -81,6 +100,12 @@ class AnimeListViewController: BaseViewController {
       self?.tableView.reloadData()
       self?.updateInfiniteScrollView()
     }
+  }
+  
+  // MARK: Action
+  
+  @objc private func didTapTableView(_ sender: UIGestureRecognizer) {
+    searchBar.resignFirstResponder()
   }
 }
 
@@ -113,5 +138,38 @@ extension AnimeListViewController {
     } else {
       removeInfiniteScroll()
     }
+  }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension AnimeListViewController: UISearchBarDelegate {
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    viewModel.mode = .searching
+    tableView.reloadData()
+  }
+  
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    if searchBar.text?.isEmpty != false {
+      viewModel.mode = .default
+      tableView.reloadData()
+    }
+  }
+  
+  func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    let oldText = ((searchBar.text ?? "") as NSString)
+    let newText = oldText.replacingCharacters(in: range, with: text)
+    //TODO: search anime by text
+    return true
+  }
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+    guard let text = searchBar.text, !text.isEmpty else {
+      viewModel.mode = .default
+      tableView.reloadData()
+      return
+    }
+    //TODO: search anime by text
   }
 }

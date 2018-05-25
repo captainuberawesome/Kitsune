@@ -73,7 +73,7 @@ class AnimeListTableViewCell: UITableViewCell {
       make.height.lessThanOrEqualTo(100)
     }
     descriptionLabel.numberOfLines = 0
-    descriptionLabel.lineBreakMode = .byWordWrapping
+    descriptionLabel.lineBreakMode = .byTruncatingTail
     descriptionLabel.font = .textFont
     descriptionLabel.textColor = .appDarkColor
   }
