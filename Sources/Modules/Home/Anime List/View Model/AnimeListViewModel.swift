@@ -20,6 +20,7 @@ class AnimeListViewModel {
   }
   
   private let dependencies: Dependencies
+  private var currentSearchText: String?
   private var defaultModeCellViewModels: [AnimeCellViewModel] = []
   private(set) var cellViewModels: [AnimeCellViewModel] = []
   var paginationLimit = Constants.defaultPaginationLimit
@@ -59,12 +60,22 @@ class AnimeListViewModel {
     loadAnimeListNextPage()
   }
   
+  func search(forText text: String) {
+    currentSearchText = text
+    loadAnimeList()
+  }
+  
   // MARK: - Private
   
-  func loadAnimeList() {
-    onLoadingStarted?()
-    dependencies.animeListService.animeList(limit: paginationLimit, offset: 0) { response in
-      self.onLoadingFinished?()
+  private func loadAnimeList() {
+    DispatchQueue.main.async {
+      self.onLoadingStarted?()
+    }
+    
+    let completion: ((Response<AnimeListResponse>) -> Void) = { response in
+      DispatchQueue.main.async {
+        self.onLoadingFinished?()
+      }
       switch response {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
@@ -80,13 +91,29 @@ class AnimeListViewModel {
         }
       }
     }
+    
+    switch mode {
+    case .default:
+      dependencies.animeListService.animeList(limit: paginationLimit, offset: 0, completion: completion)
+    case .searching:
+      if let searchText = currentSearchText {
+        dependencies.animeListService.animeListSearch(text: searchText, limit: paginationLimit, offset: 0, completion: completion)
+      } else {
+        onLoadingFinished?()
+      }
+    }
   }
   
-  func loadAnimeListNextPage() {
+  private func loadAnimeListNextPage() {
     let offset = cellViewModels.count
-    onLoadingStarted?()
-    dependencies.animeListService.animeList(limit: paginationLimit, offset: offset) { response in
-      self.onLoadingFinished?()
+    DispatchQueue.main.async {
+      self.onLoadingStarted?()
+    }
+    
+    let completion: ((Response<AnimeListResponse>) -> Void) = { response in
+      DispatchQueue.main.async {
+        self.onLoadingFinished?()
+      }
       switch response {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
@@ -100,6 +127,18 @@ class AnimeListViewModel {
         DispatchQueue.main.async {
           self.onErrorEncountered?(error)
         }
+      }
+    }
+    
+    switch mode {
+    case .default:
+      dependencies.animeListService.animeList(limit: paginationLimit, offset: offset, completion: completion)
+    case .searching:
+      if let searchText = currentSearchText {
+        dependencies.animeListService.animeListSearch(text: searchText, limit: paginationLimit, offset: offset,
+                                                      completion: completion)
+      } else {
+        onLoadingFinished?()
       }
     }
   }
@@ -116,6 +155,7 @@ class AnimeListViewModel {
       cellViewModels = defaultModeCellViewModels
       dataSource.updateData(with: self)
       defaultModeCellViewModels = []
+      currentSearchText = nil
     }
   }
   

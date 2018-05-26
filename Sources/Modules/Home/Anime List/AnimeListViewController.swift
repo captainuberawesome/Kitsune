@@ -8,6 +8,10 @@
 import UIKit
 import UIScrollView_InfiniteScroll
 
+private extension Constants {
+  static let searchDelay: TimeInterval = 0.2
+}
+
 class AnimeListViewController: BaseViewController {
   private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
   private let tableView = UITableView(frame: .zero, style: .plain)
@@ -15,6 +19,7 @@ class AnimeListViewController: BaseViewController {
   private let emptyView = UIView()
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
+  private var searchWorkItem: DispatchWorkItem?
   
   // MARK: - Init
   
@@ -57,6 +62,7 @@ class AnimeListViewController: BaseViewController {
     searchBar.delegate = self
     searchBar.backgroundImage = UIImage()
     searchBar.placeholder = R.string.animeList.searchBarPlaceholder()
+    searchBar.enablesReturnKeyAutomatically = false
     view.addSubview(searchBar)
     searchBar.snp.makeConstraints { make in
       make.leading.trailing.top.equalToSuperview()
@@ -102,10 +108,25 @@ class AnimeListViewController: BaseViewController {
     }
   }
   
-  // MARK: Action
+  // MARK: - Action
   
   @objc private func didTapTableView(_ sender: UIGestureRecognizer) {
     searchBar.resignFirstResponder()
+  }
+  
+  // MARK: - Search
+  
+  private func search(forText text: String?) {
+    guard let text = text else {
+      return
+    }
+    self.searchWorkItem?.cancel()
+    let searchWorkItem = DispatchWorkItem { [viewModel] in
+      viewModel.search(forText: text)
+    }
+    self.searchWorkItem = searchWorkItem
+    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: DispatchTime.now() + Constants.searchDelay,
+                                                         execute: searchWorkItem)
   }
 }
 
@@ -159,17 +180,15 @@ extension AnimeListViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     let oldText = ((searchBar.text ?? "") as NSString)
     let newText = oldText.replacingCharacters(in: range, with: text)
-    //TODO: search anime by text
+    search(forText: newText)
     return true
   }
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
-    guard let text = searchBar.text, !text.isEmpty else {
+    if searchBar.text?.isEmpty != false {
       viewModel.mode = .default
       tableView.reloadData()
-      return
     }
-    //TODO: search anime by text
   }
 }

@@ -29,7 +29,8 @@ protocol LoginStateNetworkProtocol {
 }
 
 protocol AnimeListNetworkProtocol {
-   func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
+  func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
+  func animeListSearch(text: String, limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
 }
 
 protocol MyProfileNetworkProtocol {
