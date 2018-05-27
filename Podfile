@@ -16,6 +16,8 @@ def shared_pods
   pod 'UIScrollView-InfiniteScroll'
   pod 'Kingfisher'
   pod 'SkyFloatingLabelTextField'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
 
 target 'Kitsune' do
@@ -24,7 +26,4 @@ end
 
 target 'KitsuneTests' do
     shared_pods
-    pod 'Nimble'
-    pod 'Mockingjay'
-    pod 'SwiftyJSON'
 end

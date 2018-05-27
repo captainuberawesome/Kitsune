@@ -3,14 +3,6 @@ PODS:
   - KeychainAccess (3.1.1)
   - Kingfisher (4.7.0)
   - Marshal (1.2.7)
-  - Mockingjay (2.0.1):
-    - Mockingjay/Core (= 2.0.1)
-    - Mockingjay/XCTest (= 2.0.1)
-  - Mockingjay/Core (2.0.1):
-    - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.1):
-    - Mockingjay/Core
-  - Nimble (7.1.1)
   - p2.OAuth2 (4.0.1)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
@@ -20,29 +12,29 @@ PODS:
   - Realm/Headers (3.5.0)
   - RealmSwift (3.5.0):
     - Realm (= 3.5.0)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
   - SkyFloatingLabelTextField (3.4.1)
   - SnapKit (4.0.0)
   - SwiftLint (0.25.1)
   - SwiftyBeaver (1.5.2)
-  - SwiftyJSON (4.1.0)
   - UIScrollView-InfiniteScroll (1.1.0)
-  - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - Alamofire
   - KeychainAccess
   - Kingfisher
   - Marshal (from `https://github.com/utahiosmac/Marshal.git`, branch `master`)
-  - Mockingjay
-  - Nimble
   - p2.OAuth2
   - R.swift
   - RealmSwift
+  - RxCocoa
+  - RxSwift
   - SkyFloatingLabelTextField
   - SnapKit
   - SwiftLint
   - SwiftyBeaver
-  - SwiftyJSON
   - UIScrollView-InfiniteScroll
 
 SPEC REPOS:
@@ -50,20 +42,18 @@ SPEC REPOS:
     - Alamofire
     - KeychainAccess
     - Kingfisher
-    - Mockingjay
-    - Nimble
     - p2.OAuth2
     - R.swift
     - R.swift.Library
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxSwift
     - SkyFloatingLabelTextField
     - SnapKit
     - SwiftLint
     - SwiftyBeaver
-    - SwiftyJSON
     - UIScrollView-InfiniteScroll
-    - URITemplate
 
 EXTERNAL SOURCES:
   Marshal:
@@ -80,21 +70,19 @@ SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
-  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
   SkyFloatingLabelTextField: 8085f20f57f74a00cfcae58099299faa1a971035
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
-  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 6ff480dfe551b24ae0d47ce36acb4866de0eca3e
+PODFILE CHECKSUM: aecbecbce25d82468a7e74bd18e491a79f7ca1e8
 
 COCOAPODS: 1.5.0
