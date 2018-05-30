@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 import UIScrollView_InfiniteScroll
 
 private extension Constants {
@@ -19,6 +21,7 @@ class AnimeListViewController: BaseViewController {
   private let emptyView = UIView()
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
+  private let disposeBag = DisposeBag()
   private var searchWorkItem: DispatchWorkItem?
   
   // MARK: - Init
@@ -59,7 +62,6 @@ class AnimeListViewController: BaseViewController {
     searchBar.barTintColor = .appPrimary
     searchBar.tintColor = .appPrimary
     searchBar.barStyle = .black
-    searchBar.delegate = self
     searchBar.backgroundImage = UIImage()
     searchBar.placeholder = R.string.animeList.searchBarPlaceholder()
     searchBar.enablesReturnKeyAutomatically = false
@@ -67,6 +69,16 @@ class AnimeListViewController: BaseViewController {
     searchBar.snp.makeConstraints { make in
       make.leading.trailing.top.equalToSuperview()
     }
+    searchBar
+      .rx.text
+      .orEmpty
+      .debounce(Constants.searchDelay, scheduler: MainScheduler.instance) // Wait 0.5 for changes.
+      .distinctUntilChanged()
+      .subscribe(onNext: { [unowned self] query in
+        self.viewModel.mode = .searching
+        self.viewModel.search(forText: query)
+      })
+      .disposed(by: disposeBag)
   }
   
   private func setupTableView() {
