@@ -22,7 +22,6 @@ class AnimeListViewController: BaseViewController {
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
   private let disposeBag = DisposeBag()
-  private var searchWorkItem: DispatchWorkItem?
   
   // MARK: - Init
   
