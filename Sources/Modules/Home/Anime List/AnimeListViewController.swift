@@ -69,16 +69,33 @@ class AnimeListViewController: BaseViewController {
     searchBar.snp.makeConstraints { make in
       make.leading.trailing.top.equalToSuperview()
     }
+    observeSearchBar()
+  }
+  
+  private func observeSearchBar() {
     searchBar
       .rx.text
       .orEmpty
       .debounce(Constants.searchDelay, scheduler: MainScheduler.instance) // Wait 0.5 for changes.
       .distinctUntilChanged()
       .subscribe(onNext: { [unowned self] query in
+        if query.isEmpty {
+          self.viewModel.mode = .default
+          self.tableView.reloadData()
+          return
+        }
         self.viewModel.mode = .searching
         self.viewModel.search(forText: query)
       })
       .disposed(by: disposeBag)
+    
+    searchBar.rx.searchButtonClicked.subscribe(onNext: { [unowned self] in
+      if self.searchBar.text?.isEmpty != false {
+        self.viewModel.mode = .default
+        self.tableView.reloadData()
+      }
+      self.searchBar.resignFirstResponder()
+    }).disposed(by: disposeBag)
   }
   
   private func setupTableView() {
@@ -125,21 +142,6 @@ class AnimeListViewController: BaseViewController {
   @objc private func didTapTableView(_ sender: UIGestureRecognizer) {
     searchBar.resignFirstResponder()
   }
-  
-  // MARK: - Search
-  
-  private func search(forText text: String?) {
-    guard let text = text else {
-      return
-    }
-    self.searchWorkItem?.cancel()
-    let searchWorkItem = DispatchWorkItem { [viewModel] in
-      viewModel.search(forText: text)
-    }
-    self.searchWorkItem = searchWorkItem
-    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: DispatchTime.now() + Constants.searchDelay,
-                                                         execute: searchWorkItem)
-  }
 }
 
 // MARK: Infinite scroll
@@ -170,37 +172,6 @@ extension AnimeListViewController {
       addInfiniteScroll()
     } else {
       removeInfiniteScroll()
-    }
-  }
-}
-
-// MARK: - UISearchBarDelegate
-
-extension AnimeListViewController: UISearchBarDelegate {
-  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    viewModel.mode = .searching
-    tableView.reloadData()
-  }
-  
-  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-    if searchBar.text?.isEmpty != false {
-      viewModel.mode = .default
-      tableView.reloadData()
-    }
-  }
-  
-  func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    let oldText = ((searchBar.text ?? "") as NSString)
-    let newText = oldText.replacingCharacters(in: range, with: text)
-    search(forText: newText)
-    return true
-  }
-  
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    searchBar.resignFirstResponder()
-    if searchBar.text?.isEmpty != false {
-      viewModel.mode = .default
-      tableView.reloadData()
     }
   }
 }
