@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 private extension Constants {
   static let defaultPaginationLimit = 10
@@ -19,13 +20,26 @@ class AnimeListViewModel {
     case searching, `default`
   }
   
+  enum State {
+    case initial, loadingStarted, loadingFinsihed, error(Error?), uiReloadNeeded
+  }
+  
   private let dependencies: Dependencies
   private var currentSearchText: String?
+  private var _state: State = .initial
+  private var _error: Error?
   private var defaultModeCellViewModels: [AnimeCellViewModel] = []
+  private var state: State = .initial {
+    didSet {
+      stateSubject.onNext(state)
+    }
+  }
   private(set) var cellViewModels: [AnimeCellViewModel] = []
+  
   var paginationLimit = Constants.defaultPaginationLimit
   var canLoadMorePages = true
   let dataSource = AnimeListDataSource()
+  let stateSubject = BehaviorSubject<State>(value: .initial)
   
   var mode: Mode = .default {
     didSet {
@@ -38,11 +52,6 @@ class AnimeListViewModel {
   var hasData: Bool {
     return !cellViewModels.isEmpty
   }
-  
-  var onErrorEncountered: ((Error?) -> Void)?
-  var onLoadingStarted: (() -> Void)?
-  var onLoadingFinished: (() -> Void)?
-  var onUIReloadRequested: (() -> Void)?
   
   // MARK: - Init
   
@@ -68,27 +77,19 @@ class AnimeListViewModel {
   // MARK: - Private
   
   private func loadAnimeList() {
-    DispatchQueue.main.async {
-      self.onLoadingStarted?()
-    }
+    self.state = .loadingStarted
     
     let completion: ((Response<AnimeListResponse>) -> Void) = { response in
-      DispatchQueue.main.async {
-        self.onLoadingFinished?()
-      }
+      self.state = .loadingFinsihed
       switch response {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
         self.canLoadMorePages = newItems.count >= self.paginationLimit
         self.cellViewModels = newItems
         self.dataSource.updateData(with: self)
-        DispatchQueue.main.async {
-          self.onUIReloadRequested?()
-        }
+        self.state = .uiReloadNeeded
       case .failure(let error):
-        DispatchQueue.main.async {
-          self.onErrorEncountered?(error)
-        }
+        self.state = .error(error)
       }
     }
     
@@ -99,34 +100,26 @@ class AnimeListViewModel {
       if let searchText = currentSearchText {
         dependencies.animeListService.animeListSearch(text: searchText, limit: paginationLimit, offset: 0, completion: completion)
       } else {
-        onLoadingFinished?()
+        state = .loadingFinsihed
       }
     }
   }
   
   private func loadAnimeListNextPage() {
     let offset = cellViewModels.count
-    DispatchQueue.main.async {
-      self.onLoadingStarted?()
-    }
+    state = .loadingStarted
     
     let completion: ((Response<AnimeListResponse>) -> Void) = { response in
-      DispatchQueue.main.async {
-        self.onLoadingFinished?()
-      }
+      self.state = .loadingFinsihed
       switch response {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
         self.cellViewModels.append(contentsOf: newItems)
         self.canLoadMorePages = newItems.count >= self.paginationLimit
         self.dataSource.updateData(with: self)
-        DispatchQueue.main.async {
-          self.onUIReloadRequested?()
-        }
+        self.state = .uiReloadNeeded
       case .failure(let error):
-        DispatchQueue.main.async {
-          self.onErrorEncountered?(error)
-        }
+        self.state = .error(error)
       }
     }
     
@@ -138,7 +131,7 @@ class AnimeListViewModel {
         dependencies.animeListService.animeListSearch(text: searchText, limit: paginationLimit, offset: offset,
                                                       completion: completion)
       } else {
-        onLoadingFinished?()
+        state = .loadingFinsihed
       }
     }
   }

@@ -53,7 +53,7 @@ class AnimeListViewController: BaseViewController {
     activityIndicatorView.snp.makeConstraints { make in
       make.center.equalToSuperview()
     }
-    activityIndicatorView.isHidden = true
+    // TODO: setup empty view for error
   }
   
   private func setupSearchBar() {
@@ -115,25 +115,26 @@ class AnimeListViewController: BaseViewController {
   // MARK: - View Model
   
   private func bindViewModel() {
-    viewModel.onLoadingStarted = { [weak self, unowned viewModel] in
-      self?.emptyView.isHidden = true
-      if !viewModel.hasData && self?.tableView.isAnimatingInfiniteScroll != true {
-        self?.activityIndicatorView.isHidden = false
-        self?.activityIndicatorView.startAnimating()
-      }
-    }
-    viewModel.onLoadingFinished = { [weak self] in
-      self?.activityIndicatorView.isHidden = true
-      self?.activityIndicatorView.stopAnimating()
-      self?.finishInfiniteScroll()
-    }
-    viewModel.onErrorEncountered = { [weak self] error in
-      self?.emptyView.isHidden = false
-    }
-    viewModel.onUIReloadRequested = { [weak self] in
-      self?.tableView.reloadData()
-      self?.updateInfiniteScrollView()
-    }
+    viewModel.stateSubject
+      .subscribe(onNext: { [weak self, unowned viewModel] state in
+        switch state {
+        case .initial, .loadingFinsihed:
+          self?.activityIndicatorView.isHidden = true
+          self?.activityIndicatorView.stopAnimating()
+          self?.finishInfiniteScroll()
+        case .loadingStarted:
+          self?.emptyView.isHidden = true
+          if !viewModel.hasData && self?.tableView.isAnimatingInfiniteScroll != true {
+            self?.activityIndicatorView.isHidden = false
+            self?.activityIndicatorView.startAnimating()
+          }
+        case .uiReloadNeeded:
+          self?.tableView.reloadData()
+          self?.updateInfiniteScrollView()
+        case .error:
+          self?.emptyView.isHidden = false
+        }
+      }).disposed(by: disposeBag)
   }
   
   // MARK: - Action
