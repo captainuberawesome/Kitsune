@@ -6,21 +6,24 @@
 //
 
 import UIKit
+import RxSwift
 
 class AnimeListDataSource: NSObject {
   
   // MARK: - Properties
   private var items: [AnimeCellViewModel] = []
   private var tableView: UITableView?
+  private let disposeBag = DisposeBag()
   
-  func configure(withTableView tableView: UITableView) {
+  func configure(withTableView tableView: UITableView, viewModel: AnimeListViewModel) {
     self.tableView = tableView
     tableView.dataSource = self
     tableView.delegate = self
-  }
-  
-  func updateData(with animeListViewModel: AnimeListViewModel) {
-    items = animeListViewModel.cellViewModels
+    viewModel.cellViewModels.asObservable()
+      .subscribe(onNext: { [weak self] cellViewModels in
+        self?.items = cellViewModels
+      })
+      .disposed(by: disposeBag)
   }
   
   private func item(at indexPath: IndexPath) -> AnimeCellViewModel? {

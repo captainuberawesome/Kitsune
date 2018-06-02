@@ -21,6 +21,7 @@ class AnimeListViewController: BaseViewController {
   private let emptyView = UIView()
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
+  private let dataSource = AnimeListDataSource()
   private let disposeBag = DisposeBag()
   
   // MARK: - Init
@@ -98,7 +99,7 @@ class AnimeListViewController: BaseViewController {
   }
   
   private func setupTableView() {
-    viewModel.dataSource.configure(withTableView: tableView)
+    dataSource.configure(withTableView: tableView, viewModel: viewModel)
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
     tableView.backgroundColor = .clear
@@ -130,11 +131,20 @@ class AnimeListViewController: BaseViewController {
           }
         case .uiReloadNeeded:
           self?.tableView.reloadData()
-          self?.updateInfiniteScrollView()
         case .error:
           self?.emptyView.isHidden = false
         }
-      }).disposed(by: disposeBag)
+      })
+      .disposed(by: disposeBag)
+    viewModel.canLoadMorePagesSubject
+      .subscribe(onNext: { [weak self] canLoadMorePages in
+        if canLoadMorePages {
+          self?.addInfiniteScroll()
+        } else {
+          self?.removeInfiniteScroll()
+        }
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: - Action
@@ -165,13 +175,5 @@ extension AnimeListViewController {
   
   private func finishInfiniteScroll() {
     tableView.finishInfiniteScroll()
-  }
-  
-  private func updateInfiniteScrollView() {
-    if viewModel.canLoadMorePages {
-      addInfiniteScroll()
-    } else {
-      removeInfiniteScroll()
-    }
   }
 }

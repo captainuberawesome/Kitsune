@@ -26,19 +26,21 @@ class AnimeListViewModel {
   
   private let dependencies: Dependencies
   private var currentSearchText: String?
-  private var _state: State = .initial
-  private var _error: Error?
+  private var canLoadMorePages = true {
+    didSet {
+      canLoadMorePagesSubject.onNext(canLoadMorePages)
+    }
+  }
   private var defaultModeCellViewModels: [AnimeCellViewModel] = []
   private var state: State = .initial {
     didSet {
       stateSubject.onNext(state)
     }
   }
-  private(set) var cellViewModels: [AnimeCellViewModel] = []
+  private(set) var cellViewModels: Variable<[AnimeCellViewModel]> = Variable([])
   
   var paginationLimit = Constants.defaultPaginationLimit
-  var canLoadMorePages = true
-  let dataSource = AnimeListDataSource()
+  let canLoadMorePagesSubject = BehaviorSubject<Bool>(value: true)
   let stateSubject = BehaviorSubject<State>(value: .initial)
   
   var mode: Mode = .default {
@@ -50,7 +52,7 @@ class AnimeListViewModel {
   }
   
   var hasData: Bool {
-    return !cellViewModels.isEmpty
+    return !cellViewModels.value.isEmpty
   }
   
   // MARK: - Init
@@ -85,8 +87,7 @@ class AnimeListViewModel {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
         self.canLoadMorePages = newItems.count >= self.paginationLimit
-        self.cellViewModels = newItems
-        self.dataSource.updateData(with: self)
+        self.cellViewModels.value.replaceSubrange(0..<self.cellViewModels.value.count, with: newItems)
         self.state = .uiReloadNeeded
       case .failure(let error):
         self.state = .error(error)
@@ -106,7 +107,7 @@ class AnimeListViewModel {
   }
   
   private func loadAnimeListNextPage() {
-    let offset = cellViewModels.count
+    let offset = cellViewModels.value.count
     state = .loadingStarted
     
     let completion: ((Response<AnimeListResponse>) -> Void) = { response in
@@ -114,9 +115,8 @@ class AnimeListViewModel {
       switch response {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
-        self.cellViewModels.append(contentsOf: newItems)
+        self.cellViewModels.value.append(contentsOf: newItems)
         self.canLoadMorePages = newItems.count >= self.paginationLimit
-        self.dataSource.updateData(with: self)
         self.state = .uiReloadNeeded
       case .failure(let error):
         self.state = .error(error)
@@ -141,13 +141,11 @@ class AnimeListViewModel {
   private func configureFor(mode: Mode) {
     switch mode {
     case .searching:
-      defaultModeCellViewModels = cellViewModels
-      cellViewModels = []
-      dataSource.updateData(with: self)
+      defaultModeCellViewModels = cellViewModels.value
+      cellViewModels.value.removeAll()
     case .default:
-      cellViewModels = defaultModeCellViewModels
-      dataSource.updateData(with: self)
-      defaultModeCellViewModels = []
+      cellViewModels = Variable(defaultModeCellViewModels)
+      defaultModeCellViewModels.removeAll()
       currentSearchText = nil
     }
   }
