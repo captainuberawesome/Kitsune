@@ -8,6 +8,10 @@
 import UIKit
 import RxSwift
 
+extension Constants {
+  static let estimatedRowHeight: CGFloat = 143
+}
+
 class AnimeListDataSource: NSObject {
   
   // MARK: - Properties
@@ -59,5 +63,8 @@ extension AnimeListDataSource: UITableViewDataSource {
 extension AnimeListDataSource: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return CGFloat.leastNormalMagnitude
+  }
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return Constants.estimatedRowHeight
   }
 }
