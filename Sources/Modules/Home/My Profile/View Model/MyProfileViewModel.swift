@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 private extension Constants {
   static let defaultPaginationLimit = 10
@@ -19,6 +20,7 @@ class MyProfileViewModel {
   private let dependencies: Dependencies
   private var user: User?
   let dataSource = ProfileDataSource()
+  private let disposeBag = DisposeBag()
   
   var isLoggedIn: Bool {
     return dependencies.loginStateService.isLoggedIn
@@ -48,11 +50,9 @@ class MyProfileViewModel {
   
   func reloadData() {
     onLoadingStarted?()
-    dependencies.myProfileService.myProfile { response in
-      self.onLoadingFinished?()
-      switch response {
-      case .success(let result):
-        if let user = result.user {
+    dependencies.myProfileService.myProfile()
+      .subscribe(onNext: { userResponse in
+        if let user = userResponse.user {
           self.user = user
           self.cellViewModels = self.createViewModels(withUser: user)
           self.dataSource.updateData(with: self)
@@ -62,12 +62,12 @@ class MyProfileViewModel {
         DispatchQueue.main.async {
           self.onUIReloadRequested?()
         }
-      case .failure(let error):
+      }, onError: { error in
         DispatchQueue.main.async {
           self.onErrorEncountered?(error)
         }
-      }
-    }
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: ProfileCellViewModel

@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 import Marshal
 import p2_OAuth2
+import RxSwift
+import RxCocoa
 
 struct PaginationKeys {
   static let limit = "page[limit]"
@@ -62,85 +64,81 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
   
   // MARK: - Requests
   
-  @discardableResult
-  func baseRequest<T>(method: HTTPMethod,
-                      url: String,
-                      parameters: Parameters? = nil,
-                      encoding: ParameterEncoding = JSONEncoding.default,
-                      headers: [String: String] = [:],
-                      completion: @escaping (Response<T>) -> Void) -> Request {
-    let request = manager.request(url,
-                                  method: method,
-                                  parameters: parameters,
-                                  encoding: encoding,
-                                  headers: headers).responseJSON { response in
-      self.logger.logDataResponse(response)
-      
-      switch response.result {
-      case .success(let value):
-        var marshaledObject = value as? MarshaledObject
-        if T.self == EmptyResponse.self && marshaledObject == nil {
-          marshaledObject = [:]
+  func baseRequest<T: Unmarshaling>(method: HTTPMethod,
+                                    url: String,
+                                    parameters: Parameters? = nil,
+                                    encoding: ParameterEncoding = JSONEncoding.default,
+                                    headers: [String: String] = [:]) -> Observable<T> {
+    let observableObject = Observable<T>.create { observer -> Disposable in
+      let request = self.manager.request(url,
+                                         method: method,
+                                         parameters: parameters,
+                                         encoding: encoding,
+                                         headers: headers).responseJSON { response in
+        self.logger.logDataResponse(response)
+        switch response.result {
+        case .success(let value):
+          var marshaledObject = value as? MarshaledObject
+          if T.self == EmptyResponse.self && marshaledObject == nil {
+            marshaledObject = [:]
+          }
+          if let code = response.response?.statusCode, let marshaledObject = marshaledObject {
+            let statusCode = NetworkErrorService.StatusCode(rawValue: code) ?? NetworkErrorService.StatusCode.internalError
+            switch statusCode {
+            case .okStatus, .createdStatus, .okNoContent:
+              if let object = try? T(object: marshaledObject) {
+                observer.onNext(object)
+                observer.onCompleted()
+              } else {
+                observer.onError(NetworkErrorService.parseError())
+              }
+            default:
+              if let errorResponse = try? ErrorResponse(object: marshaledObject) {
+                let networkError = NetworkErrorService.error(from: errorResponse)
+                observer.onError(networkError)
+              } else {
+                observer.onError(NetworkErrorService.unknownError())
+              }
+            }
+          } else {
+            observer.onError(NetworkErrorService.unknownError())
+          }
+        case.failure(let error):
+          observer.onError(error)
         }
-        if let code = response.response?.statusCode, let marshaledObject = marshaledObject {
-          self.handleBaseRequestSuccessResponse(marshaledObject: marshaledObject,
-                                                statusCode: code,
-                                                completion: completion)
+      }
+      self.logger.logRequest(request.request)
+      return Disposables.create {
+        request.cancel()
+      }
+    }
+    return observableObject
+  }
+  
+  func baseAuthorizationRequest(username: String, password: String) -> Observable<EmptyResponse> {
+    let observableObject = Observable<EmptyResponse>.create { observer -> Disposable in
+      self.oauth.username = username
+      self.oauth.password = password
+      self.oauth.authorize { _, error in
+        if let error = error {
+          observer.onError(error)
         } else {
-          completion(.failure(NetworkErrorService.unknownError()))
+          observer.onNext(EmptyResponse(object: [:]))
+          observer.onCompleted()
         }
-      case.failure(let error):
-        completion(.failure(error))
       }
+      return Disposables.create()
     }
-    logger.logRequest(request.request)
-    return request
+    return observableObject
   }
   
-  func baseAuthorizationRequest(username: String, password: String,
-                                completion: @escaping (Response<EmptyResponse>) -> Void) {
-    oauth.username = username
-    oauth.password = password
-    oauth.authorize { authParameters, error in
-      if authParameters != nil {
-        completion(Response.success(EmptyResponse(object: [:])))
-      } else {
-        completion(Response.failure(error))
-      }
+  func baseSignOutRequest() -> Observable<EmptyResponse> {
+    let observableObject = Observable<EmptyResponse>.create { observer -> Disposable in
+      self.oauth.forgetTokens()
+      observer.onNext(EmptyResponse(object: [:]))
+      observer.onCompleted()
+      return Disposables.create()
     }
+    return observableObject
   }
-  
-  func baseSignOutRequest(completion: @escaping (Response<EmptyResponse>) -> Void) {
-    oauth.forgetTokens()
-    completion(Response.success(EmptyResponse(object: [:])))
-  }
-
-  // MARK: - Response Handler
-  
-  private func handleBaseRequestSuccessResponse<T>(marshaledObject: MarshaledObject,
-                                                   statusCode code: Int,
-                                                   completion: @escaping ((Response<T>) -> Void)) {
-    let statusCode = NetworkErrorService.StatusCode(rawValue: code) ?? NetworkErrorService.StatusCode.internalError
-    switch statusCode {
-    case .okStatus, .createdStatus, .okNoContent:
-      if let object = try? T(object: marshaledObject) {
-        completion(.success(object))
-      } else {
-        completion(.failure(NetworkErrorService.parseError()))
-      }
-    default:
-      handleBaseRequestErrorResponse(marshaledObject: marshaledObject, completion: completion)
-    }
-  }
-  
-  private func handleBaseRequestErrorResponse<T>(marshaledObject: MarshaledObject,
-                                                 completion: @escaping ((Response<T>) -> Void)) {
-    if let errorResponse = try? ErrorResponse(object: marshaledObject) {
-      let networkError = NetworkErrorService.error(from: errorResponse)
-      completion(.failure(networkError))
-    } else {
-      completion(.failure(NetworkErrorService.unknownError()))
-    }
-  }
-
 }

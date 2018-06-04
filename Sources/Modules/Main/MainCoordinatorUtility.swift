@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class MainCoordinatorUtility {
   typealias Dependencies = HasReachabilityManager & HasRealmService & HasAuthService
@@ -15,6 +16,7 @@ class MainCoordinatorUtility {
     static let hadFirstRunAlreadyUserDefaultsKey = "hadFirstRunAlready"
   }
   
+  private let disposeBag = DisposeBag()
   private let dependencies: Dependencies
   private let userDefaults: UserDefaults
   
@@ -49,8 +51,12 @@ class MainCoordinatorUtility {
   }
   
   func signOut(completion: (() -> Void)? = nil) {
-    dependencies.authService.signOut { _ in
-      self.clearUserData(completion: completion)
-    }
+    dependencies.authService.signOut()
+      .subscribe(onNext: { _ in
+        self.clearUserData(completion: completion)
+      }, onError: { _ in
+        self.clearUserData(completion: completion)
+      })
+      .disposed(by: disposeBag)
   }
 }

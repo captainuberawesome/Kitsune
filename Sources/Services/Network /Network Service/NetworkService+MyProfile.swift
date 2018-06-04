@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import RxSwift
 
 extension NetworkService: MyProfileNetworkProtocol {
   
@@ -13,10 +14,9 @@ extension NetworkService: MyProfileNetworkProtocol {
     static let myProfile = "filter[self]"
   }
   
-  func myProfile(completion: @escaping (Response<UserResponse>) -> Void) {
+  func myProfile() -> Observable<UserResponse> {
     let parameters: [String: Any] = [MyProfileRequestKeys.myProfile: true.stringValue]
-    baseRequest(method: .get, url: URLFactory.Users.users,
-                parameters: parameters, encoding: URLEncoding.default, completion: completion)
+    return baseRequest(method: .get, url: URLFactory.Users.users, parameters: parameters, encoding: URLEncoding.default)
   }
   
 }

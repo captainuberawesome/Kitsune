@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import RxSwift
 
 extension NetworkService: AnimeListNetworkProtocol {
   
@@ -13,19 +14,17 @@ extension NetworkService: AnimeListNetworkProtocol {
     static let textSearch = "filter[text]"
   }
   
-  func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void) {
+  func animeList(limit: Int, offset: Int) -> Observable<AnimeListResponse> {
     let parameters = [PaginationKeys.limit: limit,
                       PaginationKeys.offset: offset]
-    baseRequest(method: .get, url: URLFactory.Media.anime, parameters: parameters,
-                encoding: URLEncoding.default, completion: completion)
+    return baseRequest(method: .get, url: URLFactory.Media.anime, parameters: parameters, encoding: URLEncoding.default)
   }
   
-  func animeListSearch(text: String, limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void) {
+  func animeListSearch(text: String, limit: Int, offset: Int) -> Observable<AnimeListResponse> {
     let parameters: [String: Any] = [PaginationKeys.limit: limit,
                                      PaginationKeys.offset: offset,
                                      AnimeListRequestKeys.textSearch: text]
-    baseRequest(method: .get, url: URLFactory.Media.anime, parameters: parameters,
-                encoding: URLEncoding.default, completion: completion)
+    return baseRequest(method: .get, url: URLFactory.Media.anime, parameters: parameters, encoding: URLEncoding.default)
   }
   
 }

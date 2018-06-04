@@ -114,5 +114,6 @@ class LoginViewController: BaseViewController {
   @objc private func didTapLoginButton(_ sender: UIButton) {
     guard let email = emailTextField.text, let password = passwordTextField.text else { return }
     viewModel.login(email: email, password: password)
+    // TODO: show activity indicator while logging in
   }
 }

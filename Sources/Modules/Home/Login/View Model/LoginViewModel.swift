@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol LoginViewModelDelegate: class {
   func loginViewModelDidFinishLogin(_ viewModel: LoginViewModel)
@@ -16,6 +17,7 @@ class LoginViewModel {
   typealias Dependencies = HasAuthService
   
   private let dependencies: Dependencies
+  private let disposeBag = DisposeBag()
   
   weak var delegate: LoginViewModelDelegate?
   
@@ -30,13 +32,16 @@ class LoginViewModel {
   // MARK: - Public
   
   func login(email: String, password: String) {
-    dependencies.authService.authorize(username: email, password: password) { response in
-      switch response {
-      case .success:
-        self.delegate?.loginViewModelDidFinishLogin(self)
-      case .failure(let error):
-        self.onErrorEncountered?(error)
-      }
-    }
+    dependencies.authService.authorize(username: email, password: password)
+      .subscribe(onNext: { _ in
+        DispatchQueue.main.async {
+          self.delegate?.loginViewModelDidFinishLogin(self)
+        }
+      }, onError: { error in
+        DispatchQueue.main.async {
+          self.onErrorEncountered?(error)
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }

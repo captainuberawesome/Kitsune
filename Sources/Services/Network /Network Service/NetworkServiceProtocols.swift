@@ -7,21 +7,15 @@
 
 import Alamofire.Swift
 import Marshal
-
-// MARK: - Types
-
-enum Response<T: Unmarshaling> {
-  case success(T)
-  case failure(Error?)
-}
+import RxSwift
 
 // MARK: - Protocols
 
 // MARK: Auth
 
 protocol AuthNetworkProtocol {
-  func authorize(username: String, password: String, completion: @escaping (Response<EmptyResponse>) -> Void)
-  func signOut(completion: @escaping (Response<EmptyResponse>) -> Void)
+  func authorize(username: String, password: String) -> Observable<EmptyResponse>
+  func signOut() -> Observable<EmptyResponse>
 }
 
 protocol LoginStateNetworkProtocol {
@@ -29,10 +23,10 @@ protocol LoginStateNetworkProtocol {
 }
 
 protocol AnimeListNetworkProtocol {
-  func animeList(limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
-  func animeListSearch(text: String, limit: Int, offset: Int, completion: @escaping (Response<AnimeListResponse>) -> Void)
+  func animeList(limit: Int, offset: Int) -> Observable<AnimeListResponse>
+  func animeListSearch(text: String, limit: Int, offset: Int) -> Observable<AnimeListResponse>
 }
 
 protocol MyProfileNetworkProtocol {
-  func myProfile(completion: @escaping (Response<UserResponse>) -> Void)
+  func myProfile() -> Observable<UserResponse>
 }

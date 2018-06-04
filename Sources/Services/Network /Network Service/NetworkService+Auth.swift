@@ -6,15 +6,16 @@
 //
 
 import Alamofire
+import RxSwift
 
 extension NetworkService: AuthNetworkProtocol {
   
-  func authorize(username: String, password: String, completion: @escaping (Response<EmptyResponse>) -> Void) {
-    baseAuthorizationRequest(username: username, password: password, completion: completion)
+  func authorize(username: String, password: String) -> Observable<EmptyResponse> {
+    return baseAuthorizationRequest(username: username, password: password)
   }
   
-  func signOut(completion: @escaping (Response<EmptyResponse>) -> Void) {
-    baseSignOutRequest(completion: completion)
+  func signOut() -> Observable<EmptyResponse> {
+    return baseSignOutRequest()
   }
   
 }

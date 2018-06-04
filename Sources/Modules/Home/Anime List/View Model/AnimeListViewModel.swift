@@ -27,6 +27,8 @@ class AnimeListViewModel {
   
   let cellIdentifier = AnimeListTableViewCell.reuseIdentifier
   private let dependencies: Dependencies
+  private let disposeBag = DisposeBag()
+  private var networkRequestSubscription: Disposable?
   private var currentSearchText: String?
   private var canLoadMorePages = true {
     didSet {
@@ -81,27 +83,35 @@ class AnimeListViewModel {
   // MARK: - Private
   
   private func loadAnimeList() {
-    self.state = .loadingStarted
+    self.networkRequestSubscription?.dispose()
+    state = .loadingStarted
     
-    let completion: ((Response<AnimeListResponse>) -> Void) = { response in
+    let onNext: (AnimeListResponse) -> Void = { animeListResponse in
       self.state = .loadingFinsihed
-      switch response {
-      case .success(let result):
-        let newItems = self.createViewModels(from: result.animeList)
-        self.canLoadMorePages = newItems.count >= self.paginationLimit
-        self.cellViewModels.accept(newItems)
-        self.state = .uiReloadNeeded
-      case .failure(let error):
-        self.state = .error(error)
-      }
+      let newItems = self.createViewModels(from: animeListResponse.animeList)
+      self.canLoadMorePages = newItems.count >= self.paginationLimit
+      self.cellViewModels.accept(newItems)
+      self.state = .uiReloadNeeded
+    }
+    
+    let onError: (Error) -> Void = { error in
+      self.state = .loadingFinsihed
+      self.state = .error(error)
     }
     
     switch mode {
     case .default:
-      dependencies.animeListService.animeList(limit: paginationLimit, offset: 0, completion: completion)
+      let networkRequestSubscription = dependencies.animeListService.animeList(limit: paginationLimit, offset: 0)
+              .subscribe(onNext: onNext, onError: onError)
+      networkRequestSubscription.disposed(by: disposeBag)
+      self.networkRequestSubscription = networkRequestSubscription
     case .searching:
       if let searchText = currentSearchText {
-        dependencies.animeListService.animeListSearch(text: searchText, limit: paginationLimit, offset: 0, completion: completion)
+        let networkRequestSubscription = dependencies.animeListService.animeListSearch(text: searchText,
+                                                                                       limit: paginationLimit, offset: 0)
+          .subscribe(onNext: onNext, onError: onError)
+        networkRequestSubscription.disposed(by: disposeBag)
+        self.networkRequestSubscription = networkRequestSubscription
       } else {
         state = .loadingFinsihed
       }
@@ -109,29 +119,36 @@ class AnimeListViewModel {
   }
   
   private func loadAnimeListNextPage() {
+    self.networkRequestSubscription?.dispose()
     let offset = cellViewModels.value.count
     state = .loadingStarted
     
-    let completion: ((Response<AnimeListResponse>) -> Void) = { response in
+    let onNext: (AnimeListResponse) -> Void = { animeListResponse in
       self.state = .loadingFinsihed
-      switch response {
-      case .success(let result):
-        let newItems = self.createViewModels(from: result.animeList)
-        self.cellViewModels.accept(self.cellViewModels.value + newItems)
-        self.canLoadMorePages = newItems.count >= self.paginationLimit
-        self.state = .uiReloadNeeded
-      case .failure(let error):
-        self.state = .error(error)
-      }
+      let newItems = self.createViewModels(from: animeListResponse.animeList)
+      self.cellViewModels.accept(self.cellViewModels.value + newItems)
+      self.canLoadMorePages = newItems.count >= self.paginationLimit
+      self.state = .uiReloadNeeded
+    }
+    
+    let onError: (Error) -> Void = { error in
+      self.state = .loadingFinsihed
+      self.state = .error(error)
     }
     
     switch mode {
     case .default:
-      dependencies.animeListService.animeList(limit: paginationLimit, offset: offset, completion: completion)
+      let networkRequestSubscription = dependencies.animeListService.animeList(limit: paginationLimit, offset: offset)
+        .subscribe(onNext: onNext, onError: onError)
+      networkRequestSubscription.disposed(by: disposeBag)
+      self.networkRequestSubscription = networkRequestSubscription
     case .searching:
       if let searchText = currentSearchText {
-        dependencies.animeListService.animeListSearch(text: searchText, limit: paginationLimit, offset: offset,
-                                                      completion: completion)
+        let networkRequestSubscription = dependencies.animeListService.animeListSearch(text: searchText,
+                                                                                       limit: paginationLimit, offset: offset)
+          .subscribe(onNext: onNext, onError: onError)
+        networkRequestSubscription.disposed(by: disposeBag)
+        self.networkRequestSubscription = networkRequestSubscription
       } else {
         state = .loadingFinsihed
       }
@@ -143,10 +160,12 @@ class AnimeListViewModel {
   private func configureFor(mode: Mode) {
     switch mode {
     case .searching:
+      networkRequestSubscription?.dispose()
       defaultModeCellViewModels = cellViewModels.value
-      cellViewModels .accept([])
+      cellViewModels.accept([])
     case .default:
-      cellViewModels .accept(defaultModeCellViewModels)
+      networkRequestSubscription?.dispose()
+      cellViewModels.accept(defaultModeCellViewModels)
       defaultModeCellViewModels.removeAll()
       currentSearchText = nil
     }
