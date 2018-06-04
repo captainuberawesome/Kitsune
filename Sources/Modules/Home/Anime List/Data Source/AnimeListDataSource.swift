@@ -15,46 +15,21 @@ extension Constants {
 class AnimeListDataSource: NSObject {
   
   // MARK: - Properties
-  private var items: [AnimeCellViewModel] = []
   private var tableView: UITableView?
   private let disposeBag = DisposeBag()
   
   func configure(withTableView tableView: UITableView, viewModel: AnimeListViewModel) {
     self.tableView = tableView
-    tableView.dataSource = self
-    tableView.delegate = self
-    viewModel.cellViewModels.asObservable()
-      .subscribe(onNext: { [weak self] cellViewModels in
-        self?.items = cellViewModels
-      })
+    viewModel.cellViewModels
+      .bind(to: tableView.rx.items(cellIdentifier: AnimeListTableViewCell.reuseIdentifier,
+                                   cellType: AnimeListTableViewCell.self)) { _, cellViewModel, cell in
+         cell.configure(viewModel: cellViewModel)
+         cell.selectionStyle = .none
+      }
       .disposed(by: disposeBag)
-  }
-  
-  private func item(at indexPath: IndexPath) -> AnimeCellViewModel? {
-    guard indexPath.row < items.count else { return nil }
-    return items[indexPath.row]
-  }
-}
-
-// MARK: - UITableViewDataSource
-
-extension AnimeListDataSource: UITableViewDataSource {
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-  }
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return items.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let viewModel = item(at: indexPath) else { return UITableViewCell() }
-    let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellReuseIdentifier, for: indexPath)
-    cell.selectionStyle = .none
-    if let animeCell = cell as? AnimeListTableViewCell {
-      animeCell.configure(viewModel: viewModel)
-    }
-    return cell
+    tableView.rx
+      .setDelegate(self)
+      .disposed(by: disposeBag)
   }
 }
 

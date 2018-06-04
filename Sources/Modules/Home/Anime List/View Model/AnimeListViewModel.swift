@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 private extension Constants {
   static let defaultPaginationLimit = 10
@@ -24,6 +25,7 @@ class AnimeListViewModel {
     case initial, loadingStarted, loadingFinsihed, error(Error?), uiReloadNeeded
   }
   
+  let cellIdentifier = AnimeListTableViewCell.reuseIdentifier
   private let dependencies: Dependencies
   private var currentSearchText: String?
   private var canLoadMorePages = true {
@@ -37,7 +39,7 @@ class AnimeListViewModel {
       stateSubject.onNext(state)
     }
   }
-  private(set) var cellViewModels: Variable<[AnimeCellViewModel]> = Variable([])
+  private(set) var cellViewModels = BehaviorRelay<[AnimeCellViewModel]>(value: [])
   
   var paginationLimit = Constants.defaultPaginationLimit
   let canLoadMorePagesSubject = BehaviorSubject<Bool>(value: true)
@@ -87,7 +89,7 @@ class AnimeListViewModel {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
         self.canLoadMorePages = newItems.count >= self.paginationLimit
-        self.cellViewModels.value.replaceSubrange(0..<self.cellViewModels.value.count, with: newItems)
+        self.cellViewModels.accept(newItems)
         self.state = .uiReloadNeeded
       case .failure(let error):
         self.state = .error(error)
@@ -115,7 +117,7 @@ class AnimeListViewModel {
       switch response {
       case .success(let result):
         let newItems = self.createViewModels(from: result.animeList)
-        self.cellViewModels.value.append(contentsOf: newItems)
+        self.cellViewModels.accept(self.cellViewModels.value + newItems)
         self.canLoadMorePages = newItems.count >= self.paginationLimit
         self.state = .uiReloadNeeded
       case .failure(let error):
@@ -142,9 +144,9 @@ class AnimeListViewModel {
     switch mode {
     case .searching:
       defaultModeCellViewModels = cellViewModels.value
-      cellViewModels.value.removeAll()
+      cellViewModels .accept([])
     case .default:
-      cellViewModels = Variable(defaultModeCellViewModels)
+      cellViewModels .accept(defaultModeCellViewModels)
       defaultModeCellViewModels.removeAll()
       currentSearchText = nil
     }
