@@ -22,7 +22,7 @@ class AnimeListViewModel {
   }
   
   enum State {
-    case initial, loadingStarted, loadingFinsihed, error(Error?), uiReloadNeeded
+    case initial, loadingStarted, loadingFinished
   }
   
   let cellIdentifier = AnimeListTableViewCell.reuseIdentifier
@@ -36,16 +36,11 @@ class AnimeListViewModel {
     }
   }
   private var defaultModeCellViewModels: [AnimeCellViewModel] = []
-  private var state: State = .initial {
-    didSet {
-      stateSubject.onNext(state)
-    }
-  }
   private(set) var cellViewModels = BehaviorRelay<[AnimeCellViewModel]>(value: [])
   
   var paginationLimit = Constants.defaultPaginationLimit
   let canLoadMorePagesSubject = BehaviorSubject<Bool>(value: true)
-  let stateSubject = BehaviorSubject<State>(value: .initial)
+  let state = BehaviorSubject<State>(value: .initial)
   
   var mode: Mode = .default {
     didSet {
@@ -84,19 +79,18 @@ class AnimeListViewModel {
   
   private func loadAnimeList() {
     self.networkRequestSubscription?.dispose()
-    state = .loadingStarted
+    state.onNext(.loadingStarted)
     
     let onNext: (AnimeListResponse) -> Void = { animeListResponse in
-      self.state = .loadingFinsihed
+      self.state.onNext(.loadingFinished)
       let newItems = self.createViewModels(from: animeListResponse.animeList)
       self.canLoadMorePages = newItems.count >= self.paginationLimit
       self.cellViewModels.accept(newItems)
-      self.state = .uiReloadNeeded
     }
     
     let onError: (Error) -> Void = { error in
-      self.state = .loadingFinsihed
-      self.state = .error(error)
+      self.state.onNext(.loadingFinished)
+      self.state.onError(error)
     }
     
     switch mode {
@@ -113,7 +107,7 @@ class AnimeListViewModel {
         networkRequestSubscription.disposed(by: disposeBag)
         self.networkRequestSubscription = networkRequestSubscription
       } else {
-        state = .loadingFinsihed
+        state.onNext(.loadingFinished)
       }
     }
   }
@@ -121,19 +115,18 @@ class AnimeListViewModel {
   private func loadAnimeListNextPage() {
     self.networkRequestSubscription?.dispose()
     let offset = cellViewModels.value.count
-    state = .loadingStarted
+    state.onNext(.loadingStarted)
     
     let onNext: (AnimeListResponse) -> Void = { animeListResponse in
-      self.state = .loadingFinsihed
+      self.state.onNext(.loadingFinished)
       let newItems = self.createViewModels(from: animeListResponse.animeList)
       self.cellViewModels.accept(self.cellViewModels.value + newItems)
       self.canLoadMorePages = newItems.count >= self.paginationLimit
-      self.state = .uiReloadNeeded
     }
     
     let onError: (Error) -> Void = { error in
-      self.state = .loadingFinsihed
-      self.state = .error(error)
+      self.state.onNext(.loadingFinished)
+      self.state.onError(error)
     }
     
     switch mode {
@@ -150,7 +143,7 @@ class AnimeListViewModel {
         networkRequestSubscription.disposed(by: disposeBag)
         self.networkRequestSubscription = networkRequestSubscription
       } else {
-        state = .loadingFinsihed
+        state.onNext(.loadingFinished)
       }
     }
   }

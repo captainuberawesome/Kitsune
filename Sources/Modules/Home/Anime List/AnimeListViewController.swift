@@ -116,25 +116,23 @@ class AnimeListViewController: BaseViewController {
   // MARK: - View Model
   
   private func bindViewModel() {
-    viewModel.stateSubject
+    viewModel.state
       .subscribe(onNext: { [weak self, unowned viewModel] state in
-        switch state {
-        case .initial, .loadingFinsihed:
-          self?.activityIndicatorView.isHidden = true
-          self?.activityIndicatorView.stopAnimating()
-          self?.finishInfiniteScroll()
-        case .loadingStarted:
-          self?.emptyView.isHidden = true
-          if !viewModel.hasData && self?.tableView.isAnimatingInfiniteScroll != true {
-            self?.activityIndicatorView.isHidden = false
-            self?.activityIndicatorView.startAnimating()
+          switch state {
+          case .initial, .loadingFinished:
+            self?.activityIndicatorView.isHidden = true
+            self?.activityIndicatorView.stopAnimating()
+            self?.finishInfiniteScroll()
+          case .loadingStarted:
+            self?.emptyView.isHidden = true
+            if !viewModel.hasData && self?.tableView.isAnimatingInfiniteScroll != true {
+              self?.activityIndicatorView.isHidden = false
+              self?.activityIndicatorView.startAnimating()
+            }
           }
-        case .uiReloadNeeded:
-          self?.tableView.reloadData()
-        case .error:
+        }, onError: { [weak self] _ in
           self?.emptyView.isHidden = false
-        }
-      })
+        })
       .disposed(by: disposeBag)
     viewModel.canLoadMorePagesSubject
       .subscribe(onNext: { [weak self] canLoadMorePages in
