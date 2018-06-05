@@ -7,35 +7,32 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 private extension Constants {
   static let defaultPaginationLimit = 10
 }
 
-class MyProfileViewModel {
+class MyProfileViewModel: ViewModelNetworkRequesting {
   
   typealias Dependencies = HasLoginStateService & HasMyProfileService
     & HasUserDataService & HasRealmService
-  private(set) var cellViewModels: [ProfileCellViewModel] = []
+
+  private(set) var cellViewModels = BehaviorRelay<[ProfileCellViewModel]>(value: [])
   private let dependencies: Dependencies
   private var user: User?
-  let dataSource = ProfileDataSource()
   private let disposeBag = DisposeBag()
+  let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
   
   var isLoggedIn: Bool {
     return dependencies.loginStateService.isLoggedIn
   }
-  
-  var onErrorEncountered: ((Error?) -> Void)?
-  var onLoadingStarted: (() -> Void)?
-  var onLoadingFinished: (() -> Void)?
-  var onUIReloadRequested: (() -> Void)?
 
   // MARK: - Init
   
   init(dependencies: Dependencies) {
     self.dependencies = dependencies
-    cellViewModels = createViewModels()
+    cellViewModels.accept(createViewModels())
   }
   
   // MARK: - Public
@@ -43,29 +40,23 @@ class MyProfileViewModel {
   func loadCachedData() {
     guard let activeUserId = dependencies.userDataService.activeUserId else { return }
     user = dependencies.realmService.user(withId: activeUserId)
-    cellViewModels = createViewModels(withUser: user)
-    dataSource.updateData(with: self)
-    onUIReloadRequested?()
+    cellViewModels.accept(createViewModels(withUser: user))
   }
   
   func reloadData() {
-    onLoadingStarted?()
+    state.onNext(.loadingStarted)
     dependencies.myProfileService.myProfile()
       .subscribe(onNext: { userResponse in
+        self.state.onNext(.loadingFinished)
         if let user = userResponse.user {
           self.user = user
-          self.cellViewModels = self.createViewModels(withUser: user)
-          self.dataSource.updateData(with: self)
+          self.cellViewModels.accept(self.createViewModels(withUser: user))
           self.dependencies.userDataService.activeUserId = user.id
           self.dependencies.realmService.save(object: user)
         }
-        DispatchQueue.main.async {
-          self.onUIReloadRequested?()
-        }
       }, onError: { error in
-        DispatchQueue.main.async {
-          self.onErrorEncountered?(error)
-        }
+        self.state.onNext(.loadingFinished)
+        self.state.onError(error)
       })
       .disposed(by: disposeBag)
   }

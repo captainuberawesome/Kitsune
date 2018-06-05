@@ -7,12 +7,14 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import RxSwift
 
 class LoginViewController: BaseViewController {
   private let emailTextField = SkyFloatingLabelTextField()
   private let passwordTextField = SkyFloatingLabelTextField()
   private let loginButton = UIButton(type: .system)
   private let viewModel: LoginViewModel
+  private let disposeBag = DisposeBag()
   
   // MARK: - Init
   
@@ -103,10 +105,14 @@ class LoginViewController: BaseViewController {
   // MARK: - View Model
   
   private func bindViewModel() {
-    viewModel.onErrorEncountered = { error in
-      guard let error = error else { return }
-      log.error("Error while logging in: \(error)")
-    }
+    viewModel.state
+      .subscribe(onNext: { _ in
+        // TODO: handle request start / finish
+        }, onError: { error in
+          // TODO: handle error
+          log.error("Error while logging in: \(error)")
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: - Actions

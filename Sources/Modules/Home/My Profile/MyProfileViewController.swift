@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol MyProfileViewControllerDataSource: class {
   func getLoginViewController() -> LoginViewController?
@@ -18,6 +19,8 @@ class MyProfileViewController: BaseViewController {
   private let profileHeaderView = ProfileHeaderView()
   private let tableView = UITableView()
   private let viewModel: MyProfileViewModel
+  private let tableDataSource = ProfileDataSource()
+  private let disposeBag = DisposeBag()
   
   weak var dataSource: MyProfileViewControllerDataSource?
   
@@ -68,7 +71,7 @@ class MyProfileViewController: BaseViewController {
   }
   
   private func setupTableView() {
-    viewModel.dataSource.configure(withTableView: tableView)
+    tableDataSource.configure(withTableView: tableView, viewModel: viewModel)
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
     tableView.separatorStyle = .none
@@ -108,9 +111,12 @@ class MyProfileViewController: BaseViewController {
   // MARK: - View Model
   
   private func bindViewModel() {
-    viewModel.onUIReloadRequested = { [weak self, unowned viewModel] in
-      self?.profileHeaderView.configure(viewModel: viewModel)
-      self?.tableView.reloadData()
-    }
+    viewModel.state
+      .subscribe(onNext: { _ in
+        // TODO: handle request start / finish
+        }, onError: { _ in
+        // TODO: handle error
+      })
+      .disposed(by: disposeBag)
   }
 }

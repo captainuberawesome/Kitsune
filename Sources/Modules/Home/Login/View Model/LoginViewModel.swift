@@ -12,12 +12,13 @@ protocol LoginViewModelDelegate: class {
   func loginViewModelDidFinishLogin(_ viewModel: LoginViewModel)
 }
 
-class LoginViewModel {
+class LoginViewModel: ViewModelNetworkRequesting {
   
   typealias Dependencies = HasAuthService
   
   private let dependencies: Dependencies
   private let disposeBag = DisposeBag()
+  let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
   
   weak var delegate: LoginViewModelDelegate?
   
@@ -32,15 +33,15 @@ class LoginViewModel {
   // MARK: - Public
   
   func login(email: String, password: String) {
+    state.onNext(.loadingStarted)
     dependencies.authService.authorize(username: email, password: password)
       .subscribe(onNext: { _ in
+        self.state.onNext(.loadingFinished)
         DispatchQueue.main.async {
           self.delegate?.loginViewModelDidFinishLogin(self)
         }
       }, onError: { error in
-        DispatchQueue.main.async {
-          self.onErrorEncountered?(error)
-        }
+        self.state.onError(error)
       })
       .disposed(by: disposeBag)
   }

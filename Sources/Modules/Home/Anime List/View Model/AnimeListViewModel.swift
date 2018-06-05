@@ -13,16 +13,12 @@ private extension Constants {
   static let defaultPaginationLimit = 10
 }
 
-class AnimeListViewModel {
+class AnimeListViewModel: ViewModelNetworkRequesting {
   
   typealias Dependencies = HasAnimeListService
   
   enum Mode {
     case searching, `default`
-  }
-  
-  enum State {
-    case initial, loadingStarted, loadingFinished
   }
   
   let cellIdentifier = AnimeListTableViewCell.reuseIdentifier
@@ -40,7 +36,7 @@ class AnimeListViewModel {
   
   var paginationLimit = Constants.defaultPaginationLimit
   let canLoadMorePagesSubject = BehaviorSubject<Bool>(value: true)
-  let state = BehaviorSubject<State>(value: .initial)
+  let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
   
   var mode: Mode = .default {
     didSet {
