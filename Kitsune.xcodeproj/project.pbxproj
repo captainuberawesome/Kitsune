@@ -56,7 +56,7 @@
 		FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */; };
 		FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3DD2095E5320000675D /* MainCoordinator.swift */; };
 		FDCAB3FC2095E6210000675D /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EA2095E6210000675D /* NetworkEnvironment.swift */; };
-		FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EB2095E6210000675D /* ReachabilityManager.swift */; };
+		FDCAB3FD2095E6210000675D /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EB2095E6210000675D /* ReachabilityService.swift */; };
 		FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EC2095E6210000675D /* RequestLogger.swift */; };
 		FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3ED2095E6210000675D /* URLFactory.swift */; };
 		FDCAB4002095E6210000675D /* NetworkErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */; };
@@ -170,7 +170,7 @@
 		FDCAB3DC2095E5320000675D /* MainCoordinatorUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinatorUtility.swift; sourceTree = "<group>"; };
 		FDCAB3DD2095E5320000675D /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		FDCAB3EA2095E6210000675D /* NetworkEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
-		FDCAB3EB2095E6210000675D /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		FDCAB3EB2095E6210000675D /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		FDCAB3EC2095E6210000675D /* RequestLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestLogger.swift; sourceTree = "<group>"; };
 		FDCAB3ED2095E6210000675D /* URLFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
 		FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorService.swift; sourceTree = "<group>"; };
@@ -509,7 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				FDCAB3EA2095E6210000675D /* NetworkEnvironment.swift */,
-				FDCAB3EB2095E6210000675D /* ReachabilityManager.swift */,
+				FDCAB3EB2095E6210000675D /* ReachabilityService.swift */,
 				FDCAB3EC2095E6210000675D /* RequestLogger.swift */,
 				FDCAB3ED2095E6210000675D /* URLFactory.swift */,
 				FDCAB3EE2095E6210000675D /* NetworkErrorService.swift */,
@@ -903,7 +903,7 @@
 				FDA4185220ADCBBB00B41819 /* TabBarController.swift in Sources */,
 				FDFCF7E42096EB0E00F7A901 /* AnimeListDataSource.swift in Sources */,
 				FDFCF7ED2097344600F7A901 /* UIFont+AppFonts.swift in Sources */,
-				FDCAB3FD2095E6210000675D /* ReachabilityManager.swift in Sources */,
+				FDCAB3FD2095E6210000675D /* ReachabilityService.swift in Sources */,
 				8B8758FC208D888D00D1BBF5 /* NavigationController.swift in Sources */,
 				FDCAB3FE2095E6210000675D /* RequestLogger.swift in Sources */,
 				FDFCF7E22096EB0100F7A901 /* AnimeListViewModel.swift in Sources */,

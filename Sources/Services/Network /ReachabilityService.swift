@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire.Swift
 
-class ReachabilityManager {
+class ReachabilityService {
   
   private(set) var isReachable: Bool = false {
     didSet {

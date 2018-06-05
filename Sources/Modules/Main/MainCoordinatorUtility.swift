@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class MainCoordinatorUtility {
-  typealias Dependencies = HasReachabilityManager & HasRealmService & HasAuthService
+  typealias Dependencies = HasReachabilityService & HasRealmService & HasAuthService
     & HasUserDataService
   
   private struct Constants {
@@ -34,7 +34,7 @@ class MainCoordinatorUtility {
   }
   
   private func startListeningForReachabilityUpdates() {
-    dependencies.reachabilityManager?.startListening()
+    dependencies.reachabilityService?.startListening()
   }
   
   private func resetDataOnFirstRun() {

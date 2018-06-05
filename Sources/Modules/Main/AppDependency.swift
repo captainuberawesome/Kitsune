@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol HasReachabilityManager {
-  var reachabilityManager: ReachabilityManager? { get }
+protocol HasReachabilityService {
+  var reachabilityService: ReachabilityService? { get }
 }
 
 protocol HasRealmService {
@@ -35,38 +35,38 @@ protocol HasMyProfileService {
   var myProfileService: MyProfileNetworkProtocol { get }
 }
 
-class AppDependency: HasRealmService, HasReachabilityManager, HasUserDataService {
+class AppDependency: HasRealmService, HasReachabilityService, HasUserDataService {
   let userDataService: UserDataService
   let realmService: RealmService
-  let networkManager: NetworkService
-  private(set) var reachabilityManager: ReachabilityManager?
+  let networkService: NetworkService
+  private(set) var reachabilityService: ReachabilityService?
   
   init(userDataService: UserDataService,
        realmService: RealmService,
-       networkManager: NetworkService,
-       reachabilityManager: ReachabilityManager?) {
+       networkService: NetworkService,
+       reachabilityService: ReachabilityService?) {
     self.userDataService = userDataService
     self.realmService = realmService
-    self.networkManager = networkManager
-    self.reachabilityManager = reachabilityManager
+    self.networkService = networkService
+    self.reachabilityService = reachabilityService
   }
   
   static func makeDefault() -> AppDependency {
     let userDataService = UserDataService()
     let realmService = RealmService()
-    let networkManager = NetworkService()
-    let reachabilityManager = ReachabilityManager(host: URLFactory.ReachabilityChecking.host)
+    let networkService = NetworkService()
+    let reachabilityService = ReachabilityService(host: URLFactory.ReachabilityChecking.host)
     return AppDependency(userDataService: userDataService,
                          realmService: realmService,
-                         networkManager: networkManager,
-                         reachabilityManager: reachabilityManager)
+                         networkService: networkService,
+                         reachabilityService: reachabilityService)
   }
 }
 
 extension AppDependency: HasAuthService, HasAnimeListService,
   HasLoginStateService, HasMyProfileService {
-  var authService: AuthNetworkProtocol { return networkManager }
-  var animeListService: AnimeListNetworkProtocol { return networkManager }
-  var loginStateService: LoginStateNetworkProtocol { return networkManager }
-  var myProfileService: MyProfileNetworkProtocol { return networkManager }
+  var authService: AuthNetworkProtocol { return networkService }
+  var animeListService: AnimeListNetworkProtocol { return networkService }
+  var loginStateService: LoginStateNetworkProtocol { return networkService }
+  var myProfileService: MyProfileNetworkProtocol { return networkService }
 }
