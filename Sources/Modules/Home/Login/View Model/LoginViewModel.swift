@@ -8,10 +8,6 @@
 import Foundation
 import RxSwift
 
-protocol LoginViewModelDelegate: class {
-  func loginViewModelDidFinishLogin(_ viewModel: LoginViewModel)
-}
-
 class LoginViewModel: ViewModelNetworkRequesting {
   
   typealias Dependencies = HasAuthService
@@ -19,8 +15,7 @@ class LoginViewModel: ViewModelNetworkRequesting {
   private let dependencies: Dependencies
   private let disposeBag = DisposeBag()
   let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
-  
-  weak var delegate: LoginViewModelDelegate?
+  var onDidFinishLogin = PublishSubject<Void>()
   
   var onErrorEncountered: ((_ error: Error?) -> Void)?
   
@@ -37,9 +32,7 @@ class LoginViewModel: ViewModelNetworkRequesting {
     dependencies.authService.authorize(username: email, password: password)
       .subscribe(onNext: { _ in
         self.state.onNext(.loadingFinished)
-        DispatchQueue.main.async {
-          self.delegate?.loginViewModelDidFinishLogin(self)
-        }
+        self.onDidFinishLogin.onNext(())
       }, onError: { error in
         self.state.onError(error)
       })

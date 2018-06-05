@@ -13,6 +13,7 @@
 		8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B3506892092D21100586986 /* NetworkErrors.strings */; };
 		8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B60AAAA208DBF1D00E6986C /* Common.strings */; };
 		8B61C7972091E026005FD0F7 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61C7962091E026005FD0F7 /* ReuseIdentifiable.swift */; };
+		8B72985820C66A1700529723 /* ViewModelNetworkRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B72985720C66A1700529723 /* ViewModelNetworkRequesting.swift */; };
 		8B8758FB208D888D00D1BBF5 /* NavigationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8758F8208D888D00D1BBF5 /* NavigationFlowCoordinator.swift */; };
 		8B8758FC208D888D00D1BBF5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8758F9208D888D00D1BBF5 /* NavigationController.swift */; };
 		8B8758FD208D888D00D1BBF5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8758FA208D888D00D1BBF5 /* BaseViewController.swift */; };
@@ -120,6 +121,7 @@
 		8B3506892092D21100586986 /* NetworkErrors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = NetworkErrors.strings; sourceTree = "<group>"; };
 		8B60AAAA208DBF1D00E6986C /* Common.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Common.strings; sourceTree = "<group>"; };
 		8B61C7962091E026005FD0F7 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		8B72985720C66A1700529723 /* ViewModelNetworkRequesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelNetworkRequesting.swift; sourceTree = "<group>"; };
 		8B8758F8208D888D00D1BBF5 /* NavigationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationFlowCoordinator.swift; sourceTree = "<group>"; };
 		8B8758F9208D888D00D1BBF5 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		8B8758FA208D888D00D1BBF5 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			children = (
 				8B61C7962091E026005FD0F7 /* ReuseIdentifiable.swift */,
 				FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */,
+				8B72985720C66A1700529723 /* ViewModelNetworkRequesting.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -926,6 +929,7 @@
 				FDFCF80420975A9800F7A901 /* AnimeListResponse.swift in Sources */,
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
 				FD35925B20B5ADF000EA634D /* UserDataService.swift in Sources */,
+				8B72985820C66A1700529723 /* ViewModelNetworkRequesting.swift in Sources */,
 				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
 				FD35925220B5A25C00EA634D /* NetworkService+MyProfile.swift in Sources */,
 				FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */,

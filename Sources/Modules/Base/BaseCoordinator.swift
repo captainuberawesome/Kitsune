@@ -6,20 +6,17 @@
 //
 
 import UIKit
-
-protocol BaseCoordinatorDelegate: class {
-  func coordinatorRootViewControllerDidDeinit(coordinator: BaseCoordinator)
-}
+import RxSwift
 
 enum PresentationType {
   case push
   case modalFrom(UIViewController?)
 }
 
-protocol BaseCoordinator: BaseCoordinatorDelegate {
-  
+protocol BaseCoordinator: class {
+  var disposeBag: DisposeBag { get }
   var childCoordinators: [BaseCoordinator] { get set }
-  var baseDelegate: BaseCoordinatorDelegate? { get set }
+  var onRootControllerDidDeinit: PublishSubject<Void> { get }
   var topController: UIViewController { get }
   var topCoordinator: BaseCoordinator? { get }
   var presentationType: PresentationType { get set }
@@ -59,10 +56,10 @@ extension BaseCoordinator {
 
   func addChildCoordinator(_ coordinator: BaseCoordinator) {
     childCoordinators.append(coordinator)
-    coordinator.baseDelegate = self
-  }
-
-  func coordinatorRootViewControllerDidDeinit(coordinator: BaseCoordinator) {
-    remove(child: coordinator)
+    coordinator.onRootControllerDidDeinit
+      .subscribe(onNext: { [weak self] in
+        self?.remove(child: coordinator)
+      })
+      .disposed(by: disposeBag)
   }
 }

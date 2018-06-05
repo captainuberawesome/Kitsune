@@ -6,17 +6,13 @@
 //
 
 import UIKit
-
-protocol HomeTabBarControllerDelegate: class {
-  func homeTabBarControllerDidDeinit(_ viewController: HomeTabBarController)
-}
+import RxSwift
 
 class HomeTabBarController: TabBarController {
-  
-  weak var lifecycleDelegate: HomeTabBarControllerDelegate?
+  var onDidDeinit = PublishSubject<Void>()
   
   deinit {
-    lifecycleDelegate?.homeTabBarControllerDidDeinit(self)
+    onDidDeinit.onNext(())
   }
   
   func setupTabBarAppearance() {

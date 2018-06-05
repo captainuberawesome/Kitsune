@@ -7,8 +7,10 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class MainCoordinator: NSObject, BaseCoordinator {
+
   // MARK: - Properties
   
   private let window: UIWindow
@@ -17,10 +19,11 @@ class MainCoordinator: NSObject, BaseCoordinator {
   private var rootNavigationController = NavigationController()
   private let utility: MainCoordinatorUtility
   
+  let disposeBag = DisposeBag()
+  var onRootControllerDidDeinit = PublishSubject<Void>()
   var presentationType: PresentationType = .push
   var parentCoordinator: BaseCoordinator?
   var childCoordinators: [BaseCoordinator] = []
-  weak var baseDelegate: BaseCoordinatorDelegate?
  
   var topController: UIViewController {
     if let lastChild = topCoordinator {

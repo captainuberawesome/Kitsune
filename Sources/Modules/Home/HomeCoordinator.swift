@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeCoordinator: NavigationFlowCoordinator {
-  
+  var onRootControllerDidDeinit = PublishSubject<Void>()
   private let appDependency: AppDependency
+  let disposeBag = DisposeBag()
   
   var navigationController: UINavigationController
   var childCoordinators: [BaseCoordinator] = []
   var presentationType: PresentationType = .push
-  weak var baseDelegate: BaseCoordinatorDelegate?
   weak var logoutHandler: LogoutHandler?
   
-  var onFinishedLogin: (() -> Void)?
-  var onLoggedOut: (() -> Void)?
+  private var onFinishedLogin: (() -> Void)?
+  private var onLoggedOut: (() -> Void)?
   
   init(appDependency: AppDependency, logoutHandler: LogoutHandler, navigationController: UINavigationController) {
     self.appDependency = appDependency
@@ -35,7 +36,11 @@ class HomeCoordinator: NavigationFlowCoordinator {
   private func showHome() {
     navigationController.setNavigationBarHidden(true, animated: false)
     let tabBarController = HomeTabBarController()
-    tabBarController.lifecycleDelegate = self
+    tabBarController.onDidDeinit
+      .subscribe(onNext: { [weak self] in
+        self?.onRootControllerDidDeinit.onNext(())
+      })
+      .disposed(by: disposeBag)
     
     let animeListViewController = createAnimeListViewController()
     let animeListNavigationController = NavigationController(rootViewController: animeListViewController)
@@ -94,7 +99,11 @@ class HomeCoordinator: NavigationFlowCoordinator {
   
   private func createLoginViewController() -> LoginViewController {
     let viewModel = LoginViewModel(dependencies: appDependency)
-    viewModel.delegate = self
+    viewModel.onDidFinishLogin
+      .subscribe(onNext: { [weak self] in
+        self?.onFinishedLogin?()
+      })
+    .disposed(by: disposeBag)
     let viewController = LoginViewController(viewModel: viewModel)
     return viewController
   }
@@ -108,26 +117,10 @@ class HomeCoordinator: NavigationFlowCoordinator {
   }
 }
 
-// MARK: - HomeTabBarController Delegate
-
-extension HomeCoordinator: HomeTabBarControllerDelegate {
-  func homeTabBarControllerDidDeinit(_ viewController: HomeTabBarController) {
-    baseDelegate?.coordinatorRootViewControllerDidDeinit(coordinator: self)
-  }
-}
-
 // MARK: - MyProfileViewController DataSource
 
 extension HomeCoordinator: MyProfileViewControllerDataSource {
   func getLoginViewController() -> LoginViewController? {
     return createLoginViewController()
-  }
-}
-
-// MARK: - LoginViewModel Delegate
-
-extension HomeCoordinator: LoginViewModelDelegate {
-  func loginViewModelDidFinishLogin(_ viewModel: LoginViewModel) {
-    onFinishedLogin?()
   }
 }
