@@ -3,6 +3,7 @@ PODS:
   - KeychainAccess (3.1.1)
   - Kingfisher (4.7.0)
   - Marshal (1.2.7)
+  - Nimble (7.1.1)
   - p2.OAuth2 (4.0.1)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - KeychainAccess
   - Kingfisher
   - Marshal (from `https://github.com/utahiosmac/Marshal.git`, branch `master`)
+  - Nimble
   - p2.OAuth2
   - R.swift
   - RealmSwift
@@ -38,10 +40,11 @@ DEPENDENCIES:
   - UIScrollView-InfiniteScroll
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - KeychainAccess
     - Kingfisher
+    - Nimble
     - p2.OAuth2
     - R.swift
     - R.swift.Library
@@ -70,6 +73,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
+  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
@@ -83,6 +87,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
 
-PODFILE CHECKSUM: aecbecbce25d82468a7e74bd18e491a79f7ca1e8
+PODFILE CHECKSUM: 8c2569690cd66a01a0134e0b129894fc663fe1b2
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -24,15 +24,35 @@ typealias VoidBlock = (() -> Void)
 typealias RealmBlock = ((Realm) -> Void)
 
 final class RealmService: NSObject {
+
+  enum StoreType {
+    case persistent, inMemory
+  }
   
   // MARK: - Properties
   
-  let persistentRealm: Realm
+  private let storeType: StoreType
+  private let inMemoryStoreIdentifier: String
+  let realm: Realm
   
   // MARK: - Init
   
-  override init() {
-    persistentRealm = Realm.persistentStore()
+  init(storeType: StoreType = .persistent, inMemoryIdentifier: String = Constants.realmInMemoryStoreIdentifier) {
+    self.storeType = storeType
+    self.inMemoryStoreIdentifier = inMemoryIdentifier
+    realm = RealmService.createRealmStore(storeType: storeType, inMemoryIdentifier: inMemoryIdentifier)
+    super.init()
+  }
+  
+  // MARK: - Private
+  
+  private static func createRealmStore(storeType: StoreType, inMemoryIdentifier: String) -> Realm {
+    switch storeType {
+    case .persistent:
+      return Realm.persistentStore()
+    case .inMemory:
+      return Realm.inMemoryStore(inMemoryIdentifier: inMemoryIdentifier)
+    }
   }
   
   // MARK: - Public
@@ -44,10 +64,9 @@ final class RealmService: NSObject {
   }
   
   func writeAsync(writeBlock: @escaping RealmBlock, completion: VoidBlock? = nil) {
-    DispatchQueue.global(qos: .utility).async {
+    DispatchQueue.global().async {
       self.writeSync(block: writeBlock)
       DispatchQueue.main.async {
-        self.persistentRealm.refresh()
         completion?()
       }
     }
@@ -57,9 +76,9 @@ final class RealmService: NSObject {
   
   private func writeSync(block: @escaping RealmBlock) {
     do {
-      let persistentRealm = Realm.persistentStore()
-      try persistentRealm.write {
-        block(persistentRealm)
+      let realm = RealmService.createRealmStore(storeType: storeType, inMemoryIdentifier: inMemoryStoreIdentifier)
+      try realm.write {
+        block(realm)
       }
     } catch let error {
       fatalError("Can't write to Realm instance: \(error)")

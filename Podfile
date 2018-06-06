@@ -25,5 +25,6 @@ target 'Kitsune' do
 end
 
 target 'KitsuneTests' do
-    shared_pods
+  shared_pods
+  pod 'Nimble'
 end
