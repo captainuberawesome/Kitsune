@@ -15,8 +15,13 @@ extension NetworkService: MyProfileNetworkProtocol {
   }
   
   func myProfile() -> Observable<UserResponse> {
+    return myProfile(onRequestCreated: nil)
+  }
+  
+  func myProfile(onRequestCreated: ((Request) -> Void)?) -> Observable<UserResponse> {
     let parameters: [String: Any] = [MyProfileRequestKeys.myProfile: true.stringValue]
-    return baseRequest(method: .get, url: URLFactory.Users.users, parameters: parameters, encoding: URLEncoding.default)
+    return baseRequest(method: .get, url: URLFactory.Users.users, parameters: parameters,
+                       encoding: URLEncoding.default, onRequestCreated: onRequestCreated)
   }
   
 }

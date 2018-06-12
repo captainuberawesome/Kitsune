@@ -43,6 +43,9 @@
 		FD3AE29020B6FB7F0079636B /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE28F20B6FB7F0079636B /* ProfileDataSource.swift */; };
 		FD3AE29220B6FBE90079636B /* ProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE29120B6FBE90079636B /* ProfileCellViewModel.swift */; };
 		FD3AE29420B702D10079636B /* Date+DaySuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AE29320B702D10079636B /* Date+DaySuffix.swift */; };
+		FD68679520CFF9570074DC6D /* BaseNetworkTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD68678F20CFF9560074DC6D /* BaseNetworkTestCase.swift */; };
+		FD68679720CFFC9F0074DC6D /* ProfileRequestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD68679620CFFC9F0074DC6D /* ProfileRequestsTests.swift */; };
+		FD68679920D0078B0074DC6D /* AnimeRequestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD68679820D0078A0074DC6D /* AnimeRequestsTests.swift */; };
 		FD6ABCA62095EA7100B117E5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA52095EA7100B117E5 /* Common.swift */; };
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
@@ -155,6 +158,9 @@
 		FD3AE29120B6FBE90079636B /* ProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModel.swift; sourceTree = "<group>"; };
 		FD3AE29320B702D10079636B /* Date+DaySuffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DaySuffix.swift"; sourceTree = "<group>"; };
 		FD5A12CFA50BA70F92918F3A /* Pods_KitsuneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitsuneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD68678F20CFF9560074DC6D /* BaseNetworkTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNetworkTestCase.swift; sourceTree = "<group>"; };
+		FD68679620CFFC9F0074DC6D /* ProfileRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRequestsTests.swift; sourceTree = "<group>"; };
+		FD68679820D0078A0074DC6D /* AnimeRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeRequestsTests.swift; sourceTree = "<group>"; };
 		FD6ABCA52095EA7100B117E5 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutHandler.swift; sourceTree = "<group>"; };
 		FD6ABCAA2095F30200B117E5 /* Kitsune-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kitsune-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -387,6 +393,7 @@
 			children = (
 				FD16A9ED20C826EE00FE2E17 /* Unmarshaling */,
 				FD16A9F720C826EE00FE2E17 /* Realm */,
+				FD68678920CFF9560074DC6D /* Network API Interaction */,
 				FD16A9F320C826EE00FE2E17 /* Auxiliary Classes */,
 			);
 			path = "Unit Tests";
@@ -442,6 +449,16 @@
 				FD3AE28F20B6FB7F0079636B /* ProfileDataSource.swift */,
 			);
 			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		FD68678920CFF9560074DC6D /* Network API Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				FD68678F20CFF9560074DC6D /* BaseNetworkTestCase.swift */,
+				FD68679620CFFC9F0074DC6D /* ProfileRequestsTests.swift */,
+				FD68679820D0078A0074DC6D /* AnimeRequestsTests.swift */,
+			);
+			path = "Network API Interaction";
 			sourceTree = "<group>";
 		};
 		FD6ABCA92095F30200B117E5 /* Supporting Files */ = {
@@ -900,7 +917,11 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxNimble/RxNimble.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -918,7 +939,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxNimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1005,9 +1030,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD16AA0A20C826EF00FE2E17 /* TestDataGeneration.swift in Sources */,
+				FD68679720CFFC9F0074DC6D /* ProfileRequestsTests.swift in Sources */,
 				FD16AA0E20C826EF00FE2E17 /* RealmUserTests.swift in Sources */,
+				FD68679920D0078B0074DC6D /* AnimeRequestsTests.swift in Sources */,
 				FD16AA0620C826EF00FE2E17 /* AnimeUnmarshalingTests.swift in Sources */,
 				FD16AA1220C826EF00FE2E17 /* RealmAnimeTests.swift in Sources */,
+				FD68679520CFF9570074DC6D /* BaseNetworkTestCase.swift in Sources */,
 				FD16AA0920C826EF00FE2E17 /* UserUnmarshalingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

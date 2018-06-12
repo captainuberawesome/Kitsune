@@ -35,7 +35,7 @@ struct ErrorResponse: Unmarshaling {
     if let codeString = errors.first?.code, let code = Int(codeString) {
       self.code = code
     } else {
-       throw MarshalError.typeMismatch(expected: "code is integer", actual: (errors.first?.code ?? "nil"))
+      throw MarshalError.typeMismatch(expected: "code is integer", actual: (errors.first?.code ?? "nil"))
     }
   }
 }

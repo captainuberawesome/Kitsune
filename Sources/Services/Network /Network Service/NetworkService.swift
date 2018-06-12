@@ -47,12 +47,12 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
   
   // MARK: - Init
   
-  required override init() {
+  required init(useKeychain: Bool = true) {
     oauth = OAuth2PasswordGrant(settings: [OAuth2ParameterKeys.clientId: Credentials.appClientID,
                                            OAuth2ParameterKeys.clientSecret: Credentials.appClientSecret,
                                            OAuth2ParameterKeys.authorizeURI: URLFactory.Auth.oauth,
                                            OAuth2ParameterKeys.tokenURI: URLFactory.Auth.accessToken,
-                                           OAuth2ParameterKeys.keychain: true] as OAuth2JSON)
+                                           OAuth2ParameterKeys.keychain: useKeychain] as OAuth2JSON)
     let configuration = URLSessionConfiguration.default
     configuration.timeoutIntervalForRequest = Constants.requestTimeout
     manager = Alamofire.SessionManager(configuration: configuration)
@@ -68,7 +68,8 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
                                     url: String,
                                     parameters: Parameters? = nil,
                                     encoding: ParameterEncoding = JSONEncoding.default,
-                                    headers: [String: String] = [:]) -> Observable<T> {
+                                    headers: [String: String] = [:],
+                                    onRequestCreated: ((Request) -> Void)? = nil) -> Observable<T> {
     let observableObject = Observable<T>.create { observer -> Disposable in
       let request = self.manager.request(url,
                                          method: method,
@@ -107,6 +108,7 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
           observer.onError(error)
         }
       }
+      onRequestCreated?(request)
       self.logger.logRequest(request.request)
       return Disposables.create {
         request.cancel()

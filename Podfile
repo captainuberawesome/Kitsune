@@ -27,4 +27,6 @@ end
 target 'KitsuneTests' do
   shared_pods
   pod 'Nimble'
+  pod 'RxNimble'
+  pod 'Mockingjay'
 end
