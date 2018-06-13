@@ -14,6 +14,7 @@ import RxSwift
 
 class ProfileViewModelTests: XCTestCase {
   let dependency = DependencyMock()
+  let failingDependency = DependencyFailureMock()
   let disposeBag = DisposeBag()
   
   override func tearDown() {
@@ -38,7 +39,7 @@ class ProfileViewModelTests: XCTestCase {
           comparedEmptyViewModels = true
           return
         }
-        createdCellViewModels = !cellViewModels.isEmpty
+        createdCellViewModels = true
         self.compareCellViewModels(cellViewModels, toUserValues: user)
       }, onError: { error in
         expect(error).to(beNil())
@@ -58,8 +59,88 @@ class ProfileViewModelTests: XCTestCase {
     }
   }
   
-  // TODO: add reloadData success / failure tests
+  func testReloadData() {
+    let viewModel = MyProfileViewModel(dependencies: dependency)
+    
+    expect(viewModel.isLoggedIn) == true
+    
+    var mockState: ViewModelNetworkRequestingState = .initial
+    viewModel.state
+      .subscribe(onNext: { state in
+        expect(state) == mockState
+        if mockState == .initial {
+          mockState = .loadingStarted
+        } else {
+          mockState = .loadingFinished
+        }
+      }, onError: { error in
+        expect(error).to(beNil())
+      })
+      .disposed(by: disposeBag)
+
+    var createdCellViewModels = false
+    var comparedEmptyViewModels = false
+    viewModel.cellViewModels
+      .subscribe(onNext: { cellViewModels in
+        if !comparedEmptyViewModels {
+          self.compareEmptyViewModels(cellViewModels)
+          comparedEmptyViewModels = true
+          return
+        }
+        createdCellViewModels = true
+        self.compareCellViewModels(cellViewModels, toUserValues: Constants.responseUser)
+      }, onError: { error in
+        expect(error).to(beNil())
+      })
+      .disposed(by: disposeBag)
+    
+    viewModel.reloadData()
+    expect(mockState) == .loadingFinished
+    expect(viewModel.avatar) == URL(string: Constants.responseUser.avatar)
+    expect(viewModel.coverImage) == URL(string: Constants.responseUser.coverImage)
+    expect(viewModel.name) == Constants.responseUser.name
+    expect(createdCellViewModels) == true
+    expect(comparedEmptyViewModels) == true
+  }
   
+  func testReloadDataFail() {
+    let viewModel = MyProfileViewModel(dependencies: failingDependency)
+    
+    expect(viewModel.isLoggedIn) == false
+    
+    var mockState: ViewModelNetworkRequestingState = .initial
+    viewModel.state
+      .subscribe(onNext: { state in
+        expect(state) == mockState
+        if mockState == .initial {
+          mockState = .loadingStarted
+        } else {
+          mockState = .loadingFinished
+        }
+      }, onError: { error in
+        expect(error.localizedDescription) == Constants.dependencyMockError.localizedDescription
+      })
+      .disposed(by: disposeBag)
+    
+    var comparedEmptyViewModels = false
+    
+    viewModel.cellViewModels
+      .subscribe(onNext: { cellViewModels in
+        self.compareEmptyViewModels(cellViewModels)
+        comparedEmptyViewModels = true
+      }, onError: { error in
+        expect(error).to(beNil())
+      })
+      .disposed(by: disposeBag)
+    
+    viewModel.reloadData()
+    expect(mockState) == .loadingFinished
+    expect(viewModel.avatar).to(beNil())
+    expect(viewModel.coverImage).to(beNil())
+    expect(viewModel.name).to(beNil())
+    expect(comparedEmptyViewModels) == true
+  }
+
   // MARK: - Helper functions
   
   private func compareEmptyViewModels(_ viewModels: [ProfileCellViewModel]) {

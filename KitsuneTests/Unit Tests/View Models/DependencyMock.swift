@@ -17,6 +17,7 @@ extension Constants {
     let userInfo = [NSLocalizedDescriptionKey: message]
     return NSError(domain: NetworkErrorService.networkErrorDomain, code: 1, userInfo: userInfo) as Error
   }
+  static let responseUser = createUser(id: randomString)
 }
 
 struct DependencyMock: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService {
@@ -26,6 +27,7 @@ struct DependencyMock: HasAuthService, HasLoginStateService, HasMyProfileService
   var myProfileService: MyProfileNetworkProtocol = MyProfileMock()
   var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataService")
   var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
+  
 }
 
 struct DependencyFailureMock: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService {
@@ -72,8 +74,7 @@ struct LoginStateFailureMock: LoginStateNetworkProtocol {
 struct MyProfileMock: MyProfileNetworkProtocol {
   func myProfile() -> Observable<UserResponse> {
     var userResponse = UserResponse()
-    let user = createUser(id: randomString)
-    userResponse.user = user
+    userResponse.user = Constants.responseUser
     return .just(userResponse)
   }
 }
