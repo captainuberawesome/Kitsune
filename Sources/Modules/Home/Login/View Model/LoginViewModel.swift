@@ -17,8 +17,6 @@ class LoginViewModel: ViewModelNetworkRequesting {
   let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
   var onDidFinishLogin = PublishSubject<Void>()
   
-  var onErrorEncountered: ((_ error: Error?) -> Void)?
-  
   // MARK: - Init
   
   init(dependencies: Dependencies) {

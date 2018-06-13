@@ -43,14 +43,45 @@ var randomInt: Int {
   return Int(arc4random_uniform(1000))
 }
 
+var randomImageURLString: String {
+  return "https://images.com/images/\(randomString).jpg"
+}
+
 var randomAnimeSubtype: AnimeSubtype {
-  let availableValues = ["ona", "ova", "tv", "movie", "music", "special"]
+  let availableValues: [AnimeSubtype] = [.ona, .ova, .tv, .movie, .music, .special]
   let index = Int(arc4random_uniform(UInt32(availableValues.count - 1)))
-  return AnimeSubtype(rawValue: availableValues[index]) ?? .tv
+  return availableValues[index]
 }
 
 var randomAnimeStatus: AnimeStatus {
-  let availableValues = ["current", "finished", "tba", "unreleased", "upcoming"]
+  let availableValues: [AnimeStatus] = [.current, .finished, .tba, .unreleased, .upcoming]
   let index = Int(arc4random_uniform(UInt32(availableValues.count - 1)))
-  return AnimeStatus(rawValue: availableValues[index]) ?? .tba
+  return availableValues[index]
+}
+
+var randomInfoType: ProfileCellViewModel.InfoType {
+  let availableValues: [ProfileCellViewModel.InfoType] = [.gender, .location, .birthday, .joinDate]
+  let index = Int(arc4random_uniform(UInt32(availableValues.count - 1)))
+  return availableValues[index]
+}
+
+func createUser(id: String) -> User {
+  let user = User()
+  user.id = id
+  user.name = randomString
+  user.slug = randomString
+  user.about = randomString
+  user.bio = randomString
+  user.gender = randomString
+  user.location = randomString
+  user.birthday = randomDate ?? Date()
+  user.joinDate = randomDate ?? Date()
+  user.followersCount = randomInt
+  user.followingCount = randomInt
+  user.lifeSpentOnAnime = randomInt
+  user.website = randomImageURLString
+  user.avatarThumb = randomImageURLString
+  user.avatar = randomImageURLString
+  user.coverImage = randomImageURLString
+  return user
 }

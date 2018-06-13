@@ -50,6 +50,10 @@
 		FD6ABCA82095EB9100B117E5 /* LogoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */; };
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
 		FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB7209630F500B117E5 /* RetryHandler.swift */; };
+		FD84FCED20D1508E004520FE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */; };
+		FD84FCF420D15374004520FE /* DependencyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCEF20D15172004520FE /* DependencyMock.swift */; };
+		FD84FCF620D15D0B004520FE /* ProfileCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */; };
+		FD84FCF820D15EC7004520FE /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */; };
 		FDA4185220ADCBBB00B41819 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185120ADCBBB00B41819 /* TabBarController.swift */; };
 		FDA4185620ADCC7A00B41819 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185520ADCC7A00B41819 /* LoginViewController.swift */; };
 		FDA4185820ADCC8D00B41819 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */; };
@@ -167,6 +171,10 @@
 		FD6ABCAB2095F30200B117E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6ABCB52096187800B117E5 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		FD6ABCB7209630F500B117E5 /* RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
+		FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		FD84FCEF20D15172004520FE /* DependencyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyMock.swift; sourceTree = "<group>"; };
+		FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModelTests.swift; sourceTree = "<group>"; };
+		FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		FDA4185120ADCBBB00B41819 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FDA4185520ADCC7A00B41819 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDA4185720ADCC8D00B41819 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -394,6 +402,7 @@
 				FD16A9ED20C826EE00FE2E17 /* Unmarshaling */,
 				FD16A9F720C826EE00FE2E17 /* Realm */,
 				FD68678920CFF9560074DC6D /* Network API Interaction */,
+				FD84FCEB20D1507A004520FE /* View Models */,
 				FD16A9F320C826EE00FE2E17 /* Auxiliary Classes */,
 			);
 			path = "Unit Tests";
@@ -468,6 +477,17 @@
 				FD6ABCAB2095F30200B117E5 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FD84FCEB20D1507A004520FE /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				FD84FCEF20D15172004520FE /* DependencyMock.swift */,
+				FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */,
+				FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */,
+				FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		FDA4185320ADCC6100B41819 /* Login */ = {
@@ -921,6 +941,7 @@
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxNimble/RxNimble.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -943,6 +964,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxNimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1030,12 +1052,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD16AA0A20C826EF00FE2E17 /* TestDataGeneration.swift in Sources */,
+				FD84FCF620D15D0B004520FE /* ProfileCellViewModelTests.swift in Sources */,
 				FD68679720CFFC9F0074DC6D /* ProfileRequestsTests.swift in Sources */,
+				FD84FCF420D15374004520FE /* DependencyMock.swift in Sources */,
 				FD16AA0E20C826EF00FE2E17 /* RealmUserTests.swift in Sources */,
 				FD68679920D0078B0074DC6D /* AnimeRequestsTests.swift in Sources */,
 				FD16AA0620C826EF00FE2E17 /* AnimeUnmarshalingTests.swift in Sources */,
 				FD16AA1220C826EF00FE2E17 /* RealmAnimeTests.swift in Sources */,
 				FD68679520CFF9570074DC6D /* BaseNetworkTestCase.swift in Sources */,
+				FD84FCED20D1508E004520FE /* LoginViewModelTests.swift in Sources */,
+				FD84FCF820D15EC7004520FE /* ProfileViewModelTests.swift in Sources */,
 				FD16AA0920C826EF00FE2E17 /* UserUnmarshalingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

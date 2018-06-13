@@ -7,7 +7,11 @@
 
 import Foundation
 
-class ProfileCellViewModel {
+func == (lhs: ProfileCellViewModel, rhs: ProfileCellViewModel) -> Bool {
+  return lhs.cellReuseIdentifier == rhs.cellReuseIdentifier && lhs.infoType == rhs.infoType && lhs.value == rhs.value
+}
+
+class ProfileCellViewModel: Equatable {
   enum InfoType {
     case gender, location, birthday, joinDate
   }

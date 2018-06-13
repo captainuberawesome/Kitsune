@@ -63,7 +63,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
   
   // MARK: ProfileCellViewModel
   
-  func createViewModels(withUser user: User? = nil) -> [ProfileCellViewModel] {
+  private func createViewModels(withUser user: User? = nil) -> [ProfileCellViewModel] {
     let reuseIdentifier = ProfileCell.reuseIdentifier
     
     var userGender = user?.gender.capitalized
