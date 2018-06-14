@@ -135,6 +135,7 @@ class AnimeListViewController: BaseViewController {
         })
       .disposed(by: disposeBag)
     viewModel.canLoadMorePagesSubject
+      .skip(1)
       .subscribe(onNext: { [weak self] canLoadMorePages in
         if canLoadMorePages {
           self?.addInfiniteScroll()

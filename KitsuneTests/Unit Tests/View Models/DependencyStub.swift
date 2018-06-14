@@ -100,7 +100,7 @@ struct AnimeListStub: AnimeListNetworkProtocol {
   
   func animeListSearch(text: String, limit: Int, offset: Int) -> Observable<AnimeListResponse> {
     var animeListResponse = AnimeListResponse()
-    animeListResponse.animeList = Constants.responseAnime
+    animeListResponse.animeList = Constants.responseAnimeSearch
     return .just(animeListResponse)
   }
 }
