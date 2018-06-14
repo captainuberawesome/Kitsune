@@ -16,7 +16,7 @@ private extension Constants {
 class MyProfileViewModel: ViewModelNetworkRequesting {
   
   typealias Dependencies = HasLoginStateService & HasMyProfileService
-    & HasUserDataService & HasRealmService
+    & HasUserDataService & HasRealmService & HasReachabilityService
 
   private(set) var cellViewModels = BehaviorRelay<[ProfileCellViewModel]>(value: [])
   private let dependencies: Dependencies
@@ -33,6 +33,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
   init(dependencies: Dependencies) {
     self.dependencies = dependencies
     cellViewModels.accept(createViewModels())
+    subscribeToReachability()
   }
   
   // MARK: - Public
@@ -103,6 +104,20 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
     let joinDateViewModel = ProfileCellViewModel(infoType: .joinDate, value: joinDateString, cellReuseIdentifier: reuseIdentifier)
     
     return [genderViewModel, locationViewModel, birthdayViewModel, joinDateViewModel]
+  }
+  
+  // MARK: - Reachability
+  
+  private func subscribeToReachability() {
+    dependencies.reachabilityService?.isReachable
+      .skip(1)
+      .distinctUntilChanged()
+      .subscribe(onNext: { [weak self] isReachable in
+          if isReachable && self?.user == nil && (try? self!.state.value()) != .initial {
+            self?.reloadData()
+          }
+        })
+      .disposed(by: disposeBag)
   }
   
 }

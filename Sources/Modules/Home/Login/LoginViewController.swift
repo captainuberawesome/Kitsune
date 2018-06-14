@@ -13,6 +13,7 @@ class LoginViewController: BaseViewController {
   private let emailTextField = SkyFloatingLabelTextField()
   private let passwordTextField = SkyFloatingLabelTextField()
   private let loginButton = UIButton(type: .system)
+  private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
   private let viewModel: LoginViewModel
   private let disposeBag = DisposeBag()
   
@@ -42,6 +43,7 @@ class LoginViewController: BaseViewController {
     setupEmailTextField()
     setupPasswordTextField()
     setupLoginButton()
+    setupActivityIndicator()
   }
   
   private func setupEmailTextField() {
@@ -102,12 +104,30 @@ class LoginViewController: BaseViewController {
     loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
   }
   
+  private func setupActivityIndicator() {
+    view.addSubview(activityIndicator)
+    activityIndicator.snp.makeConstraints { make in
+      make.center.equalTo(loginButton)
+    }
+    activityIndicator.isHidden = true
+  }
+  
   // MARK: - View Model
   
   private func bindViewModel() {
     viewModel.state
-      .subscribe(onNext: { _ in
-        // TODO: handle request start / finish
+      .subscribe(onNext: { state in
+          if state == .loadingStarted {
+            self.loginButton.setTitle("", for: .normal)
+            self.loginButton.isEnabled = false
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+          } else {
+            self.loginButton.setTitle(R.string.login.buttonTitle(), for: .normal)
+            self.loginButton.isEnabled = true
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
+          }
         }, onError: { error in
           // TODO: handle error
           log.error("Error while logging in: \(error)")
@@ -120,6 +140,5 @@ class LoginViewController: BaseViewController {
   @objc private func didTapLoginButton(_ sender: UIButton) {
     guard let email = emailTextField.text, let password = passwordTextField.text else { return }
     viewModel.login(email: email, password: password)
-    // TODO: show activity indicator while logging in
   }
 }

@@ -15,7 +15,7 @@ private extension Constants {
 
 class AnimeListViewModel: ViewModelNetworkRequesting {
   
-  typealias Dependencies = HasAnimeListService
+  typealias Dependencies = HasAnimeListService & HasReachabilityService
   
   enum Mode {
     case searching, `default`
@@ -53,6 +53,7 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   
   init(dependencies: Dependencies) {
     self.dependencies = dependencies
+    subscribeToReachability()
   }
   
   // MARK: - Public
@@ -163,5 +164,19 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   
   private func createViewModels(from array: [Anime]) -> [AnimeCellViewModel] {
     return array.compactMap { AnimeCellViewModel(anime: $0) }
+  }
+  
+  // MARK: - Reachability
+  
+  private func subscribeToReachability() {
+    dependencies.reachabilityService?.isReachable
+      .skip(1)
+      .distinctUntilChanged()
+      .subscribe(onNext: { [weak self] isReachable in
+        if isReachable && self?.hasData == false && (try? self!.state.value()) != .initial {
+          self?.reloadData()
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }

@@ -24,7 +24,7 @@ extension Constants {
 }
 
 struct DependencyStub: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService,
-  HasAnimeListService {
+  HasAnimeListService, HasReachabilityService {
   private static let inMemoryIdentifier = randomString
   var authService: AuthNetworkProtocol = AuthServiceStub()
   var loginStateService: LoginStateNetworkProtocol = LoginStateStub()
@@ -32,10 +32,11 @@ struct DependencyStub: HasAuthService, HasLoginStateService, HasMyProfileService
   var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataService")
   var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
   var animeListService: AnimeListNetworkProtocol = AnimeListStub()
+  var reachabilityService: ReachabilityProtocol? = ReachabilityServiceStub()
 }
 
 struct DependencyFailureStub: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService,
-  HasAnimeListService {
+  HasAnimeListService, HasReachabilityService {
   private static let inMemoryIdentifier = randomString
   var authService: AuthNetworkProtocol = AuthServiceFailureStub()
   var loginStateService: LoginStateNetworkProtocol = LoginStateFailureStub()
@@ -43,6 +44,7 @@ struct DependencyFailureStub: HasAuthService, HasLoginStateService, HasMyProfile
   var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataFailureService")
   var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
   var animeListService: AnimeListNetworkProtocol = AnimeListFailureStub()
+  var reachabilityService: ReachabilityProtocol? = ReachabilityServiceStub()
 }
 
 struct AuthServiceStub: AuthNetworkProtocol {
@@ -113,4 +115,10 @@ struct AnimeListFailureStub: AnimeListNetworkProtocol {
   func animeListSearch(text: String, limit: Int, offset: Int) -> Observable<AnimeListResponse> {
     return .error(Constants.dependencyStubError)
   }
+}
+
+struct ReachabilityServiceStub: ReachabilityProtocol {
+  let isReachable = BehaviorSubject<Bool>(value: true)
+  func startListening() { }
+  func stopListening() { }
 }

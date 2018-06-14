@@ -112,9 +112,7 @@ class MyProfileViewController: BaseViewController {
   
   private func bindViewModel() {
     viewModel.state
-      .subscribe(onNext: { _ in
-        // TODO: handle request start / finish
-        }, onError: { _ in
+      .subscribe(onError: { _ in
         // TODO: handle error
       })
       .disposed(by: disposeBag)

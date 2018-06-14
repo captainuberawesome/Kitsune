@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HasReachabilityService {
-  var reachabilityService: ReachabilityService? { get }
+  var reachabilityService: ReachabilityProtocol? { get }
 }
 
 protocol HasRealmService {
@@ -39,12 +39,12 @@ class AppDependency: HasRealmService, HasReachabilityService, HasUserDataService
   let userDataService: UserDataService
   let realmService: RealmService
   let networkService: NetworkService
-  private(set) var reachabilityService: ReachabilityService?
+  private(set) var reachabilityService: ReachabilityProtocol?
   
   init(userDataService: UserDataService,
        realmService: RealmService,
        networkService: NetworkService,
-       reachabilityService: ReachabilityService?) {
+       reachabilityService: ReachabilityProtocol?) {
     self.userDataService = userDataService
     self.realmService = realmService
     self.networkService = networkService
