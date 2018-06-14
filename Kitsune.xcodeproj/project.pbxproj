@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44D7704B1D48BDA300D5EB72 /* Assets.xcassets */; };
 		5AFDA431450FC0613F15CA65 /* Pods_KitsuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5A12CFA50BA70F92918F3A /* Pods_KitsuneTests.framework */; };
+		8B1F5B1E20D20D5000406E03 /* AnimeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F5B1D20D20D5000406E03 /* AnimeCellViewModelTests.swift */; };
 		8B3506862092D09700586986 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3506852092D09700586986 /* R.generated.swift */; };
 		8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B3506892092D21100586986 /* NetworkErrors.strings */; };
 		8B60AAAB208DBF1D00E6986C /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B60AAAA208DBF1D00E6986C /* Common.strings */; };
@@ -126,6 +127,7 @@
 		444B9CF51D48B35500D44465 /* Kitsune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kitsune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D7704B1D48BDA300D5EB72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B1642FBA87D7282C63DA750 /* Pods-Kitsune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitsune.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kitsune/Pods-Kitsune.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1F5B1D20D20D5000406E03 /* AnimeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModelTests.swift; sourceTree = "<group>"; };
 		8B3506852092D09700586986 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		8B3506892092D21100586986 /* NetworkErrors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = NetworkErrors.strings; sourceTree = "<group>"; };
 		8B60AAAA208DBF1D00E6986C /* Common.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Common.strings; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */,
 				FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */,
 				FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */,
+				8B1F5B1D20D20D5000406E03 /* AnimeCellViewModelTests.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1061,6 +1064,7 @@
 				FD16AA1220C826EF00FE2E17 /* RealmAnimeTests.swift in Sources */,
 				FD68679520CFF9570074DC6D /* BaseNetworkTestCase.swift in Sources */,
 				FD84FCED20D1508E004520FE /* LoginViewModelTests.swift in Sources */,
+				8B1F5B1E20D20D5000406E03 /* AnimeCellViewModelTests.swift in Sources */,
 				FD84FCF820D15EC7004520FE /* ProfileViewModelTests.swift in Sources */,
 				FD16AA0920C826EF00FE2E17 /* UserUnmarshalingTests.swift in Sources */,
 			);

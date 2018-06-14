@@ -23,23 +23,7 @@ class RealmUserTests: XCTestCase {
   // MARK: Tests
 
   func testRealmUser() {
-    let user = User()
-    user.id = randomString
-    user.name = randomString
-    user.slug = randomString
-    user.about = randomString
-    user.bio = randomString
-    user.gender = randomString
-    user.location = randomString
-    user.birthday = randomDate
-    user.joinDate = randomDate
-    user.followersCount = randomInt
-    user.followingCount = randomInt
-    user.lifeSpentOnAnime = randomInt
-    user.website = randomString
-    user.avatarThumb = randomString
-    user.avatar = randomString
-    user.coverImage = randomString
+    let user = createUser(id: randomString)
     
     waitUntil(timeout: 1.0) { done in
       self.realm.save(object: user) {

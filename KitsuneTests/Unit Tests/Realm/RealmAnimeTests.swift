@@ -24,24 +24,7 @@ class RealmAnimeTests: XCTestCase {
   
   func testRealmAnime() {
     
-    let anime = Anime()
-    anime.id = randomString
-    anime.synopsis = randomString
-    anime.englishTitle = randomString
-    anime.japaneseTitle = randomString
-    anime.canonicalTitle = randomString
-    anime.averageRating = randomString
-    anime.startDate = randomDate
-    anime.endDate = randomDate
-    anime.popularityRank = randomInt
-    anime.ratingRank = randomInt
-    anime.subtype = randomAnimeSubtype
-    anime.status = randomAnimeStatus
-    anime.posterImageSmall = randomString
-    anime.posterImageLarge = randomString
-    anime.episodesCount = randomInt
-    anime.episodeLength = randomDouble
-    anime.youtubeVideoId = randomString
+    let anime = createAnime(id: randomString)
     
     waitUntil(timeout: 1.0) { done in
       self.realm.save(object: anime) {

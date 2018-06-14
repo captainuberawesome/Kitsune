@@ -85,3 +85,25 @@ func createUser(id: String) -> User {
   user.coverImage = randomImageURLString
   return user
 }
+
+func createAnime(id: String) -> Anime {
+  let anime = Anime()
+  anime.id = id
+  anime.synopsis = randomString
+  anime.englishTitle = randomString
+  anime.japaneseTitle = randomString
+  anime.canonicalTitle = randomString
+  anime.averageRating = randomString
+  anime.startDate = randomDate
+  anime.endDate = randomDate
+  anime.popularityRank = randomInt
+  anime.ratingRank = randomInt
+  anime.subtype = randomAnimeSubtype
+  anime.status = randomAnimeStatus
+  anime.posterImageSmall = randomImageURLString
+  anime.posterImageLarge = randomImageURLString
+  anime.episodesCount = randomInt
+  anime.episodeLength = randomDouble
+  anime.youtubeVideoId = randomImageURLString
+  return anime
+}
