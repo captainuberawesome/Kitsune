@@ -14,8 +14,8 @@ import RxSwift
 
 class AnimeViewModelTests: XCTestCase {
     
-  let dependency = DependencyMock()
-  let failingDependency = DependencyFailureMock()
+  let dependency = DependencyStub()
+  let failingDependency = DependencyFailureStub()
   let disposeBag = DisposeBag()
   
   func testReloadData() {
@@ -66,7 +66,7 @@ class AnimeViewModelTests: XCTestCase {
           mockState = .loadingFinished
         }
       }, onError: { error in
-        expect(error.localizedDescription) == Constants.dependencyMockError.localizedDescription
+        expect(error.localizedDescription) == Constants.dependencyStubError.localizedDescription
       })
       .disposed(by: disposeBag)
     

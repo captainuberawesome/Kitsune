@@ -53,7 +53,7 @@
 		FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB52096187800B117E5 /* Credentials.swift */; };
 		FD6ABCB8209630F500B117E5 /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6ABCB7209630F500B117E5 /* RetryHandler.swift */; };
 		FD84FCED20D1508E004520FE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */; };
-		FD84FCF420D15374004520FE /* DependencyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCEF20D15172004520FE /* DependencyMock.swift */; };
+		FD84FCF420D15374004520FE /* DependencyStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCEF20D15172004520FE /* DependencyStub.swift */; };
 		FD84FCF620D15D0B004520FE /* ProfileCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */; };
 		FD84FCF820D15EC7004520FE /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */; };
 		FDA4185220ADCBBB00B41819 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA4185120ADCBBB00B41819 /* TabBarController.swift */; };
@@ -176,7 +176,7 @@
 		FD6ABCB52096187800B117E5 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		FD6ABCB7209630F500B117E5 /* RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
 		FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
-		FD84FCEF20D15172004520FE /* DependencyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyMock.swift; sourceTree = "<group>"; };
+		FD84FCEF20D15172004520FE /* DependencyStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyStub.swift; sourceTree = "<group>"; };
 		FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModelTests.swift; sourceTree = "<group>"; };
 		FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		FDA4185120ADCBBB00B41819 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -486,7 +486,7 @@
 		FD84FCEB20D1507A004520FE /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				FD84FCEF20D15172004520FE /* DependencyMock.swift */,
+				FD84FCEF20D15172004520FE /* DependencyStub.swift */,
 				FD84FCEC20D1508E004520FE /* LoginViewModelTests.swift */,
 				FD84FCF520D15D0B004520FE /* ProfileCellViewModelTests.swift */,
 				FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */,
@@ -1060,7 +1060,7 @@
 				FD16AA0A20C826EF00FE2E17 /* TestDataGeneration.swift in Sources */,
 				FD84FCF620D15D0B004520FE /* ProfileCellViewModelTests.swift in Sources */,
 				FD68679720CFFC9F0074DC6D /* ProfileRequestsTests.swift in Sources */,
-				FD84FCF420D15374004520FE /* DependencyMock.swift in Sources */,
+				FD84FCF420D15374004520FE /* DependencyStub.swift in Sources */,
 				FD16AA0E20C826EF00FE2E17 /* RealmUserTests.swift in Sources */,
 				FD68679920D0078B0074DC6D /* AnimeRequestsTests.swift in Sources */,
 				FD16AA0620C826EF00FE2E17 /* AnimeUnmarshalingTests.swift in Sources */,
