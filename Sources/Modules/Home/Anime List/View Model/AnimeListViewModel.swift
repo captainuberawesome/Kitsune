@@ -21,7 +21,6 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
     case searching, `default`
   }
   
-  let cellIdentifier = AnimeListTableViewCell.reuseIdentifier
   private let dependencies: Dependencies
   private let disposeBag = DisposeBag()
   private var networkRequestSubscription: Disposable?
@@ -163,10 +162,6 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   // MARK: - AnimeCellViewModel
   
   private func createViewModels(from array: [Anime]) -> [AnimeCellViewModel] {
-    return array.compactMap {
-      let reuseIdentifier = AnimeListTableViewCell.reuseIdentifier
-      let viewModel = AnimeCellViewModel(anime: $0, cellReuseIdentifier: reuseIdentifier)
-      return viewModel
-    }
+    return array.compactMap { AnimeCellViewModel(anime: $0) }
   }
 }

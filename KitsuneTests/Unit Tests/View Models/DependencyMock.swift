@@ -18,25 +18,31 @@ extension Constants {
     return NSError(domain: NetworkErrorService.networkErrorDomain, code: 1, userInfo: userInfo) as Error
   }
   static let responseUser = createUser(id: randomString)
+  static let animeListArrayCount = 20
+  static let responseAnime: [Anime] = createAnimeList(count: animeListArrayCount)
+  static let responseAnimeSearch: [Anime] = createAnimeList(count: animeListArrayCount)
 }
 
-struct DependencyMock: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService {
+struct DependencyMock: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService,
+  HasAnimeListService {
   private static let inMemoryIdentifier = randomString
   var authService: AuthNetworkProtocol = AuthServiceMock()
   var loginStateService: LoginStateNetworkProtocol = LoginStateMock()
   var myProfileService: MyProfileNetworkProtocol = MyProfileMock()
   var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataService")
   var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
-  
+  var animeListService: AnimeListNetworkProtocol = AnimeListMock()
 }
 
-struct DependencyFailureMock: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService {
+struct DependencyFailureMock: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService,
+  HasAnimeListService {
   private static let inMemoryIdentifier = randomString
   var authService: AuthNetworkProtocol = AuthServiceFailureMock()
   var loginStateService: LoginStateNetworkProtocol = LoginStateFailureMock()
   var myProfileService: MyProfileNetworkProtocol = MyProfileFailureMock()
   var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataFailureService")
   var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
+  var animeListService: AnimeListNetworkProtocol = AnimeListFailureMock()
 }
 
 struct AuthServiceMock: AuthNetworkProtocol {
@@ -81,6 +87,30 @@ struct MyProfileMock: MyProfileNetworkProtocol {
 
 struct MyProfileFailureMock: MyProfileNetworkProtocol {
   func myProfile() -> Observable<UserResponse> {
+    return .error(Constants.dependencyMockError)
+  }
+}
+
+struct AnimeListMock: AnimeListNetworkProtocol {
+  func animeList(limit: Int, offset: Int) -> Observable<AnimeListResponse> {
+    var animeListResponse = AnimeListResponse()
+    animeListResponse.animeList = Constants.responseAnime
+    return .just(animeListResponse)
+  }
+  
+  func animeListSearch(text: String, limit: Int, offset: Int) -> Observable<AnimeListResponse> {
+    var animeListResponse = AnimeListResponse()
+    animeListResponse.animeList = Constants.responseAnime
+    return .just(animeListResponse)
+  }
+}
+
+struct AnimeListFailureMock: AnimeListNetworkProtocol {
+  func animeList(limit: Int, offset: Int) -> Observable<AnimeListResponse> {
+    return .error(Constants.dependencyMockError)
+  }
+  
+  func animeListSearch(text: String, limit: Int, offset: Int) -> Observable<AnimeListResponse> {
     return .error(Constants.dependencyMockError)
   }
 }

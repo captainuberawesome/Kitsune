@@ -34,6 +34,7 @@ class ProfileViewModelTests: XCTestCase {
     var comparedEmptyViewModels = false
     viewModel.cellViewModels
       .subscribe(onNext: { cellViewModels in
+        expect(cellViewModels.count) == 4
         if !comparedEmptyViewModels {
           self.compareEmptyViewModels(cellViewModels)
           comparedEmptyViewModels = true
@@ -82,6 +83,7 @@ class ProfileViewModelTests: XCTestCase {
     var comparedEmptyViewModels = false
     viewModel.cellViewModels
       .subscribe(onNext: { cellViewModels in
+        expect(cellViewModels.count) == 4
         if !comparedEmptyViewModels {
           self.compareEmptyViewModels(cellViewModels)
           comparedEmptyViewModels = true
@@ -126,6 +128,7 @@ class ProfileViewModelTests: XCTestCase {
     
     viewModel.cellViewModels
       .subscribe(onNext: { cellViewModels in
+        expect(cellViewModels.count) == 4
         self.compareEmptyViewModels(cellViewModels)
         comparedEmptyViewModels = true
       }, onError: { error in
@@ -145,6 +148,7 @@ class ProfileViewModelTests: XCTestCase {
   
   private func compareEmptyViewModels(_ viewModels: [ProfileCellViewModel]) {
     let reuseIdentifier = ProfileCell.reuseIdentifier
+    
     let genderViewModel  = ProfileCellViewModel(infoType: .gender, value: nil, cellReuseIdentifier: reuseIdentifier)
     let locationViewModel = ProfileCellViewModel(infoType: .location, value: nil, cellReuseIdentifier: reuseIdentifier)
     let birthdayViewModel = ProfileCellViewModel(infoType: .birthday, value: nil, cellReuseIdentifier: reuseIdentifier)
@@ -168,6 +172,7 @@ class ProfileViewModelTests: XCTestCase {
   
   private func compareCellViewModels(_ viewModels: [ProfileCellViewModel], toUserValues user: User) {
     let reuseIdentifier = ProfileCell.reuseIdentifier
+    
     let genderViewModel  = ProfileCellViewModel(infoType: .gender, value: user.gender.capitalized,
                                                 cellReuseIdentifier: reuseIdentifier)
     

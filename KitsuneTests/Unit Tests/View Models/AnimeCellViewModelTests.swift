@@ -13,10 +13,8 @@ import Nimble
 class AnimeCellViewModelTests: XCTestCase {
         
   func testAnimeCellViewModel() {
-    let cellReuseIdentifier = randomString
     let anime = createAnime(id: randomString)
-    let animeCellViewModel = AnimeCellViewModel(anime: anime, cellReuseIdentifier: cellReuseIdentifier)
-    expect(animeCellViewModel.cellReuseIdentifier) == cellReuseIdentifier
+    let animeCellViewModel = AnimeCellViewModel(anime: anime)
     expect(animeCellViewModel.smallPosterURL) == URL(string: anime.posterImageSmall!)
     expect(animeCellViewModel.animeTitle) == anime.canonicalTitle ?? anime.englishTitle
     expect(animeCellViewModel.animeSynopsis) == anime.synopsis

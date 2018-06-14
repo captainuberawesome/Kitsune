@@ -8,7 +8,6 @@
 import Foundation
 
 class AnimeCellViewModel {
-  let cellReuseIdentifier: String
   private let anime: Anime
   
   // MARK: - Public computed propeties
@@ -28,8 +27,7 @@ class AnimeCellViewModel {
   
   // MARK: - Init
   
-  init(anime: Anime, cellReuseIdentifier: String) {
+  init(anime: Anime) {
     self.anime = anime
-    self.cellReuseIdentifier = cellReuseIdentifier
   }
 }

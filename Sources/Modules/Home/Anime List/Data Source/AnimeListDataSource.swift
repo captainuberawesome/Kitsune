@@ -21,6 +21,7 @@ class AnimeListDataSource: NSObject {
   func configure(withTableView tableView: UITableView, viewModel: AnimeListViewModel) {
     self.tableView = tableView
     viewModel.cellViewModels
+      .skip(1)
       .bind(to: tableView.rx.items(cellIdentifier: AnimeListTableViewCell.reuseIdentifier,
                                    cellType: AnimeListTableViewCell.self)) { _, cellViewModel, cell in
          cell.configure(viewModel: cellViewModel)

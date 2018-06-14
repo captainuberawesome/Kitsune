@@ -107,3 +107,12 @@ func createAnime(id: String) -> Anime {
   anime.youtubeVideoId = randomImageURLString
   return anime
 }
+
+func createAnimeList(count: Int) -> [Anime] {
+  var animeList: [Anime] = []
+  for _ in 0..<count {
+    let anime = createAnime(id: randomString)
+    animeList.append(anime)
+  }
+  return animeList
+}

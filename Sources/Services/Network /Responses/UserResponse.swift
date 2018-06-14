@@ -13,10 +13,9 @@ struct UserResponse: Unmarshaling {
   }
   
   var user: User?
-  private var users: [User]
+  private var users: [User] = []
   
   init() {
-    users = []
   }
   
   init(object: MarshaledObject) throws {
