@@ -35,6 +35,13 @@ class AnimeDetailsCoordinator: NavigationFlowCoordinator {
     let viewController = AnimeDetailsViewController(viewModel: viewModel)
     viewController.hidesBottomBarWhenPushed = true
     viewController.title = R.string.animeDetails.title()
+    
+    viewController.onDidDeinit
+      .subscribe(onNext: { [weak self] in
+        self?.onRootControllerDidDeinit.onCompleted()
+      })
+      .disposed(by: disposeBag)
+
     switch presentationType {
     case .push:
       navigationController.pushViewController(viewController, animated: true)

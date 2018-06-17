@@ -11,6 +11,8 @@ import RxCocoa
 
 class AnimeDetailsViewController: BaseViewController {
   private let viewModel: AnimeDetailsViewModel
+  private let scrollView = UIScrollView()
+  private let contentView = UIView()
   
   private(set) var onDidDeinit = PublishSubject<Void>()
   

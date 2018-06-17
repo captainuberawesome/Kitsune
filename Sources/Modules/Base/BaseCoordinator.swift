@@ -43,22 +43,12 @@ extension BaseCoordinator {
       childCoordinators.remove(at: index)
     }
   }
-
-  func dismissModalControllers(_ completion: (() -> Void)?) {
-    if let presentingViewController = topController.presentingViewController {
-      presentingViewController.dismiss(animated: true, completion: { [unowned self] in
-        self.dismissModalControllers(completion)
-      })
-    } else {
-      completion?()
-    }
-  }
-
+  
   func addChildCoordinator(_ coordinator: BaseCoordinator) {
     childCoordinators.append(coordinator)
     coordinator.onRootControllerDidDeinit
-      .subscribe(onNext: { [weak self] in
-        self?.remove(child: coordinator)
+      .subscribe(onCompleted: { [unowned self] in
+        self.remove(child: coordinator)
       })
       .disposed(by: disposeBag)
   }

@@ -37,7 +37,7 @@ class HomeCoordinator: NavigationFlowCoordinator {
     let tabBarController = HomeTabBarController()
     tabBarController.onDidDeinit
       .subscribe(onNext: { [weak self] in
-        self?.onRootControllerDidDeinit.onNext(())
+        self?.onRootControllerDidDeinit.onCompleted()
       })
       .disposed(by: disposeBag)
     
