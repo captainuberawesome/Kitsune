@@ -112,7 +112,14 @@ class AnimeListViewController: BaseViewController {
     }
     tableView.tableFooterView = UIView(frame: .zero)
     tableView.register(AnimeListTableViewCell.self, forCellReuseIdentifier: AnimeListTableViewCell.reuseIdentifier)
-    let tap = UITapGestureRecognizer(target: self, action: #selector(didTapTableView(_:)))
+    let tap = UITapGestureRecognizer()
+    tap.cancelsTouchesInView = false
+    tap
+      .rx.event
+      .bind(onNext: { [unowned self] _ in
+        self.searchBar.resignFirstResponder()
+      })
+      .disposed(by: disposeBag)
     tableView.addGestureRecognizer(tap)
   }
   
@@ -177,12 +184,6 @@ class AnimeListViewController: BaseViewController {
         }
       })
       .disposed(by: disposeBag)
-  }
-  
-  // MARK: - Action
-  
-  @objc private func didTapTableView(_ sender: UIGestureRecognizer) {
-    searchBar.resignFirstResponder()
   }
 }
 

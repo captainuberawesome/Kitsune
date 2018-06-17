@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 class HomeCoordinator: NavigationFlowCoordinator {
-  var onRootControllerDidDeinit = PublishSubject<Void>()
+  private(set) var onRootControllerDidDeinit = PublishSubject<Void>()
   private let appDependency: AppDependency
   let disposeBag = DisposeBag()
   
@@ -19,7 +19,6 @@ class HomeCoordinator: NavigationFlowCoordinator {
   weak var logoutHandler: LogoutHandler?
   
   private var onFinishedLogin: (() -> Void)?
-  private var onLoggedOut: (() -> Void)?
   
   init(appDependency: AppDependency, logoutHandler: LogoutHandler, navigationController: UINavigationController) {
     self.appDependency = appDependency
@@ -57,14 +56,28 @@ class HomeCoordinator: NavigationFlowCoordinator {
     case .push:
       navigationController.pushViewController(tabBarController, animated: true)
     case .modalFrom(let presentingViewController):
-      presentingViewController?.present(tabBarController, animated: true, completion: nil)
+      navigationController.pushViewController(tabBarController, animated: false)
+      presentingViewController?.present(navigationController, animated: true, completion: nil)
     }
+  }
+  
+  private func showDetails(anime: Anime) {
+    let coordinator = AnimeDetailsCoordinator(anime: anime,
+                                              appDependency: appDependency,
+                                              navigationController: navigationController)
+    addChildCoordinator(coordinator)
+    coordinator.start()
   }
   
   // MARK: - Create View Controllers
   
   private func createAnimeListViewController() -> AnimeListViewController {
     let viewModel = AnimeListViewModel(dependencies: appDependency)
+    viewModel.onSelected
+      .subscribe(onNext: { [unowned self] anime in
+        self.showDetails(anime: anime)
+      })
+      .disposed(by: disposeBag)
     let viewController = AnimeListViewController(viewModel: viewModel)
     viewController.navigationItem.title = R.string.animeList.title()
     viewController.tabBarItem = UITabBarItem(title: R.string.animeList.title(), image: R.image.animeTopList(),
@@ -80,19 +93,24 @@ class HomeCoordinator: NavigationFlowCoordinator {
     viewController.tabBarItem = UITabBarItem(title: R.string.profile.title(), image: R.image.myProfile(),
                                              selectedImage: nil)
     let logoutButton = UIBarButtonItem(title: R.string.profile.logoutButtonTitle(), style: .plain,
-                                       target: self, action: #selector(self.logoutButtonTapped(_:)))
+                                       target: nil, action: nil)
     logoutButton.setTitleTextAttributes([.font: UIFont.textFont], for: .normal)
     logoutButton.setTitleTextAttributes([.font: UIFont.textFont], for: .highlighted)
+    logoutButton
+      .rx.tap
+      .subscribe(onNext: { [unowned self, weak viewController] in
+        self.logoutHandler?.logout {
+          viewController?.navigationItem.rightBarButtonItem = nil
+          viewController?.configureForLoggedOut()
+        }
+      })
+      .disposed(by: disposeBag)
     if viewModel.isLoggedIn {
       viewController.navigationItem.rightBarButtonItem = logoutButton
     }
     onFinishedLogin = { [weak viewController, logoutButton] in
       viewController?.navigationItem.rightBarButtonItem = logoutButton
       viewController?.configureForLoggedIn()
-    }
-    onLoggedOut = { [weak viewController] in
-      viewController?.navigationItem.rightBarButtonItem = nil
-      viewController?.configureForLoggedOut()
     }
     return viewController
   }
@@ -106,14 +124,6 @@ class HomeCoordinator: NavigationFlowCoordinator {
     .disposed(by: disposeBag)
     let viewController = LoginViewController(viewModel: viewModel)
     return viewController
-  }
-  
-  // MARK: - Actions
-  
-  @objc private func logoutButtonTapped(_ sender: UIBarButtonItem) {
-    logoutHandler?.logout {
-      self.onLoggedOut?()
-    }
   }
 }
 

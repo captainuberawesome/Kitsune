@@ -8,8 +8,8 @@
 import UIKit
 import RxSwift
 
-class HomeTabBarController: TabBarController {
-  var onDidDeinit = PublishSubject<Void>()
+class HomeTabBarController: TabBarController, NavigationBarHiding {
+  private(set) var onDidDeinit = PublishSubject<Void>()
   
   deinit {
     onDidDeinit.onNext(())

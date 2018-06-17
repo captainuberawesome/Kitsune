@@ -36,6 +36,12 @@
 		FD16AA1220C826EF00FE2E17 /* RealmAnimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD16A9FD20C826EE00FE2E17 /* RealmAnimeTests.swift */; };
 		FD31909C20D6A58F00017179 /* AnimeListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD31909B20D6A58F00017179 /* AnimeListEmptyView.swift */; };
 		FD31909E20D6AAB900017179 /* String+RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD31909D20D6AAB900017179 /* String+RegularExpression.swift */; };
+		FD3190A220D6B54800017179 /* AnimeDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3190A120D6B54800017179 /* AnimeDetailsCoordinator.swift */; };
+		FD3190A420D6B6A000017179 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3190A320D6B6A000017179 /* AnimeDetailsViewController.swift */; };
+		FD3190A620D6B7CF00017179 /* AnimeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3190A520D6B7CF00017179 /* AnimeDetailsViewModel.swift */; };
+		FD3190A820D6B89D00017179 /* AnimeDetails.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3190A720D6B89D00017179 /* AnimeDetails.strings */; };
+		FD3190AA20D6B92E00017179 /* NsvigationBarHiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3190A920D6B92E00017179 /* NsvigationBarHiding.swift */; };
+		FD3190AC20D6BD5E00017179 /* UIViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3190AB20D6BD5E00017179 /* UIViewController+BackButton.swift */; };
 		FD35925220B5A25C00EA634D /* NetworkService+MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925120B5A25C00EA634D /* NetworkService+MyProfile.swift */; };
 		FD35925420B5A71800EA634D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925320B5A71800EA634D /* User.swift */; };
 		FD35925620B5A9BE00EA634D /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35925520B5A9BE00EA634D /* RealmUser.swift */; };
@@ -160,6 +166,12 @@
 		FD16A9FD20C826EE00FE2E17 /* RealmAnimeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAnimeTests.swift; sourceTree = "<group>"; };
 		FD31909B20D6A58F00017179 /* AnimeListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListEmptyView.swift; sourceTree = "<group>"; };
 		FD31909D20D6AAB900017179 /* String+RegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RegularExpression.swift"; sourceTree = "<group>"; };
+		FD3190A120D6B54800017179 /* AnimeDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsCoordinator.swift; sourceTree = "<group>"; };
+		FD3190A320D6B6A000017179 /* AnimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewController.swift; sourceTree = "<group>"; };
+		FD3190A520D6B7CF00017179 /* AnimeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewModel.swift; sourceTree = "<group>"; };
+		FD3190A720D6B89D00017179 /* AnimeDetails.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AnimeDetails.strings; sourceTree = "<group>"; };
+		FD3190A920D6B92E00017179 /* NsvigationBarHiding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NsvigationBarHiding.swift; sourceTree = "<group>"; };
+		FD3190AB20D6BD5E00017179 /* UIViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BackButton.swift"; sourceTree = "<group>"; };
 		FD35925120B5A25C00EA634D /* NetworkService+MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+MyProfile.swift"; sourceTree = "<group>"; };
 		FD35925320B5A71800EA634D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FD35925520B5A9BE00EA634D /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
@@ -291,6 +303,7 @@
 			children = (
 				8B3506892092D21100586986 /* NetworkErrors.strings */,
 				FDFCF807209769E500F7A901 /* AnimeList.strings */,
+				FD3190A720D6B89D00017179 /* AnimeDetails.strings */,
 				FDB1C32620B1C0180044ACA4 /* Login.strings */,
 				FDA4185D20ADD23000B41819 /* Profile.strings */,
 				8B60AAAA208DBF1D00E6986C /* Common.strings */,
@@ -304,6 +317,7 @@
 				8B61C7962091E026005FD0F7 /* ReuseIdentifiable.swift */,
 				FD6ABCA72095EB9100B117E5 /* LogoutHandler.swift */,
 				8B72985720C66A1700529723 /* ViewModelNetworkRequesting.swift */,
+				FD3190A920D6B92E00017179 /* NsvigationBarHiding.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -336,6 +350,7 @@
 				8BD264F120441A6700095E68 /* Realm+Stores.swift */,
 				FDFCF7FF209753B200F7A901 /* Date+Marshal.swift */,
 				FD3AE29320B702D10079636B /* Date+DaySuffix.swift */,
+				FD3190AB20D6BD5E00017179 /* UIViewController+BackButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +361,7 @@
 				8BD2648B2043C2FB00095E68 /* Base */,
 				FDCAB3DA2095E5320000675D /* Main */,
 				FDFCF7CE2096DE1300F7A901 /* Home */,
+				FD31909F20D6B52C00017179 /* Anime Details */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -446,6 +462,24 @@
 				FD16A9FD20C826EE00FE2E17 /* RealmAnimeTests.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		FD31909F20D6B52C00017179 /* Anime Details */ = {
+			isa = PBXGroup;
+			children = (
+				FD3190A020D6B52C00017179 /* View Model */,
+				FD3190A320D6B6A000017179 /* AnimeDetailsViewController.swift */,
+				FD3190A120D6B54800017179 /* AnimeDetailsCoordinator.swift */,
+			);
+			path = "Anime Details";
+			sourceTree = "<group>";
+		};
+		FD3190A020D6B52C00017179 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				FD3190A520D6B7CF00017179 /* AnimeDetailsViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		FD35925920B5ADE500EA634D /* User Data Service */ = {
@@ -794,6 +828,7 @@
 				8B35068A2092D21200586986 /* NetworkErrors.strings in Resources */,
 				FDA4185E20ADD23000B41819 /* Profile.strings in Resources */,
 				FDFD6D5D2098BB3E00D08F2E /* RobotoCondensed-Regular.ttf in Resources */,
+				FD3190A820D6B89D00017179 /* AnimeDetails.strings in Resources */,
 				FDFCF808209769E500F7A901 /* AnimeList.strings in Resources */,
 				44D7705D1D48BDA300D5EB72 /* Assets.xcassets in Resources */,
 				8BC4AE082043A9DB0093E231 /* LaunchScreen.storyboard in Resources */,
@@ -1031,12 +1066,15 @@
 				FD35925420B5A71800EA634D /* User.swift in Sources */,
 				8BD264AF2043C5A700095E68 /* UIColor+AppColors.swift in Sources */,
 				FDABF22D20D69A3600DC0390 /* AnimeListErrorView.swift in Sources */,
+				FD3190A620D6B7CF00017179 /* AnimeDetailsViewModel.swift in Sources */,
 				FDFCF800209753B200F7A901 /* Date+Marshal.swift in Sources */,
 				FDCAB4052095E6210000675D /* NetworkServiceProtocols.swift in Sources */,
 				FDFCF8062097676E00F7A901 /* UIImageView+Kingfisher.swift in Sources */,
 				FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */,
 				FDFCF80420975A9800F7A901 /* AnimeListResponse.swift in Sources */,
+				FD3190A420D6B6A000017179 /* AnimeDetailsViewController.swift in Sources */,
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
+				FD3190A220D6B54800017179 /* AnimeDetailsCoordinator.swift in Sources */,
 				FD35925B20B5ADF000EA634D /* UserDataService.swift in Sources */,
 				8B72985820C66A1700529723 /* ViewModelNetworkRequesting.swift in Sources */,
 				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
@@ -1045,6 +1083,7 @@
 				FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */,
 				FDA4185A20ADCD4700B41819 /* HomeTabBarController.swift in Sources */,
 				FDCAB3DF2095E5320000675D /* MainCoordinatorUtility.swift in Sources */,
+				FD3190AC20D6BD5E00017179 /* UIViewController+BackButton.swift in Sources */,
 				FD3AE29020B6FB7F0079636B /* ProfileDataSource.swift in Sources */,
 				FDCAB3FF2095E6210000675D /* URLFactory.swift in Sources */,
 				8BD264AA2043C5A700095E68 /* UIViewController+ErrorHandling.swift in Sources */,
@@ -1070,6 +1109,7 @@
 				FDABF22B20D6921700DC0390 /* UIViewController+NotificationBanner.swift in Sources */,
 				8B8758FD208D888D00D1BBF5 /* BaseViewController.swift in Sources */,
 				8BD264912043C3A700095E68 /* Constants.swift in Sources */,
+				FD3190AA20D6B92E00017179 /* NsvigationBarHiding.swift in Sources */,
 				FD6ABCB62096187800B117E5 /* Credentials.swift in Sources */,
 				8BD264B22043C5A700095E68 /* UIViewController+Alerts.swift in Sources */,
 				FDCAB4062095E6210000675D /* NetworkService+Auth.swift in Sources */,

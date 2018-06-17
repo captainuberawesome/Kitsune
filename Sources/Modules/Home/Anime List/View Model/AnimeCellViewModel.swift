@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class AnimeCellViewModel {
   private let anime: Anime
+  private(set) var onSelected = PublishSubject<Anime>()
   
   // MARK: - Public computed propeties
   
@@ -29,5 +32,11 @@ class AnimeCellViewModel {
   
   init(anime: Anime) {
     self.anime = anime
+  }
+  
+  // MARK: - Public functions
+  
+  func select() {
+    onSelected.onNext(anime)
   }
 }

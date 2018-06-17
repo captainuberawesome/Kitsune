@@ -28,8 +28,18 @@ class AnimeListDataSource: NSObject {
          cell.selectionStyle = .none
       }
       .disposed(by: disposeBag)
-    tableView.rx
+    
+    tableView
+      .rx
       .setDelegate(self)
+      .disposed(by: disposeBag)
+    
+    tableView
+      .rx
+      .modelSelected(AnimeCellViewModel.self)
+      .subscribe(onNext: { cellViewModel in
+        cellViewModel.select()
+      })
       .disposed(by: disposeBag)
   }
 }
@@ -40,6 +50,7 @@ extension AnimeListDataSource: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return CGFloat.leastNormalMagnitude
   }
+  
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     return Constants.estimatedRowHeight
   }

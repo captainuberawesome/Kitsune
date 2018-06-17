@@ -32,6 +32,7 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   }
   private var defaultModeCellViewModels: [AnimeCellViewModel] = []
   private(set) var cellViewModels = BehaviorRelay<[AnimeCellViewModel]>(value: [])
+  private(set) var onSelected = PublishSubject<Anime>()
   
   var paginationLimit = Constants.defaultPaginationLimit
   let canLoadMorePagesSubject = BehaviorSubject<Bool>(value: true)
@@ -163,7 +164,15 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   // MARK: - AnimeCellViewModel
   
   private func createViewModels(from array: [Anime]) -> [AnimeCellViewModel] {
-    return array.compactMap { AnimeCellViewModel(anime: $0) }
+    return array.compactMap {
+      let viewModel = AnimeCellViewModel(anime: $0)
+      viewModel.onSelected
+        .subscribe(onNext: { [weak self] anime in
+          self?.onSelected.onNext(anime)
+        })
+        .disposed(by: disposeBag)
+      return viewModel
+    }
   }
   
   // MARK: - Reachability

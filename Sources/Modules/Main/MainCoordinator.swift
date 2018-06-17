@@ -20,7 +20,7 @@ class MainCoordinator: NSObject, BaseCoordinator {
   private let utility: MainCoordinatorUtility
   
   let disposeBag = DisposeBag()
-  var onRootControllerDidDeinit = PublishSubject<Void>()
+  private(set) var onRootControllerDidDeinit = PublishSubject<Void>()
   var presentationType: PresentationType = .push
   var parentCoordinator: BaseCoordinator?
   var childCoordinators: [BaseCoordinator] = []
@@ -45,6 +45,7 @@ class MainCoordinator: NSObject, BaseCoordinator {
     self.utility = MainCoordinatorUtility(dependencies: appDependency)
     super.init()
     window.rootViewController = rootNavigationController
+    rootNavigationController.delegate = self
   }
   
   // MARK: - Navigation
@@ -70,5 +71,16 @@ class MainCoordinator: NSObject, BaseCoordinator {
 extension MainCoordinator: LogoutHandler {
   func logout(completion: (() -> Void)?) {
     utility.signOut(completion: completion)
+  }
+}
+
+extension MainCoordinator: UINavigationControllerDelegate {
+  func navigationController(_ navigationController: UINavigationController,
+                            willShow viewController: UIViewController, animated: Bool) {
+    if viewController is NavigationBarHiding {
+      navigationController.setNavigationBarHidden(true, animated: true)
+    } else {
+      navigationController.setNavigationBarHidden(false, animated: true)
+    }
   }
 }
