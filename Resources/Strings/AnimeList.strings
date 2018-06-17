@@ -5,3 +5,6 @@
 
 "title" = "TOP ANIME";
 "search.bar.placeholder" = "Search for anime";
+"could.not.load" = "Could not load content. Please try again.";
+"retry" = "RETRY";
+"empty.results" = "Could not find anything.";

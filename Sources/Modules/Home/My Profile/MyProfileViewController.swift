@@ -100,6 +100,7 @@ class MyProfileViewController: BaseViewController {
   func configureForLoggedIn() {
     guard let loginViewController = self.loginViewController else { return }
     removeChildController(loginViewController)
+    self.loginViewController = nil
     loginContainerView.removeFromSuperview()
     viewModel.reloadData()
   }
@@ -112,8 +113,8 @@ class MyProfileViewController: BaseViewController {
   
   private func bindViewModel() {
     viewModel.state
-      .subscribe(onError: { _ in
-        // TODO: handle error
+      .subscribe(onError: { [weak self] error in
+        self?.handle(error: error)
       })
       .disposed(by: disposeBag)
   }

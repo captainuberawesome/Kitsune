@@ -57,7 +57,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
         }
       }, onError: { error in
         self.state.onNext(.loadingFinished)
-        self.state.onError(error)
+        self.state.onNext(.error(error))
       })
       .disposed(by: disposeBag)
   }
@@ -113,7 +113,8 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
       .skip(1)
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] isReachable in
-          if isReachable && self?.user == nil && (try? self!.state.value()) != .initial {
+          if isReachable && self?.user == nil && (try? self!.state.value())
+            != ViewModelNetworkRequestingState.initial {
             self?.reloadData()
           }
         })

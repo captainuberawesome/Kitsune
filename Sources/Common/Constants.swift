@@ -14,6 +14,8 @@ struct Constants {
   
   static let realmInMemoryStoreIdentifier = "inMemoryRealm"
   static let appLocale = Locale(identifier: "en_US")
+  
+  static let errorDomain = "KitsuneErrorDomain"
 
   static var parsingDateFormatterShort: DateFormatter = {
     let dateFormatter = DateFormatter()

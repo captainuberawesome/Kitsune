@@ -123,7 +123,10 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
       self.oauth.password = password
       self.oauth.authorize { _, error in
         if let error = error {
-          observer.onError(error)
+          //workaround for OAuth2Error not having appropriate localizedDescription
+          let userInfo = [NSLocalizedDescriptionKey: error.description]
+          let authError = NSError(domain: Constants.errorDomain, code: 1, userInfo: userInfo)
+          observer.onError(authError as Error)
         } else {
           observer.onNext(EmptyResponse(object: [:]))
           observer.onCompleted()

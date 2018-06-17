@@ -78,15 +78,15 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
     state.onNext(.loadingStarted)
     
     let onNext: (AnimeListResponse) -> Void = { animeListResponse in
-      self.state.onNext(.loadingFinished)
       let newItems = self.createViewModels(from: animeListResponse.animeList)
       self.canLoadMorePages = newItems.count >= self.paginationLimit
       self.cellViewModels.accept(newItems)
+      self.state.onNext(.loadingFinished)
     }
     
     let onError: (Error) -> Void = { error in
       self.state.onNext(.loadingFinished)
-      self.state.onError(error)
+      self.state.onNext(.error(error))
     }
     
     switch mode {
@@ -114,15 +114,15 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
     state.onNext(.loadingStarted)
     
     let onNext: (AnimeListResponse) -> Void = { animeListResponse in
-      self.state.onNext(.loadingFinished)
       let newItems = self.createViewModels(from: animeListResponse.animeList)
       self.cellViewModels.accept(self.cellViewModels.value + newItems)
       self.canLoadMorePages = newItems.count >= self.paginationLimit
+      self.state.onNext(.loadingFinished)
     }
     
     let onError: (Error) -> Void = { error in
       self.state.onNext(.loadingFinished)
-      self.state.onError(error)
+      self.state.onNext(.error(error))
     }
     
     switch mode {
@@ -173,7 +173,8 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
       .skip(1)
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] isReachable in
-        if isReachable && self?.hasData == false && (try? self!.state.value()) != .initial {
+        if isReachable && self?.hasData == false && (try? self!.state.value())
+          != ViewModelNetworkRequestingState.initial {
           self?.reloadData()
         }
       })

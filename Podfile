@@ -13,6 +13,7 @@ def shared_pods
   pod 'RealmSwift'
   pod 'R.swift'
   pod 'Marshal', :git => 'https://github.com/utahiosmac/Marshal.git', :branch => 'master'
+  pod 'NotificationBannerSwift'
   pod 'UIScrollView-InfiniteScroll'
   pod 'Kingfisher'
   pod 'SkyFloatingLabelTextField'

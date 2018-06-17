@@ -1,7 +1,8 @@
 PODS:
   - Alamofire (4.7.2)
   - KeychainAccess (3.1.1)
-  - Kingfisher (4.7.0)
+  - Kingfisher (4.8.0)
+  - MarqueeLabel/Swift (3.1.6)
   - Marshal (1.2.7)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
@@ -10,31 +11,34 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - Nimble (7.1.1)
+  - Nimble (7.1.2)
+  - NotificationBannerSwift (1.6.3):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 4.0)
   - p2.OAuth2 (4.0.1)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - Realm (3.5.0):
-    - Realm/Headers (= 3.5.0)
-  - Realm/Headers (3.5.0)
-  - RealmSwift (3.5.0):
-    - Realm (= 3.5.0)
-  - RxBlocking (4.1.2):
+  - Realm (3.7.2):
+    - Realm/Headers (= 3.7.2)
+  - Realm/Headers (3.7.2)
+  - RealmSwift (3.7.2):
+    - Realm (= 3.7.2)
+  - RxBlocking (4.2.0):
     - RxSwift (~> 4.0)
-  - RxCocoa (4.1.2):
+  - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxNimble (4.1.0):
     - Nimble (~> 7.0)
     - RxBlocking (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.1.2)
-  - RxTest (4.1.2):
+  - RxSwift (4.2.0)
+  - RxTest (4.2.0):
     - RxSwift (~> 4.0)
-  - SkyFloatingLabelTextField (3.4.1)
+  - SkyFloatingLabelTextField (3.5.1)
   - SnapKit (4.0.0)
   - SwiftLint (0.25.1)
-  - SwiftyBeaver (1.5.2)
+  - SwiftyBeaver (1.6.0)
   - UIScrollView-InfiniteScroll (1.1.0)
   - URITemplate (2.0.3)
 
@@ -45,6 +49,7 @@ DEPENDENCIES:
   - Marshal (from `https://github.com/utahiosmac/Marshal.git`, branch `master`)
   - Mockingjay
   - Nimble
+  - NotificationBannerSwift
   - p2.OAuth2
   - R.swift
   - RealmSwift
@@ -63,8 +68,10 @@ SPEC REPOS:
     - Alamofire
     - KeychainAccess
     - Kingfisher
+    - MarqueeLabel
     - Mockingjay
     - Nimble
+    - NotificationBannerSwift
     - p2.OAuth2
     - R.swift
     - R.swift.Library
@@ -95,27 +102,29 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
-  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
+  Nimble: 3835ba9f459daa6b347f8a8e110aaae8ca1920a8
+  NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
-  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
-  RxBlocking: f6054985901412fc8c02daa84e92d4ba68c61389
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  Realm: dd18c3014e8d90df300b83c6da740067436089c5
+  RealmSwift: 79917cae59a0c43ef8118b233a5978891dd50b4a
+  RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxNimble: e5a34bf3b18d85406fc2a6e2cbc73aa2b4a858f0
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
-  RxTest: e634f15fd2c2cd0e0120132ef7a4f7be69ad0393
-  SkyFloatingLabelTextField: 8085f20f57f74a00cfcae58099299faa1a971035
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
+  SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
-  SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
+  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 3a999861acc86f486aed4e958a03ec013f996d96
+PODFILE CHECKSUM: a51666c557332214de35a03efdf3b5fb4fb9780c
 
 COCOAPODS: 1.5.3

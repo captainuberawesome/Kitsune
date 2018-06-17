@@ -7,3 +7,8 @@
 "button.title" = "Sign In";
 "email.placeholder" = "Email";
 "password.placeholder" = "Password";
+"error.validation.empty.email" = "Email must not be empty";
+"error.validation.empty.password" = "Password must not be empty";
+"error.validation.email.format" = "Email must be valid";
+"error.validation.email.too.long" = "Email can be at most %i characters long";
+"error.validation.password.too.long" = "Password can be at most %i characters long";

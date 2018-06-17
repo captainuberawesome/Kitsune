@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if NSClassFromString("XCTestCase") != nil {
       return true
     }
-    log.debug(NSHomeDirectory())
     startMainCoordinator()
     return true
   }

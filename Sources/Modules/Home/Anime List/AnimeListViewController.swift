@@ -18,7 +18,8 @@ class AnimeListViewController: BaseViewController {
   private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
   private let tableView = UITableView(frame: .zero, style: .plain)
   private let searchBar = UISearchBar()
-  private let emptyView = UIView()
+  private let errorView = AnimeListErrorView()
+  private let emptyView = AnimeListEmptyView()
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
   private let dataSource = AnimeListDataSource()
@@ -54,7 +55,8 @@ class AnimeListViewController: BaseViewController {
     activityIndicatorView.snp.makeConstraints { make in
       make.center.equalToSuperview()
     }
-    // TODO: setup empty view for error
+    setupErrorView()
+    setupEmptyView()
   }
   
   private func setupSearchBar() {
@@ -89,13 +91,14 @@ class AnimeListViewController: BaseViewController {
       })
       .disposed(by: disposeBag)
     
-    searchBar.rx.searchButtonClicked.subscribe(onNext: { [unowned self] in
-      if self.searchBar.text?.isEmpty != false {
-        self.viewModel.mode = .default
-        self.tableView.reloadData()
-      }
-      self.searchBar.resignFirstResponder()
-    }).disposed(by: disposeBag)
+    searchBar.rx.searchButtonClicked
+      .subscribe(onNext: { [unowned self] in
+        if self.searchBar.text?.isEmpty != false {
+          self.viewModel.mode = .default
+          self.tableView.reloadData()
+        }
+        self.searchBar.resignFirstResponder()
+      }).disposed(by: disposeBag)
   }
   
   private func setupTableView() {
@@ -113,25 +116,55 @@ class AnimeListViewController: BaseViewController {
     tableView.addGestureRecognizer(tap)
   }
   
+  private func setupErrorView() {
+    view.addSubview(errorView)
+    errorView.snp.makeConstraints { make in
+      make.leading.trailing.bottom.equalToSuperview()
+      make.top.equalTo(searchBar.snp.bottom)
+    }
+    errorView.backgroundColor = .white
+    errorView.isHidden = true
+    errorView.buttonPress
+      .subscribe(onNext: { [unowned self] in
+          self.viewModel.reloadData()
+        })
+      .disposed(by: disposeBag)
+  }
+  
+  private func setupEmptyView() {
+    view.addSubview(emptyView)
+    emptyView.snp.makeConstraints { make in
+      make.leading.trailing.bottom.equalToSuperview()
+      make.top.equalTo(searchBar.snp.bottom)
+    }
+    emptyView.backgroundColor = .white
+    emptyView.isHidden = true
+  }
+  
   // MARK: - View Model
   
   private func bindViewModel() {
     viewModel.state
       .subscribe(onNext: { [weak self, unowned viewModel] state in
+          self?.emptyView.isHidden = true
           switch state {
           case .initial, .loadingFinished:
             self?.activityIndicatorView.isHidden = true
             self?.activityIndicatorView.stopAnimating()
             self?.finishInfiniteScroll()
+            if state == .loadingFinished && !viewModel.hasData {
+              self?.emptyView.isHidden = false
+            }
           case .loadingStarted:
-            self?.emptyView.isHidden = true
+            self?.errorView.isHidden = true
             if !viewModel.hasData && self?.tableView.isAnimatingInfiniteScroll != true {
               self?.activityIndicatorView.isHidden = false
               self?.activityIndicatorView.startAnimating()
             }
+          case .error(let error):
+            self?.handle(error: error)
+            self?.errorView.isHidden = false
           }
-        }, onError: { [weak self] _ in
-          self?.emptyView.isHidden = false
         })
       .disposed(by: disposeBag)
     viewModel.canLoadMorePagesSubject
