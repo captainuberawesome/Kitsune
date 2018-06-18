@@ -15,7 +15,7 @@ private extension Constants {
 }
 
 class AnimeListViewController: BaseViewController {
-  private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
   private let tableView = UITableView(frame: .zero, style: .plain)
   private let searchBar = UISearchBar()
   private let errorView = AnimeListErrorView()
@@ -48,7 +48,7 @@ class AnimeListViewController: BaseViewController {
   // MARK: - Setup
   
   private func setup() {
-    view.backgroundColor = .white
+    view.backgroundColor = .appPrimary
     setupSearchBar()
     setupTableView()
     view.addSubview(activityIndicatorView)
@@ -106,11 +106,13 @@ class AnimeListViewController: BaseViewController {
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
     tableView.backgroundColor = .clear
+    tableView.separatorStyle = .none
     tableView.snp.makeConstraints { make in
       make.leading.trailing.bottom.equalToSuperview()
       make.top.equalTo(searchBar.snp.bottom)
     }
     tableView.tableFooterView = UIView(frame: .zero)
+    tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
     tableView.register(AnimeListTableViewCell.self, forCellReuseIdentifier: AnimeListTableViewCell.reuseIdentifier)
     let tap = UITapGestureRecognizer()
     tap.cancelsTouchesInView = false
@@ -194,7 +196,7 @@ extension AnimeListViewController {
     if infiniteScrollAdded {
       return
     }
-    tableView.infiniteScrollIndicatorStyle = .gray
+    tableView.infiniteScrollIndicatorStyle = .white
     infiniteScrollAdded = true
     tableView.addInfiniteScroll { [weak self] _ in
       self?.viewModel.loadNextPage()
