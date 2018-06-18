@@ -93,6 +93,7 @@
 		FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */; };
 		FDEEFE8920D7942A00597C07 /* AnimeDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEFE8820D7942A00597C07 /* AnimeDetailInfoView.swift */; };
 		FDEEFE8B20D7AD8C00597C07 /* AnimeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEFE8A20D7AD8C00597C07 /* AnimeDetailView.swift */; };
+		FDEEFE8D20D7CAFB00597C07 /* AnimeDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEFE8C20D7CAFB00597C07 /* AnimeDetailsViewModelTests.swift */; };
 		FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */; };
 		FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */; };
 		FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */; };
@@ -230,6 +231,7 @@
 		FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Getters.swift"; sourceTree = "<group>"; };
 		FDEEFE8820D7942A00597C07 /* AnimeDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailInfoView.swift; sourceTree = "<group>"; };
 		FDEEFE8A20D7AD8C00597C07 /* AnimeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailView.swift; sourceTree = "<group>"; };
+		FDEEFE8C20D7CAFB00597C07 /* AnimeDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeListViewController.swift; sourceTree = "<group>"; };
 		FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				FD84FCF720D15EC7004520FE /* ProfileViewModelTests.swift */,
 				8B1F5B1D20D20D5000406E03 /* AnimeCellViewModelTests.swift */,
 				8B1F5B1F20D2117400406E03 /* AnimeViewModelTests.swift */,
+				FDEEFE8C20D7CAFB00597C07 /* AnimeDetailsViewModelTests.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				FD84FCED20D1508E004520FE /* LoginViewModelTests.swift in Sources */,
 				8B1F5B1E20D20D5000406E03 /* AnimeCellViewModelTests.swift in Sources */,
 				FD84FCF820D15EC7004520FE /* ProfileViewModelTests.swift in Sources */,
+				FDEEFE8D20D7CAFB00597C07 /* AnimeDetailsViewModelTests.swift in Sources */,
 				FD16AA0920C826EF00FE2E17 /* UserUnmarshalingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

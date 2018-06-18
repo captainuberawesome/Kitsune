@@ -65,6 +65,13 @@ var randomInfoType: ProfileCellViewModel.InfoType {
   return availableValues[index]
 }
 
+var dateFormatter: DateFormatter = {
+  let dateFormatter = DateFormatter()
+  dateFormatter.locale = Constants.appLocale
+  dateFormatter.dateFormat = "MMMM dd yyyy"
+  return dateFormatter
+}()
+
 func createUser(id: String) -> User {
   let user = User()
   user.id = id
@@ -74,14 +81,8 @@ func createUser(id: String) -> User {
   user.bio = randomString
   user.gender = randomString
   user.location = randomString
-  let birthdayDateFormatter = DateFormatter()
-  birthdayDateFormatter.locale = Constants.appLocale
-  birthdayDateFormatter.dateFormat = "MMMM dd"
-  user.birthday = birthdayDateFormatter.date(from: "January 21")
-  let joinDateFormatter = DateFormatter()
-  joinDateFormatter.locale = Constants.appLocale
-  joinDateFormatter.dateFormat = "MMMM dd yyyy"
-  user.joinDate = joinDateFormatter.date(from: "April 29 2018")
+  user.birthday = dateFormatter.date(from: "January 21 1900")
+  user.joinDate = dateFormatter.date(from: "April 29 2018")
   user.followersCount = randomInt
   user.followingCount = randomInt
   user.lifeSpentOnAnime = randomInt
@@ -100,8 +101,8 @@ func createAnime(id: String) -> Anime {
   anime.japaneseTitle = randomString
   anime.canonicalTitle = randomString
   anime.averageRating = randomString
-  anime.startDate = randomDate
-  anime.endDate = randomDate
+  anime.startDate = dateFormatter.date(from: "March 11 2001")
+  anime.endDate = dateFormatter.date(from: "June 09 2006")
   anime.popularityRank = randomInt
   anime.ratingRank = randomInt
   anime.subtype = randomAnimeSubtype
