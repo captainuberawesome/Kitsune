@@ -8,11 +8,43 @@
 import Marshal
 
 enum AnimeSubtype: String {
-  case ona, ova, tv, movie, music, special
+  case ona = "ONA", ova = "OVA", tv = "TV", movie, music, special
+  
+  var localizedDescription: String? {
+    switch self {
+    case .ona:
+      return R.string.animeDetails.ona()
+    case .ova:
+      return R.string.animeDetails.ova()
+    case .tv:
+      return R.string.animeDetails.tv()
+    case .movie:
+      return R.string.animeDetails.movie()
+    case .music:
+      return R.string.animeDetails.music()
+    case .special:
+      return R.string.animeDetails.special()
+    }
+  }
 }
 
 enum AnimeStatus: String {
   case current, finished, tba, unreleased, upcoming
+  
+  var localizedDescription: String? {
+    switch self {
+    case .current:
+      return R.string.animeDetails.current()
+    case .finished:
+      return R.string.animeDetails.finished()
+    case .tba:
+      return R.string.animeDetails.tba()
+    case .unreleased:
+      return R.string.animeDetails.unreleased()
+    case .upcoming:
+      return R.string.animeDetails.upcoming()
+    }
+  }
 }
 
 final class Anime: NSObject, TransientEntity {
@@ -34,7 +66,7 @@ final class Anime: NSObject, TransientEntity {
   var status: AnimeStatus?
   var posterImageSmall: String?
   var posterImageLarge: String?
-  var episodesCount: Int = 0
+  var episodeCount: Int = 0
   var episodeLength: Double = 0
   var youtubeVideoId: String?
   
@@ -70,7 +102,7 @@ extension Anime: Unmarshaling {
     static let status = "attributes.status"
     static let posterImageSmall = "attributes.posterImage.small"
     static let posterImageLarge = "attributes.posterImage.large"
-    static let episodesCount = "attributes.episodesCount"
+    static let episodeCount = "attributes.episodeCount"
     static let episodeLength = "attributes.episodeLength"
     static let youtubeVideoId = "attributes.youtubeVideoId"
   }
@@ -90,7 +122,7 @@ extension Anime: Unmarshaling {
     try? status = object.value(for: Keys.status)
     try? posterImageSmall = object.value(for: Keys.posterImageSmall)
     try? posterImageLarge = object.value(for: Keys.posterImageLarge)
-    try? episodesCount = object.value(for: Keys.episodesCount)
+    try? episodeCount = object.value(for: Keys.episodeCount)
     try? episodeLength = object.value(for: Keys.episodeLength)
     try? youtubeVideoId = object.value(for: Keys.youtubeVideoId)
   }

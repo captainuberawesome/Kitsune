@@ -28,7 +28,7 @@ final class RealmAnime: Object, RealmEntity {
   @objc dynamic var status: String?
   @objc dynamic var posterImageSmall: String?
   @objc dynamic var posterImageLarge: String?
-  @objc dynamic var episodesCount: Int = 0
+  @objc dynamic var episodeCount: Int = 0
   @objc dynamic var episodeLength: Double = 0
   @objc dynamic var youtubeVideoId: String?
   @objc dynamic var dateSaved: Date?
@@ -64,7 +64,7 @@ final class RealmAnime: Object, RealmEntity {
     anime.status = transient.status?.rawValue
     anime.posterImageSmall = transient.posterImageSmall
     anime.posterImageLarge = transient.posterImageLarge
-    anime.episodesCount = transient.episodesCount
+    anime.episodeCount = transient.episodeCount
     anime.episodeLength = transient.episodeLength
     anime.youtubeVideoId = transient.youtubeVideoId
     anime.dateSaved = transient.dateSaved
@@ -89,7 +89,7 @@ final class RealmAnime: Object, RealmEntity {
     transient.status = AnimeStatus(rawValue: (status ?? ""))
     transient.posterImageSmall = posterImageSmall
     transient.posterImageLarge = posterImageLarge
-    transient.episodesCount = episodesCount
+    transient.episodeCount = episodeCount
     transient.episodeLength = episodeLength
     transient.youtubeVideoId = youtubeVideoId
     transient.dateSaved = dateSaved

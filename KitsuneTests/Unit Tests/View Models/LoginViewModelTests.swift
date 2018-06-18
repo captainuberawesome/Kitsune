@@ -38,7 +38,7 @@ class LoginViewModelTests: XCTestCase {
           done()
         })
         .disposed(by: self.disposeBag)
-      viewModel.login(email: "email", password: "password")
+      viewModel.login(email: "email@email.com", password: "password")
       expect(mockState) == .loadingFinished
     }
   }
@@ -49,16 +49,21 @@ class LoginViewModelTests: XCTestCase {
     viewModel.state
       .subscribe(onNext: { state in
         expect(state) == mockState
-        if mockState == .initial {
+        switch mockState {
+        case .initial:
           mockState = .loadingStarted
-        } else {
+        case .loadingStarted:
+          mockState = .loadingFinished
+        case .loadingFinished:
+          mockState = .error(Constants.dependencyStubError)
+        case .error:
           mockState = .loadingFinished
         }
       }, onError: { error in
-        expect(error.localizedDescription) == Constants.dependencyStubError.localizedDescription
+        expect(error).to(beNil())
       })
       .disposed(by: disposeBag)
-    viewModel.login(email: "email", password: "password")
+    viewModel.login(email: "email@email.com", password: "password")
     expect(mockState) == .loadingFinished
   }
 }

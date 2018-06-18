@@ -74,8 +74,14 @@ func createUser(id: String) -> User {
   user.bio = randomString
   user.gender = randomString
   user.location = randomString
-  user.birthday = randomDate ?? Date()
-  user.joinDate = randomDate ?? Date()
+  let birthdayDateFormatter = DateFormatter()
+  birthdayDateFormatter.locale = Constants.appLocale
+  birthdayDateFormatter.dateFormat = "MMMM dd"
+  user.birthday = birthdayDateFormatter.date(from: "January 21")
+  let joinDateFormatter = DateFormatter()
+  joinDateFormatter.locale = Constants.appLocale
+  joinDateFormatter.dateFormat = "MMMM dd yyyy"
+  user.joinDate = joinDateFormatter.date(from: "April 29 2018")
   user.followersCount = randomInt
   user.followingCount = randomInt
   user.lifeSpentOnAnime = randomInt
@@ -102,7 +108,7 @@ func createAnime(id: String) -> Anime {
   anime.status = randomAnimeStatus
   anime.posterImageSmall = randomImageURLString
   anime.posterImageLarge = randomImageURLString
-  anime.episodesCount = randomInt
+  anime.episodeCount = randomInt
   anime.episodeLength = randomDouble
   anime.youtubeVideoId = randomImageURLString
   return anime

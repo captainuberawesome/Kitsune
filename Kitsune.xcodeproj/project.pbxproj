@@ -91,6 +91,8 @@
 		FDCAB4072095E6210000675D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F82095E6210000675D /* RealmService.swift */; };
 		FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3F92095E6210000675D /* RealmService+Generics.swift */; };
 		FDCAB4092095E6210000675D /* RealmService+Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */; };
+		FDEEFE8920D7942A00597C07 /* AnimeDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEFE8820D7942A00597C07 /* AnimeDetailInfoView.swift */; };
+		FDEEFE8B20D7AD8C00597C07 /* AnimeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEFE8A20D7AD8C00597C07 /* AnimeDetailView.swift */; };
 		FDFCF7D02096DE2300F7A901 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */; };
 		FDFCF7E02096EB0100F7A901 /* AnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */; };
 		FDFCF7E12096EB0100F7A901 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */; };
@@ -226,6 +228,8 @@
 		FDCAB3F82095E6210000675D /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		FDCAB3F92095E6210000675D /* RealmService+Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Generics.swift"; sourceTree = "<group>"; };
 		FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmService+Getters.swift"; sourceTree = "<group>"; };
+		FDEEFE8820D7942A00597C07 /* AnimeDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailInfoView.swift; sourceTree = "<group>"; };
+		FDEEFE8A20D7AD8C00597C07 /* AnimeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailView.swift; sourceTree = "<group>"; };
 		FDFCF7CF2096DE2300F7A901 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		FDFCF7DB2096EB0100F7A901 /* AnimeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeListViewController.swift; sourceTree = "<group>"; };
 		FDFCF7DE2096EB0100F7A901 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
@@ -467,6 +471,7 @@
 		FD31909F20D6B52C00017179 /* Anime Details */ = {
 			isa = PBXGroup;
 			children = (
+				FDEEFE8720D7940F00597C07 /* Views */,
 				FD3190A020D6B52C00017179 /* View Model */,
 				FD3190A320D6B6A000017179 /* AnimeDetailsViewController.swift */,
 				FD3190A120D6B54800017179 /* AnimeDetailsCoordinator.swift */,
@@ -670,6 +675,15 @@
 				FDCAB3FA2095E6210000675D /* RealmService+Getters.swift */,
 			);
 			path = "Realm Service";
+			sourceTree = "<group>";
+		};
+		FDEEFE8720D7940F00597C07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDEEFE8820D7942A00597C07 /* AnimeDetailInfoView.swift */,
+				FDEEFE8A20D7AD8C00597C07 /* AnimeDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FDFCF7CE2096DE1300F7A901 /* Home */ = {
@@ -1076,6 +1090,7 @@
 				FDCAB4012095E6210000675D /* EmptyResponse.swift in Sources */,
 				FD3190A220D6B54800017179 /* AnimeDetailsCoordinator.swift in Sources */,
 				FD35925B20B5ADF000EA634D /* UserDataService.swift in Sources */,
+				FDEEFE8B20D7AD8C00597C07 /* AnimeDetailView.swift in Sources */,
 				8B72985820C66A1700529723 /* ViewModelNetworkRequesting.swift in Sources */,
 				FDCAB4072095E6210000675D /* RealmService.swift in Sources */,
 				FD35925220B5A25C00EA634D /* NetworkService+MyProfile.swift in Sources */,
@@ -1095,6 +1110,7 @@
 				FDCAB3DE2095E5320000675D /* AppDependency.swift in Sources */,
 				FD3AE29220B6FBE90079636B /* ProfileCellViewModel.swift in Sources */,
 				FDCAB4082095E6210000675D /* RealmService+Generics.swift in Sources */,
+				FDEEFE8920D7942A00597C07 /* AnimeDetailInfoView.swift in Sources */,
 				FD3AE28820B6E7BE0079636B /* ProfileHeaderView.swift in Sources */,
 				FDCAB3E02095E5320000675D /* MainCoordinator.swift in Sources */,
 				FD3AE28D20B6F6CD0079636B /* ProfileCell.swift in Sources */,

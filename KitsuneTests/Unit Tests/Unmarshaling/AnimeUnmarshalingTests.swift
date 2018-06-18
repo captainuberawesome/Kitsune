@@ -41,7 +41,7 @@ class AnimeUnmarshalingTests: XCTestCase {
     let status = randomAnimeStatus
     let posterImageSmall = randomString
     let posterImageLarge = randomString
-    let episodesCount = randomInt
+    let episodeCount = randomInt
     let episodeLength = randomDouble
     let youtubeVideoId = randomString
     
@@ -61,7 +61,7 @@ class AnimeUnmarshalingTests: XCTestCase {
         "ratingRank": ratingRank,
         "subtype": subtype.rawValue,
         "status": status.rawValue,
-        "episodesCount": episodesCount,
+        "episodeCount": episodeCount,
         "episodeLength": episodeLength,
         "youtubeVideoId": youtubeVideoId,
         "posterImage": [
@@ -88,7 +88,7 @@ class AnimeUnmarshalingTests: XCTestCase {
     expect(anime?.status) == status
     expect(anime?.posterImageSmall) == posterImageSmall
     expect(anime?.posterImageLarge) == posterImageLarge
-    expect(anime?.episodesCount) == episodesCount
+    expect(anime?.episodeCount) == episodeCount
     expect(anime?.episodeLength).to(beCloseTo(episodeLength))
     expect(anime?.youtubeVideoId) == youtubeVideoId
   }

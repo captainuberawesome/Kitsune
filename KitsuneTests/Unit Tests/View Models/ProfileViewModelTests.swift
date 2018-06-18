@@ -114,13 +114,18 @@ class ProfileViewModelTests: XCTestCase {
     viewModel.state
       .subscribe(onNext: { state in
         expect(state) == mockState
-        if mockState == .initial {
+        switch mockState {
+        case .initial:
           mockState = .loadingStarted
-        } else {
+        case .loadingStarted:
+          mockState = .loadingFinished
+        case .loadingFinished:
+          mockState = .error(Constants.dependencyStubError)
+        case .error:
           mockState = .loadingFinished
         }
       }, onError: { error in
-        expect(error.localizedDescription) == Constants.dependencyStubError.localizedDescription
+        expect(error).to(beNil())
       })
       .disposed(by: disposeBag)
     
@@ -178,18 +183,11 @@ class ProfileViewModelTests: XCTestCase {
     
     let locationViewModel = ProfileCellViewModel(infoType: .location, value: user.location.capitalized,
                                                  cellReuseIdentifier: reuseIdentifier)
-    let birthdayDateFormatter = DateFormatter()
-    birthdayDateFormatter.locale = Constants.appLocale
-    birthdayDateFormatter.dateFormat = "MMMM dd"
-    let birthdayString: String? = birthdayDateFormatter.string(from: user.birthday!) + user.birthday!.daySuffix
+    
+    let birthdayString = "January 21st"
     let birthdayViewModel = ProfileCellViewModel(infoType: .birthday, value: birthdayString, cellReuseIdentifier: reuseIdentifier)
     
-    let joinDateFormatter = DateFormatter()
-    joinDateFormatter.locale = Constants.appLocale
-    joinDateFormatter.dateFormat = "MMMM dd"
-    var joinDateString = joinDateFormatter.string(from: user.joinDate!) + user.joinDate!.daySuffix + ", "
-    joinDateFormatter.dateFormat = "yyyy"
-    joinDateString.append(joinDateFormatter.string(from: user.joinDate!))
+    let joinDateString = "April 29th, 2018"
     let joinDateViewModel = ProfileCellViewModel(infoType: .joinDate, value: joinDateString, cellReuseIdentifier: reuseIdentifier)
     
     for (index, viewModel) in viewModels.enumerated() {

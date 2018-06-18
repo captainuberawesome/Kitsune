@@ -7,3 +7,21 @@
 */
 
 "title" = "ANIME DETAILS";
+"ona" = "ONA";
+"ova" = "OVA";
+"tv" = "TV";
+"movie" = "Movie";
+"music" = "Music";
+"special" = "Special";
+"current" = "Current";
+"finished" = "Finished";
+"tba" = "TBA";
+"unreleased" = "Unreleased";
+"upcoming" = "Upcoming";
+"dates.conjunction" = "to";
+"english" = "English";
+"japanese" = "Japanese";
+"type" = "Type";
+"episodes" = "Episodes";
+"status" = "Status";
+"aired" = "Aired";

@@ -85,6 +85,7 @@ class LoginViewModel: ViewModelNetworkRequesting {
           self.state.onNext(.loadingFinished)
           self.onDidFinishLogin.onNext(())
         }, onError: { error in
+          self.state.onNext(.loadingFinished)
           self.state.onNext(.error(error))
         })
         .disposed(by: disposeBag)

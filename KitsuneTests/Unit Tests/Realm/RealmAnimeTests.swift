@@ -46,7 +46,7 @@ class RealmAnimeTests: XCTestCase {
         expect(dbAnime?.status) == anime.status
         expect(dbAnime?.posterImageSmall) == anime.posterImageSmall
         expect(dbAnime?.posterImageLarge) == anime.posterImageLarge
-        expect(dbAnime?.episodesCount) == anime.episodesCount
+        expect(dbAnime?.episodeCount) == anime.episodeCount
         expect(dbAnime?.episodeLength) == anime.episodeLength
         expect(dbAnime?.youtubeVideoId) == anime.youtubeVideoId
         

@@ -221,6 +221,21 @@ class AnimeViewModelTests: XCTestCase {
     expect(canLoadMorePagesChanged) == true
   }
   
+  func testSelection() {
+    let anime = Constants.responseAnime.first!
+    let viewModel = AnimeListViewModel(dependencies: dependency)
+    var wasSelected = false
+    viewModel.onSelected
+      .subscribe(onNext: { selectedAnime in
+        expect(selectedAnime.id) == anime.id
+        wasSelected = true
+      })
+      .disposed(by: disposeBag)
+    viewModel.reloadData()
+    viewModel.cellViewModels.value.first!.select()
+    expect(wasSelected) == true
+  }
+  
   // MARK: - Helper functions
   
   private func compareViewModels(_ viewModels: [AnimeCellViewModel], toAnimeArray animeArray: [Anime]) {
