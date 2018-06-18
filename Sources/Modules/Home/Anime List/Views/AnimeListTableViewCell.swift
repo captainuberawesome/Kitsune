@@ -97,6 +97,7 @@ class AnimeListTableViewCell: UITableViewCell {
     disclosureIndicatorImageView.snp.makeConstraints { make in
       make.trailing.equalToSuperview().offset(-10)
       make.centerY.equalToSuperview()
+      make.height.width.equalTo(30)
       make.leading.equalTo(titleLabel.snp.trailing).offset(10)
     }
   }
