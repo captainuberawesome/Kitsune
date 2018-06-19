@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: - Properties
   
-  private lazy var appDependency = AppDependency.makeDefault()
+  private lazy var appDependency = AppDependency.default
   private lazy var mainCoordinator: MainCoordinator = self.getMainCoordinator()
   var window: UIWindow?
   

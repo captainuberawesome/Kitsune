@@ -29,7 +29,7 @@ class RealmAnimeTests: XCTestCase {
     waitUntil(timeout: 1.0) { done in
       self.realm.save(object: anime) {
         
-        let dbAnime = self.realm.anime(withId: anime.id)
+        let dbAnime = self.realm.object(ofType: RealmAnime.self, forPrimaryKey: anime.id)?.transient()
         
         expect(dbAnime).notTo(beNil())
         expect(dbAnime?.id) == anime.id

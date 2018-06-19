@@ -15,7 +15,7 @@ private extension Constants {
 
 class AnimeListViewModel: ViewModelNetworkRequesting {
   
-  typealias Dependencies = HasAnimeListService & HasReachabilityService
+  typealias Dependencies = HasAnimeService & HasReachabilityService
   
   enum Mode {
     case searching, `default`
@@ -97,15 +97,15 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
     
     switch mode {
     case .default:
-      let networkRequestSubscription = dependencies.animeListService.animeList(limit: paginationLimit, offset: offset)
+      let networkRequestSubscription = dependencies.animeService.animeList(limit: paginationLimit, offset: offset)
               .subscribe(onNext: onNext, onError: onError)
       networkRequestSubscription.disposed(by: disposeBag)
       self.networkRequestSubscription = networkRequestSubscription
     case .searching:
       if let searchText = currentSearchText {
-        let networkRequestSubscription = dependencies.animeListService.animeListSearch(text: searchText,
-                                                                                       limit: paginationLimit,
-                                                                                       offset: offset)
+        let networkRequestSubscription = dependencies.animeService.animeListSearch(text: searchText,
+                                                                                   limit: paginationLimit,
+                                                                                   offset: offset)
           .subscribe(onNext: onNext, onError: onError)
         networkRequestSubscription.disposed(by: disposeBag)
         self.networkRequestSubscription = networkRequestSubscription

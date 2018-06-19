@@ -28,7 +28,7 @@ class RealmUserTests: XCTestCase {
     waitUntil(timeout: 1.0) { done in
       self.realm.save(object: user) {
         
-        let dbUser = self.realm.user(withId: user.id)
+        let dbUser = self.realm.object(ofType: RealmUser.self, forPrimaryKey: user.id)?.transient()
         
         expect(dbUser).notTo(beNil())
         expect(dbUser?.id) == user.id

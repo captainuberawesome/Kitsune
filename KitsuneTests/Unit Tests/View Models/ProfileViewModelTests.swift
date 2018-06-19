@@ -18,8 +18,7 @@ class ProfileViewModelTests: XCTestCase {
   let disposeBag = DisposeBag()
   
   override func tearDown() {
-    dependency.userDataService.clearData()
-    dependency.realmService.clear()
+    dependency.savedDataClearingService.clearSavedData()
   }
   
   func testLoadCachedData() {
@@ -27,7 +26,7 @@ class ProfileViewModelTests: XCTestCase {
     
     expect(viewModel.isLoggedIn) == true
     let activeUserId = randomString
-    dependency.userDataService.activeUserId = activeUserId
+    dependency.userService.saveActiveUserId(activeUserId)
     let user = createUser(id: activeUserId)
     
     var createdCellViewModels = false
@@ -56,7 +55,7 @@ class ProfileViewModelTests: XCTestCase {
       .disposed(by: disposeBag)
     
     waitUntil { done in
-      self.dependency.realmService.save(object: user) {
+      self.dependency.userService.save(user: user) {
         viewModel.loadCachedData()
         expect(viewModel.avatar) == URL(string: user.avatar)
         expect(viewModel.coverImage) == URL(string: user.coverImage)

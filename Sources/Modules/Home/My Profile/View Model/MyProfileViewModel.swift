@@ -15,8 +15,7 @@ private extension Constants {
 
 class MyProfileViewModel: ViewModelNetworkRequesting {
   
-  typealias Dependencies = HasLoginStateService & HasMyProfileService
-    & HasUserDataService & HasRealmService & HasReachabilityService
+  typealias Dependencies = HasLoginStateService & HasUserService & HasReachabilityService
 
   private(set) var cellViewModels = BehaviorRelay<[ProfileCellViewModel]>(value: [])
   private let dependencies: Dependencies
@@ -40,23 +39,22 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
   // MARK: - Public
   
   func loadCachedData() {
-    guard let activeUserId = dependencies.userDataService.activeUserId else { return }
-    user = dependencies.realmService.user(withId: activeUserId)
+    user = dependencies.userService.savedActiveUser()
     onUserUpdated.onNext(())
     cellViewModels.accept(createViewModels(withUser: user))
   }
   
   func reloadData() {
     state.onNext(.loadingStarted)
-    dependencies.myProfileService.myProfile()
+    dependencies.userService.myProfile()
       .subscribe(onNext: { userResponse in
         self.state.onNext(.loadingFinished)
         if let user = userResponse.user {
           self.user = user
           self.onUserUpdated.onNext(())
           self.cellViewModels.accept(self.createViewModels(withUser: user))
-          self.dependencies.userDataService.activeUserId = user.id
-          self.dependencies.realmService.save(object: user)
+          self.dependencies.userService.saveActiveUserId(user.id)
+          self.dependencies.userService.save(user: user)
         }
       }, onError: { error in
         self.state.onNext(.loadingFinished)

@@ -20,9 +20,6 @@ protocol TransientEntity {
   associatedtype RealmType: RealmEntity where RealmType.TransientType == Self
 }
 
-typealias VoidBlock = (() -> Void)
-typealias RealmBlock = ((Realm) -> Void)
-
 final class RealmService: NSObject {
 
   enum StoreType {
@@ -33,7 +30,7 @@ final class RealmService: NSObject {
   
   private let storeType: StoreType
   private let inMemoryStoreIdentifier: String
-  let realm: Realm
+  private let realm: Realm
   
   // MARK: - Init
   
@@ -57,13 +54,13 @@ final class RealmService: NSObject {
   
   // MARK: - Public
   
-  func clear(completion: VoidBlock? = nil) {
+  func clear(completion: (() -> Void)? = nil) {
     writeAsync(writeBlock: { realm in
       realm.deleteAll()
     }, completion: completion)
   }
   
-  func writeAsync(writeBlock: @escaping RealmBlock, completion: VoidBlock? = nil) {
+  func writeAsync(writeBlock: @escaping ((Realm) -> Void), completion: (() -> Void)? = nil) {
     DispatchQueue.global().async {
       self.writeSync(block: writeBlock)
       DispatchQueue.main.async {
@@ -74,7 +71,7 @@ final class RealmService: NSObject {
   
   // MARK: Private
   
-  private func writeSync(block: @escaping RealmBlock) {
+  private func writeSync(block: @escaping ((Realm) -> Void)) {
     do {
       let realm = RealmService.createRealmStore(storeType: storeType, inMemoryIdentifier: inMemoryStoreIdentifier)
       try realm.write {
@@ -83,5 +80,11 @@ final class RealmService: NSObject {
     } catch let error {
       fatalError("Can't write to Realm instance: \(error)")
     }
+  }
+  
+  // Get object
+  
+  func object<Element: Object, KeyType>(ofType type: Element.Type, forPrimaryKey key: KeyType) -> Element? {
+    return realm.object(ofType: type, forPrimaryKey: key)
   }
 }

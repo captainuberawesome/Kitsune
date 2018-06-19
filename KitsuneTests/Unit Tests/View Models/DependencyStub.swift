@@ -23,28 +23,43 @@ extension Constants {
   static let responseAnimeSearch: [Anime] = createAnimeList(count: animeListArrayCount)
 }
 
-struct DependencyStub: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService,
-  HasAnimeListService, HasReachabilityService {
-  private static let inMemoryIdentifier = randomString
+struct DependencyStub: HasAuthService, HasLoginStateService, HasUserService, HasAnimeService, HasReachabilityService,
+  HasSavedDataClearingService {
   var authService: AuthNetworkProtocol = AuthServiceStub()
   var loginStateService: LoginStateNetworkProtocol = LoginStateStub()
-  var myProfileService: MyProfileNetworkProtocol = MyProfileStub()
-  var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataService")
-  var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
-  var animeListService: AnimeListNetworkProtocol = AnimeListStub()
   var reachabilityService: ReachabilityProtocol? = ReachabilityServiceStub()
+  var userService: UserService
+  var animeService: AnimeService
+  var savedDataClearingService: SavedDataClearingService
+  
+  init() {
+    let inMemoryIdentifier = randomString
+    let realmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
+    let userDataService = UserDataService(serviceIdentifier: "mockUserDataService")
+    userService = UserService(realmService: realmService, userNetworkService: MyProfileStub(), userDataService: userDataService)
+    animeService = AnimeService(realmService: realmService, animeNetworkService: AnimeListStub())
+    savedDataClearingService = SavedDataClearingService(userDataService: userDataService, realmService: realmService)
+  }
 }
 
-struct DependencyFailureStub: HasAuthService, HasLoginStateService, HasMyProfileService, HasUserDataService, HasRealmService,
-  HasAnimeListService, HasReachabilityService {
-  private static let inMemoryIdentifier = randomString
+struct DependencyFailureStub: HasAuthService, HasLoginStateService, HasUserService, HasAnimeService, HasReachabilityService,
+  HasSavedDataClearingService {
   var authService: AuthNetworkProtocol = AuthServiceFailureStub()
   var loginStateService: LoginStateNetworkProtocol = LoginStateFailureStub()
-  var myProfileService: MyProfileNetworkProtocol = MyProfileFailureStub()
-  var userDataService: UserDataService = UserDataService(serviceIdentifier: "mockUserDataFailureService")
-  var realmService: RealmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
-  var animeListService: AnimeListNetworkProtocol = AnimeListFailureStub()
   var reachabilityService: ReachabilityProtocol? = ReachabilityServiceStub()
+  var userService: UserService
+  var animeService: AnimeService
+  var savedDataClearingService: SavedDataClearingService
+  
+  init() {
+    let inMemoryIdentifier = randomString
+    let realmService = RealmService(storeType: .inMemory, inMemoryIdentifier: inMemoryIdentifier)
+    let userDataService = UserDataService(serviceIdentifier: "mockUserDataFailureService")
+    userService = UserService(realmService: realmService, userNetworkService: MyProfileFailureStub(),
+                              userDataService: userDataService)
+    animeService = AnimeService(realmService: realmService, animeNetworkService: AnimeListFailureStub())
+    savedDataClearingService = SavedDataClearingService(userDataService: userDataService, realmService: realmService)
+  }
 }
 
 struct AuthServiceStub: AuthNetworkProtocol {
