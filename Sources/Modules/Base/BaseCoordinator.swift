@@ -16,7 +16,7 @@ enum PresentationType {
 protocol BaseCoordinator: class {
   var disposeBag: DisposeBag { get }
   var childCoordinators: [BaseCoordinator] { get set }
-  var onRootControllerDidDeinit: PublishSubject<Void> { get }
+  var onDidFinish: (() -> Void)? { get set }
   var topController: UIViewController { get }
   var topCoordinator: BaseCoordinator? { get }
   var presentationType: PresentationType { get set }
@@ -45,11 +45,15 @@ extension BaseCoordinator {
   }
   
   func addChildCoordinator(_ coordinator: BaseCoordinator) {
+    coordinator.onDidFinish = { [unowned self, unowned coordinator] in
+      self.removeChildCoordinator(coordinator)
+    }
     childCoordinators.append(coordinator)
-    coordinator.onRootControllerDidDeinit
-      .subscribe(onCompleted: { [unowned self] in
-        self.remove(child: coordinator)
-      })
-      .disposed(by: disposeBag)
+  }
+  
+  func removeChildCoordinator(_ coordinator: BaseCoordinator) {
+    if let index = childCoordinators.index(where: { $0 === coordinator }) {
+      childCoordinators.remove(at: index)
+    }
   }
 }

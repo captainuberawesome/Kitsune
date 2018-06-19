@@ -9,12 +9,7 @@ import UIKit
 import RxSwift
 
 class HomeTabBarController: TabBarController, NavigationBarHiding {
-  private(set) var onDidDeinit = PublishSubject<Void>()
-  
-  deinit {
-    onDidDeinit.onNext(())
-  }
-  
+
   func setupTabBarAppearance() {
     tabBar.isTranslucent = false
     tabBar.backgroundColor = .appPrimary

@@ -9,37 +9,36 @@ import UIKit
 import RxSwift
 
 class HomeCoordinator: NavigationFlowCoordinator {
-  private(set) var onRootControllerDidDeinit = PublishSubject<Void>()
   private let appDependency: AppDependency
+  private let navigationObserver: NavigationObserver
+  
   let disposeBag = DisposeBag()
+  var onDidFinish: (() -> Void)?
   
   var navigationController: UINavigationController
   var childCoordinators: [BaseCoordinator] = []
   var presentationType: PresentationType = .push
   weak var logoutHandler: LogoutHandler?
   
-  private var onFinishedLogin: (() -> Void)?
+  private var onDidFinishLogin: (() -> Void)?
   
-  init(appDependency: AppDependency, logoutHandler: LogoutHandler, navigationController: UINavigationController) {
+  init(appDependency: AppDependency, logoutHandler: LogoutHandler,
+       navigationController: UINavigationController, navigationObserver: NavigationObserver) {
     self.appDependency = appDependency
     self.logoutHandler = logoutHandler
     self.navigationController = navigationController
+    self.navigationObserver = navigationObserver
   }
   
   // MARK: - Navigation
   
   func start() {
-    showHome()
+    showHome(isStarting: true)
   }
   
-  private func showHome() {
+  private func showHome(isStarting: Bool = false) {
     navigationController.setNavigationBarHidden(true, animated: false)
     let tabBarController = HomeTabBarController()
-    tabBarController.onDidDeinit
-      .subscribe(onNext: { [weak self] in
-        self?.onRootControllerDidDeinit.onCompleted()
-      })
-      .disposed(by: disposeBag)
     
     let animeListViewController = createAnimeListViewController()
     let animeListNavigationController = NavigationController(rootViewController: animeListViewController)
@@ -51,6 +50,10 @@ class HomeCoordinator: NavigationFlowCoordinator {
     
     tabBarController.viewControllers = [animeListNavigationController, myProfileNavigationController]
     tabBarController.setupTabBarAppearance()
+    
+    if isStarting {
+      navigationObserver.addObserver(self, forPopOf: tabBarController)
+    }
     
     switch presentationType {
     case .push:
@@ -64,7 +67,8 @@ class HomeCoordinator: NavigationFlowCoordinator {
   private func showDetails(anime: Anime) {
     let coordinator = AnimeDetailsCoordinator(anime: anime,
                                               appDependency: appDependency,
-                                              navigationController: navigationController)
+                                              navigationController: navigationController,
+                                              navigationObserver: navigationObserver)
     addChildCoordinator(coordinator)
     coordinator.start()
   }
@@ -80,7 +84,7 @@ class HomeCoordinator: NavigationFlowCoordinator {
       .disposed(by: disposeBag)
     let viewController = AnimeListViewController(viewModel: viewModel)
     viewController.navigationItem.title = R.string.animeList.title()
-    viewController.tabBarItem = UITabBarItem(title: R.string.animeList.title(), image: R.image.animeTopList(),
+    viewController.tabBarItem = UITabBarItem(title: R.string.animeList.title(), image: R.image.listIcon(),
                                              selectedImage: nil)
     return viewController
   }
@@ -90,7 +94,7 @@ class HomeCoordinator: NavigationFlowCoordinator {
     let viewController = MyProfileViewController(viewModel: viewModel)
     viewController.dataSource = self
     viewController.navigationItem.title = R.string.profile.title()
-    viewController.tabBarItem = UITabBarItem(title: R.string.profile.title(), image: R.image.myProfile(),
+    viewController.tabBarItem = UITabBarItem(title: R.string.profile.title(), image: R.image.profileIcon(),
                                              selectedImage: nil)
     let logoutButton = UIBarButtonItem(title: R.string.profile.logoutButtonTitle(), style: .plain,
                                        target: nil, action: nil)
@@ -108,7 +112,7 @@ class HomeCoordinator: NavigationFlowCoordinator {
     if viewModel.isLoggedIn {
       viewController.navigationItem.rightBarButtonItem = logoutButton
     }
-    onFinishedLogin = { [weak viewController, logoutButton] in
+    onDidFinishLogin = { [weak viewController, logoutButton] in
       viewController?.navigationItem.rightBarButtonItem = logoutButton
       viewController?.configureForLoggedIn()
     }
@@ -119,7 +123,7 @@ class HomeCoordinator: NavigationFlowCoordinator {
     let viewModel = LoginViewModel(dependencies: appDependency)
     viewModel.onDidFinishLogin
       .subscribe(onNext: { [weak self] in
-        self?.onFinishedLogin?()
+        self?.onDidFinishLogin?()
       })
     .disposed(by: disposeBag)
     let viewController = LoginViewController(viewModel: viewModel)

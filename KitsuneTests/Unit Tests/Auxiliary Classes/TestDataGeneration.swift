@@ -47,14 +47,14 @@ var randomImageURLString: String {
   return "https://images.com/images/\(randomString).jpg"
 }
 
-var randomAnimeSubtype: AnimeSubtype {
-  let availableValues: [AnimeSubtype] = [.ona, .ova, .tv, .movie, .music, .special]
+var randomAnimeSubtype: Anime.Subtype {
+  let availableValues: [Anime.Subtype] = [.ona, .ova, .tv, .movie, .music, .special]
   let index = Int(arc4random_uniform(UInt32(availableValues.count - 1)))
   return availableValues[index]
 }
 
-var randomAnimeStatus: AnimeStatus {
-  let availableValues: [AnimeStatus] = [.current, .finished, .tba, .unreleased, .upcoming]
+var randomAnimeStatus: Anime.Status {
+  let availableValues: [Anime.Status] = [.current, .finished, .tba, .unreleased, .upcoming]
   let index = Int(arc4random_uniform(UInt32(availableValues.count - 1)))
   return availableValues[index]
 }
@@ -73,7 +73,7 @@ var dateFormatter: DateFormatter = {
 }()
 
 func createUser(id: String) -> User {
-  let user = User()
+  var user = User()
   user.id = id
   user.name = randomString
   user.slug = randomString
@@ -94,7 +94,7 @@ func createUser(id: String) -> User {
 }
 
 func createAnime(id: String) -> Anime {
-  let anime = Anime()
+  var anime = Anime()
   anime.id = id
   anime.synopsis = randomString
   anime.englishTitle = randomString

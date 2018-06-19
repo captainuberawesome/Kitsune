@@ -7,48 +7,48 @@
 
 import Marshal
 
-enum AnimeSubtype: String {
-  case ona = "ONA", ova = "OVA", tv = "TV", movie, music, special
-  
-  var localizedDescription: String? {
-    switch self {
-    case .ona:
-      return R.string.animeDetails.ona()
-    case .ova:
-      return R.string.animeDetails.ova()
-    case .tv:
-      return R.string.animeDetails.tv()
-    case .movie:
-      return R.string.animeDetails.movie()
-    case .music:
-      return R.string.animeDetails.music()
-    case .special:
-      return R.string.animeDetails.special()
-    }
-  }
-}
-
-enum AnimeStatus: String {
-  case current, finished, tba, unreleased, upcoming
-  
-  var localizedDescription: String? {
-    switch self {
-    case .current:
-      return R.string.animeDetails.current()
-    case .finished:
-      return R.string.animeDetails.finished()
-    case .tba:
-      return R.string.animeDetails.tba()
-    case .unreleased:
-      return R.string.animeDetails.unreleased()
-    case .upcoming:
-      return R.string.animeDetails.upcoming()
-    }
-  }
-}
-
-final class Anime: NSObject, TransientEntity {
+struct Anime: TransientEntity {
   typealias RealmType = RealmAnime
+  
+  enum Subtype: String {
+    case ona = "ONA", ova = "OVA", tv = "TV", movie, music, special
+    
+    var localizedDescription: String? {
+      switch self {
+      case .ona:
+        return R.string.animeDetails.ona()
+      case .ova:
+        return R.string.animeDetails.ova()
+      case .tv:
+        return R.string.animeDetails.tv()
+      case .movie:
+        return R.string.animeDetails.movie()
+      case .music:
+        return R.string.animeDetails.music()
+      case .special:
+        return R.string.animeDetails.special()
+      }
+    }
+  }
+  
+  enum Status: String {
+    case current, finished, tba, unreleased, upcoming
+    
+    var localizedDescription: String? {
+      switch self {
+      case .current:
+        return R.string.animeDetails.current()
+      case .finished:
+        return R.string.animeDetails.finished()
+      case .tba:
+        return R.string.animeDetails.tba()
+      case .unreleased:
+        return R.string.animeDetails.unreleased()
+      case .upcoming:
+        return R.string.animeDetails.upcoming()
+      }
+    }
+  }
   
   // MARK: Mappable Properties
   
@@ -62,8 +62,8 @@ final class Anime: NSObject, TransientEntity {
   var endDate: Date?
   var popularityRank: Int = 0
   var ratingRank: Int = 0
-  var subtype: AnimeSubtype?
-  var status: AnimeStatus?
+  var subtype: Subtype?
+  var status: Status?
   var posterImageSmall: String?
   var posterImageLarge: String?
   var episodeCount: Int = 0
@@ -76,13 +76,12 @@ final class Anime: NSObject, TransientEntity {
   
   // MARK: Init
   
-  override init() {
-    super.init()
+  init(object: MarshaledObject) throws {
+    try unmarshal(object: object)
   }
   
-  init(object: MarshaledObject) throws {
-    super.init()
-    try unmarshal(object: object)
+  init() {
+    
   }
 }
 
@@ -107,7 +106,7 @@ extension Anime: Unmarshaling {
     static let youtubeVideoId = "attributes.youtubeVideoId"
   }
   
-  func unmarshal(object: MarshaledObject) throws {
+  mutating func unmarshal(object: MarshaledObject) throws {
     try id = object.value(for: Keys.id)
     try? synopsis = object.value(for: Keys.synopsis)
     try? englishTitle = object.value(for: Keys.englishTitle)

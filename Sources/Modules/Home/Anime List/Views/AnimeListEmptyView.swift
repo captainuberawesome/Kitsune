@@ -9,7 +9,7 @@ import UIKit
 
 class AnimeListEmptyView: UIView {
   private let containerView = UIView()
-  private let imageView = UIImageView(image: R.image.search()?.withRenderingMode(.alwaysTemplate))
+  private let imageView = UIImageView(image: R.image.searchIcon()?.withRenderingMode(.alwaysTemplate))
   private let emptyLabel = UILabel()
   
   // MARK: Init
@@ -52,7 +52,7 @@ class AnimeListEmptyView: UIView {
   
   private func setupEmptyLabel() {
     containerView.addSubview(emptyLabel)
-    emptyLabel.font = UIFont.appFont(ofSize: 20)
+    emptyLabel.font = UIFont.largeTitleFont
     emptyLabel.textColor = .appDarkColor
     emptyLabel.textAlignment = .center
     emptyLabel.numberOfLines = 0

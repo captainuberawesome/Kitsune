@@ -22,6 +22,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
   private let dependencies: Dependencies
   private var user: User?
   private let disposeBag = DisposeBag()
+  let onUserUpdated = PublishSubject<Void>()
   let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
   
   var isLoggedIn: Bool {
@@ -41,6 +42,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
   func loadCachedData() {
     guard let activeUserId = dependencies.userDataService.activeUserId else { return }
     user = dependencies.realmService.user(withId: activeUserId)
+    onUserUpdated.onNext(())
     cellViewModels.accept(createViewModels(withUser: user))
   }
   
@@ -51,6 +53,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
         self.state.onNext(.loadingFinished)
         if let user = userResponse.user {
           self.user = user
+          self.onUserUpdated.onNext(())
           self.cellViewModels.accept(self.createViewModels(withUser: user))
           self.dependencies.userDataService.activeUserId = user.id
           self.dependencies.realmService.save(object: user)
@@ -81,10 +84,10 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
     
     let birthdayDateFormatter = DateFormatter()
     birthdayDateFormatter.locale = Constants.appLocale
-    birthdayDateFormatter.dateFormat = "MMMM dd"
+    birthdayDateFormatter.dateFormat = "MMMM"
     var birthdayString: String? = nil
     if let date = user?.birthday {
-      birthdayString = birthdayDateFormatter.string(from: date) + date.daySuffix
+      birthdayString = birthdayDateFormatter.string(from: date) + " " + (date.dayWithOrdinalSuffix ?? "")
     } else if user != nil {
       birthdayString = R.string.profile.defaultValue()
     }
@@ -92,10 +95,10 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
     
     let joinDateFormatter = DateFormatter()
     joinDateFormatter.locale = Constants.appLocale
-    joinDateFormatter.dateFormat = "MMMM dd"
+    joinDateFormatter.dateFormat = "MMMM"
     var joinDateString: String? = nil
     if let date = user?.joinDate {
-      joinDateString = joinDateFormatter.string(from: date) + date.daySuffix + ", "
+      joinDateString = joinDateFormatter.string(from: date) + " " + (date.dayWithOrdinalSuffix ?? "") + ", "
       joinDateFormatter.dateFormat = "yyyy"
       joinDateString?.append(joinDateFormatter.string(from: date))
     } else if user != nil {
@@ -113,7 +116,7 @@ class MyProfileViewModel: ViewModelNetworkRequesting {
       .skip(1)
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] isReachable in
-          if isReachable && self?.user == nil && (try? self!.state.value())
+          if isReachable && self?.user == nil && (try? self?.state.value())
             != ViewModelNetworkRequestingState.initial {
             self?.reloadData()
           }

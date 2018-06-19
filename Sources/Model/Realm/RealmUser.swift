@@ -70,7 +70,7 @@ final class RealmUser: Object, RealmEntity {
   // MARK: - Transient Entity
   
   func transient() -> User {
-    let transient = User()
+    var transient = User()
     transient.id = id
     transient.name = name
     transient.slug = slug

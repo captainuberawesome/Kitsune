@@ -58,7 +58,7 @@ class AnimeListErrorView: UIView {
   
   private func setupWarningLabel() {
     containerView.addSubview(warningLabel)
-    warningLabel.font = UIFont.appFont(ofSize: 20)
+    warningLabel.font = UIFont.largeTitleFont
     warningLabel.textColor = .appDarkColor
     warningLabel.textAlignment = .center
     warningLabel.numberOfLines = 0

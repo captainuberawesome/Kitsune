@@ -7,7 +7,7 @@
 
 import Marshal
 
-final class User: NSObject, TransientEntity {
+struct User: TransientEntity {
   typealias RealmType = RealmUser
   
   // MARK: Mappable Properties
@@ -31,13 +31,12 @@ final class User: NSObject, TransientEntity {
   
   // MARK: Init
   
-  override init() {
-    super.init()
+  init(object: MarshaledObject) throws {
+    try unmarshal(object: object)
   }
   
-  init(object: MarshaledObject) throws {
-    super.init()
-    try unmarshal(object: object)
+  init() {
+    
   }
 }
 
@@ -61,7 +60,7 @@ extension User: Unmarshaling {
     static let coverImage = "attributes.coverImage.original"
   }
   
-  func unmarshal(object: MarshaledObject) throws {
+  mutating func unmarshal(object: MarshaledObject) throws {
     try id = object.value(for: Keys.id)
     try? name = object.value(for: Keys.name)
     try? slug = object.value(for: Keys.slug)

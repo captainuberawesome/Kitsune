@@ -12,6 +12,17 @@ protocol MyProfileViewControllerDataSource: class {
   func getLoginViewController() -> LoginViewController?
 }
 
+private extension Constants {
+  static var titles: [ProfileCellViewModel.InfoType: String?] = [.gender: R.string.profile.gender(),
+                                                                 .location: R.string.profile.location(),
+                                                                 .birthday: R.string.profile.birthday(),
+                                                                 .joinDate: R.string.profile.joinDate()]
+  static var icons: [ProfileCellViewModel.InfoType: UIImage?] = [.gender: R.image.genderIcon(),
+                                                                 .location: R.image.locationIcon(),
+                                                                 .birthday: R.image.birthdayIcon(),
+                                                                 .joinDate: R.image.dateIcon()]
+}
+
 class MyProfileViewController: BaseViewController {
   
   private let loginContainerView = UIView()
@@ -19,7 +30,6 @@ class MyProfileViewController: BaseViewController {
   private let profileHeaderView = ProfileHeaderView()
   private let tableView = UITableView()
   private let viewModel: MyProfileViewModel
-  private let tableDataSource = ProfileDataSource()
   private let disposeBag = DisposeBag()
   
   weak var dataSource: MyProfileViewControllerDataSource?
@@ -71,7 +81,6 @@ class MyProfileViewController: BaseViewController {
   }
   
   private func setupTableView() {
-    tableDataSource.configure(withTableView: tableView, viewModel: viewModel)
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
     tableView.separatorStyle = .none
@@ -81,6 +90,24 @@ class MyProfileViewController: BaseViewController {
     }
     tableView.tableFooterView = UIView(frame: .zero)
     tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
+    
+    bindTableView()
+  }
+  
+  private func bindTableView() {
+    viewModel.cellViewModels
+      .bind(to: tableView.rx.items(cellIdentifier: ProfileCell.reuseIdentifier,
+                                   cellType: ProfileCell.self)) { _, cellViewModel, cell in
+        if let icon = Constants.icons[cellViewModel.infoType] as? UIImage,
+          let title = Constants.titles[cellViewModel.infoType] as? String {
+          cell.configure(withIcon: icon, title: title, value: cellViewModel.value)
+        }
+        cell.selectionStyle = .none
+      }
+      .disposed(by: disposeBag)
+    tableView.rx
+      .setDelegate(self)
+      .disposed(by: disposeBag)
   }
   
   // MARK: - Configure
@@ -93,6 +120,21 @@ class MyProfileViewController: BaseViewController {
       make.edges.equalToSuperview()
     }
     addChildViewController(loginViewController, toView: loginContainerView)
+  }
+  
+  // MARK: - View Model
+  
+  private func bindViewModel() {
+    viewModel.state
+      .subscribe(onError: { [weak self] error in
+        self?.handle(error: error)
+      })
+      .disposed(by: disposeBag)
+    viewModel.onUserUpdated
+      .subscribe(onNext: { [weak self, unowned viewModel] in
+        self?.profileHeaderView.configure(viewModel: viewModel)
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: - Public
@@ -108,14 +150,12 @@ class MyProfileViewController: BaseViewController {
   func configureForLoggedOut() {
     addLoginViewController()
   }
-  
-  // MARK: - View Model
-  
-  private func bindViewModel() {
-    viewModel.state
-      .subscribe(onError: { [weak self] error in
-        self?.handle(error: error)
-      })
-      .disposed(by: disposeBag)
+}
+
+// MARK: - UITableViewDelegate
+
+extension MyProfileViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return CGFloat.leastNormalMagnitude
   }
 }

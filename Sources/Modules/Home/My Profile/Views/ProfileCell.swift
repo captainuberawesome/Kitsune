@@ -47,7 +47,7 @@ class ProfileCell: UITableViewCell {
   
   private func setupTitleLabel() {
     contentView.addSubview(titleLabel)
-    titleLabel.font = UIFont.boldAppFont(ofSize: 16)
+    titleLabel.font = UIFont.titleFont
     titleLabel.textColor = UIColor.appDarkColor
     titleLabel.snp.makeConstraints { make in
       make.leading.equalTo(iconImageView.snp.trailing).offset(10)
@@ -57,7 +57,7 @@ class ProfileCell: UITableViewCell {
   
   private func setupValueLabel() {
     contentView.addSubview(valueLabel)
-    valueLabel.font = UIFont.appFont(ofSize: 16)
+    valueLabel.font = UIFont.textFont
     valueLabel.textColor = UIColor.appDarkColor
     valueLabel.snp.makeConstraints { make in
       make.leading.equalTo(titleLabel.snp.trailing).offset(20)

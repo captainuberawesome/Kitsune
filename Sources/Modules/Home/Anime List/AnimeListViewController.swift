@@ -12,6 +12,7 @@ import UIScrollView_InfiniteScroll
 
 private extension Constants {
   static let searchDelay: TimeInterval = 0.2
+  static let estimatedRowHeight: CGFloat = 143
 }
 
 class AnimeListViewController: BaseViewController {
@@ -22,7 +23,6 @@ class AnimeListViewController: BaseViewController {
   private let emptyView = AnimeListEmptyView()
   private var infiniteScrollAdded = false
   private let viewModel: AnimeListViewModel
-  private let dataSource = AnimeListDataSource()
   private let disposeBag = DisposeBag()
   
   // MARK: - Init
@@ -102,7 +102,6 @@ class AnimeListViewController: BaseViewController {
   }
   
   private func setupTableView() {
-    dataSource.configure(withTableView: tableView, viewModel: viewModel)
     view.addSubview(tableView)
     tableView.showsVerticalScrollIndicator = false
     tableView.backgroundColor = .clear
@@ -123,6 +122,32 @@ class AnimeListViewController: BaseViewController {
       })
       .disposed(by: disposeBag)
     tableView.addGestureRecognizer(tap)
+    
+    bindTableView()
+  }
+  
+  private func bindTableView() {
+    viewModel.cellViewModels
+      .skip(1)
+      .bind(to: tableView.rx.items(cellIdentifier: AnimeListTableViewCell.reuseIdentifier,
+                                   cellType: AnimeListTableViewCell.self)) { _, cellViewModel, cell in
+                                    cell.configure(viewModel: cellViewModel)
+                                    cell.selectionStyle = .none
+      }
+      .disposed(by: disposeBag)
+    
+    tableView
+      .rx
+      .setDelegate(self)
+      .disposed(by: disposeBag)
+    
+    tableView
+      .rx
+      .modelSelected(AnimeCellViewModel.self)
+      .subscribe(onNext: { cellViewModel in
+        cellViewModel.select()
+      })
+      .disposed(by: disposeBag)
   }
   
   private func setupErrorView() {
@@ -210,5 +235,17 @@ extension AnimeListViewController {
   
   private func finishInfiniteScroll() {
     tableView.finishInfiniteScroll()
+  }
+}
+
+// MARK: - UITableViewDelegate
+
+extension AnimeListViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return CGFloat.leastNormalMagnitude
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return Constants.estimatedRowHeight
   }
 }

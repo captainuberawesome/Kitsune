@@ -18,8 +18,6 @@ class AnimeDetailsViewController: BaseViewController {
   private let detailView = AnimeDetailView()
   private let textView = UITextView()
   
-  private(set) var onDidDeinit = PublishSubject<Void>()
-  
   // MARK: - Init
   
   required init(viewModel: AnimeDetailsViewModel) {
@@ -30,13 +28,7 @@ class AnimeDetailsViewController: BaseViewController {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  // MARK: - Deinit
-  
-  deinit {
-    onDidDeinit.onNext(())
-  }
-  
+
   // MARK: - View Life Cycle
   
   override func viewDidLoad() {
@@ -98,7 +90,7 @@ class AnimeDetailsViewController: BaseViewController {
     textView.isSelectable = false
     textView.isEditable = false
     textView.textContainerInset = UIEdgeInsets(top: 0, left: -3, bottom: 0, right: 0)
-    textView.font = UIFont.appFont(ofSize: 17)
+    textView.font = UIFont.textFont
     textView.textColor = .appDarkColor
   }
   

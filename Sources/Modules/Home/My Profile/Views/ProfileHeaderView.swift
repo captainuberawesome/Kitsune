@@ -67,7 +67,7 @@ class ProfileHeaderView: UIView {
   
   private func setupNameLabel() {
     addSubview(nameLabel)
-    nameLabel.font = UIFont.boldAppFont(ofSize: 18)
+    nameLabel.font = UIFont.titleFont
     nameLabel.textColor = .white
     nameLabel.snp.makeConstraints { make in
       make.leading.equalTo(avatarView.snp.trailing).offset(10)

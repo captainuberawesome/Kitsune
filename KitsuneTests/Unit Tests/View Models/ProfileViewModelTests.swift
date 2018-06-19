@@ -32,6 +32,14 @@ class ProfileViewModelTests: XCTestCase {
     
     var createdCellViewModels = false
     var comparedEmptyViewModels = false
+    var hasUpdatedUser = false
+    
+    viewModel.onUserUpdated
+      .subscribe(onNext: {
+        hasUpdatedUser = true
+      })
+      .disposed(by: disposeBag)
+    
     viewModel.cellViewModels
       .subscribe(onNext: { cellViewModels in
         expect(cellViewModels.count) == 4
@@ -55,6 +63,7 @@ class ProfileViewModelTests: XCTestCase {
         expect(viewModel.name) == user.name
         expect(createdCellViewModels) == true
         expect(comparedEmptyViewModels) == true
+        expect(hasUpdatedUser) == true
         done()
       }
     }
@@ -81,6 +90,14 @@ class ProfileViewModelTests: XCTestCase {
 
     var createdCellViewModels = false
     var comparedEmptyViewModels = false
+    var hasUpdatedUser = false
+    
+    viewModel.onUserUpdated
+      .subscribe(onNext: {
+        hasUpdatedUser = true
+      })
+      .disposed(by: disposeBag)
+    
     viewModel.cellViewModels
       .subscribe(onNext: { cellViewModels in
         expect(cellViewModels.count) == 4
@@ -103,6 +120,7 @@ class ProfileViewModelTests: XCTestCase {
     expect(viewModel.name) == Constants.responseUser.name
     expect(createdCellViewModels) == true
     expect(comparedEmptyViewModels) == true
+    expect(hasUpdatedUser) == true
   }
   
   func testReloadDataFail() {

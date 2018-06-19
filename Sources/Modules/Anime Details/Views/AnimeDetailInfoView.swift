@@ -34,7 +34,7 @@ class AnimeDetailInfoView: UIView {
     titleLabel.snp.makeConstraints { make in
       make.top.leading.trailing.equalToSuperview()
     }
-    titleLabel.font = UIFont.boldAppFont(ofSize: 17)
+    titleLabel.font = UIFont.titleFont
     titleLabel.textColor = UIColor.appDarkColor
   }
   
@@ -44,7 +44,7 @@ class AnimeDetailInfoView: UIView {
       make.leading.trailing.bottom.equalToSuperview()
       make.top.equalTo(titleLabel.snp.bottom)
     }
-    textLabel.font = UIFont.appFont(ofSize: 15)
+    textLabel.font = UIFont.textFont
     textLabel.textColor = UIColor.appDarkColor
     textLabel.numberOfLines = 0
   }

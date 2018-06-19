@@ -40,7 +40,7 @@ class LoginViewModel: ViewModelNetworkRequesting {
   private let dependencies: Dependencies
   private let disposeBag = DisposeBag()
   let state = BehaviorSubject<ViewModelNetworkRequestingState>(value: .initial)
-  private(set) var onDidFinishLogin = PublishSubject<Void>()
+  let onDidFinishLogin = PublishSubject<Void>()
   
   // MARK: - Init
   

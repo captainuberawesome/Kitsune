@@ -90,7 +90,7 @@ class AnimeListTableViewCell: UITableViewCell {
   }
   
   private func setupDisclosureIndicatorImageView() {
-    disclosureIndicatorImageView.image = R.image.disclosureIndicator()?.withRenderingMode(.alwaysTemplate)
+    disclosureIndicatorImageView.image = R.image.disclosureIndicatorIcon()?.withRenderingMode(.alwaysTemplate)
     disclosureIndicatorImageView.tintColor = .appDarkColor
     disclosureIndicatorImageView.contentMode = .center
     backgroundContentView.addSubview(disclosureIndicatorImageView)

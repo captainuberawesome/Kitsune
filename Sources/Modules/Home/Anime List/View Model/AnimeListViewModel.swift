@@ -64,7 +64,7 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   }
   
   func loadNextPage() {
-    loadAnimeListNextPage()
+    loadAnimeList(isLoadingAdditionalPages: true)
   }
   
   func search(forText text: String) {
@@ -74,50 +74,19 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
   
   // MARK: - Private
   
-  private func loadAnimeList() {
+  private func loadAnimeList(isLoadingAdditionalPages: Bool = false) {
     self.networkRequestSubscription?.dispose()
+    let offset = isLoadingAdditionalPages ? cellViewModels.value.count : 0
     state.onNext(.loadingStarted)
     
     let onNext: (AnimeListResponse) -> Void = { animeListResponse in
       let newItems = self.createViewModels(from: animeListResponse.animeList)
       self.canLoadMorePages = newItems.count >= self.paginationLimit
-      self.cellViewModels.accept(newItems)
-      self.state.onNext(.loadingFinished)
-    }
-    
-    let onError: (Error) -> Void = { error in
-      self.state.onNext(.loadingFinished)
-      self.state.onNext(.error(error))
-    }
-    
-    switch mode {
-    case .default:
-      let networkRequestSubscription = dependencies.animeListService.animeList(limit: paginationLimit, offset: 0)
-              .subscribe(onNext: onNext, onError: onError)
-      networkRequestSubscription.disposed(by: disposeBag)
-      self.networkRequestSubscription = networkRequestSubscription
-    case .searching:
-      if let searchText = currentSearchText {
-        let networkRequestSubscription = dependencies.animeListService.animeListSearch(text: searchText,
-                                                                                       limit: paginationLimit, offset: 0)
-          .subscribe(onNext: onNext, onError: onError)
-        networkRequestSubscription.disposed(by: disposeBag)
-        self.networkRequestSubscription = networkRequestSubscription
+      if isLoadingAdditionalPages {
+        self.cellViewModels.accept(self.cellViewModels.value + newItems)
       } else {
-        state.onNext(.loadingFinished)
+        self.cellViewModels.accept(newItems)
       }
-    }
-  }
-  
-  private func loadAnimeListNextPage() {
-    self.networkRequestSubscription?.dispose()
-    let offset = cellViewModels.value.count
-    state.onNext(.loadingStarted)
-    
-    let onNext: (AnimeListResponse) -> Void = { animeListResponse in
-      let newItems = self.createViewModels(from: animeListResponse.animeList)
-      self.cellViewModels.accept(self.cellViewModels.value + newItems)
-      self.canLoadMorePages = newItems.count >= self.paginationLimit
       self.state.onNext(.loadingFinished)
     }
     
@@ -129,13 +98,14 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
     switch mode {
     case .default:
       let networkRequestSubscription = dependencies.animeListService.animeList(limit: paginationLimit, offset: offset)
-        .subscribe(onNext: onNext, onError: onError)
+              .subscribe(onNext: onNext, onError: onError)
       networkRequestSubscription.disposed(by: disposeBag)
       self.networkRequestSubscription = networkRequestSubscription
     case .searching:
       if let searchText = currentSearchText {
         let networkRequestSubscription = dependencies.animeListService.animeListSearch(text: searchText,
-                                                                                       limit: paginationLimit, offset: offset)
+                                                                                       limit: paginationLimit,
+                                                                                       offset: offset)
           .subscribe(onNext: onNext, onError: onError)
         networkRequestSubscription.disposed(by: disposeBag)
         self.networkRequestSubscription = networkRequestSubscription
@@ -182,7 +152,7 @@ class AnimeListViewModel: ViewModelNetworkRequesting {
       .skip(1)
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] isReachable in
-        if isReachable && self?.hasData == false && (try? self!.state.value())
+        if isReachable && self?.hasData == false && (try? self?.state.value())
           != ViewModelNetworkRequestingState.initial {
           self?.reloadData()
         }

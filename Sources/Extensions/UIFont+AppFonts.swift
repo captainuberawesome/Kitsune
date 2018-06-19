@@ -23,15 +23,12 @@ extension UIFont {
     return font
   }
   
-  static var titleFont: UIFont {
-    return UIFont.boldAppFont(ofSize: 17)
-  }
+  static let largeTitleFont = UIFont.boldAppFont(ofSize: 20)
   
-  static var textFont: UIFont {
-    return UIFont.appFont(ofSize: 15)
-  }
+  static let titleFont = UIFont.boldAppFont(ofSize: 17)
   
-  static var smallTextFont: UIFont {
-    return UIFont.appFont(ofSize: 12)
-  }
+  static let textFont = UIFont.appFont(ofSize: 15)
+  
+  static let smallTextFont = UIFont.appFont(ofSize: 12)
+  
 }

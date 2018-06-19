@@ -17,10 +17,12 @@ class MainCoordinator: NSObject, BaseCoordinator {
   private let appDependency: AppDependency
   private var loggingOut = false
   private var rootNavigationController = NavigationController()
+  private let navigationObserver: NavigationObserver
   private let utility: MainCoordinatorUtility
   
   let disposeBag = DisposeBag()
-  private(set) var onRootControllerDidDeinit = PublishSubject<Void>()
+  var onDidFinish: (() -> Void)?
+  
   var presentationType: PresentationType = .push
   var parentCoordinator: BaseCoordinator?
   var childCoordinators: [BaseCoordinator] = []
@@ -42,10 +44,10 @@ class MainCoordinator: NSObject, BaseCoordinator {
                 appDependency: AppDependency) {
     self.window = window
     self.appDependency = appDependency
-    self.utility = MainCoordinatorUtility(dependencies: appDependency)
+    utility = MainCoordinatorUtility(dependencies: appDependency)
+    navigationObserver = NavigationObserver(navigationController: rootNavigationController)
     super.init()
     window.rootViewController = rootNavigationController
-    rootNavigationController.delegate = self
   }
   
   // MARK: - Navigation
@@ -59,8 +61,10 @@ class MainCoordinator: NSObject, BaseCoordinator {
   }
   
   private func showHome() {
-    let coordinator = HomeCoordinator(appDependency: appDependency, logoutHandler: self,
-                                      navigationController: rootNavigationController)
+    let coordinator = HomeCoordinator(appDependency: appDependency,
+                                      logoutHandler: self,
+                                      navigationController: rootNavigationController,
+                                      navigationObserver: navigationObserver)
     addChildCoordinator(coordinator)
     coordinator.start()
   }
@@ -71,16 +75,5 @@ class MainCoordinator: NSObject, BaseCoordinator {
 extension MainCoordinator: LogoutHandler {
   func logout(completion: (() -> Void)?) {
     utility.signOut(completion: completion)
-  }
-}
-
-extension MainCoordinator: UINavigationControllerDelegate {
-  func navigationController(_ navigationController: UINavigationController,
-                            willShow viewController: UIViewController, animated: Bool) {
-    if viewController is NavigationBarHiding {
-      navigationController.setNavigationBarHidden(true, animated: true)
-    } else {
-      navigationController.setNavigationBarHidden(false, animated: true)
-    }
   }
 }

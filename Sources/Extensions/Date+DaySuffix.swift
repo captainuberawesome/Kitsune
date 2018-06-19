@@ -8,13 +8,10 @@
 import Foundation
 
 extension Date {
-  var daySuffix: String {
+  var dayWithOrdinalSuffix: String? {
     let dayOfMonth = Calendar.current.component(.day, from: self)
-    switch dayOfMonth {
-    case 1, 21, 31: return "st"
-    case 2, 22: return "nd"
-    case 3, 23: return "rd"
-    default: return "th"
-    }
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .ordinal
+    return numberFormatter.string(from: dayOfMonth as NSNumber)
   }
 }

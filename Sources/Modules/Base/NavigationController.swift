@@ -41,7 +41,7 @@ class NavigationController: UINavigationController {
     navigationBar.barTintColor = .appPrimary
     navigationBar.setBackgroundImage(UIImage(), for: .default)
     navigationBar.shadowImage = UIImage()
-    navigationBar.titleTextAttributes = [.font: UIFont.boldAppFont(ofSize: 17),
+    navigationBar.titleTextAttributes = [.font: UIFont.titleFont,
                                          .foregroundColor: UIColor.white]
   }
 }

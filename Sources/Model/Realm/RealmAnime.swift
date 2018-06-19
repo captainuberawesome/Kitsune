@@ -74,7 +74,7 @@ final class RealmAnime: Object, RealmEntity {
   // MARK: - Transient Entity
   
   func transient() -> Anime {
-    let transient = Anime()
+    var transient = Anime()
     transient.id = id
     transient.synopsis = synopsis
     transient.englishTitle = englishTitle
@@ -85,8 +85,8 @@ final class RealmAnime: Object, RealmEntity {
     transient.endDate = endDate
     transient.popularityRank = popularityRank
     transient.ratingRank = ratingRank
-    transient.subtype = AnimeSubtype(rawValue: (subtype ?? ""))
-    transient.status = AnimeStatus(rawValue: (status ?? ""))
+    transient.subtype = Anime.Subtype(rawValue: (subtype ?? ""))
+    transient.status = Anime.Status(rawValue: (status ?? ""))
     transient.posterImageSmall = posterImageSmall
     transient.posterImageLarge = posterImageLarge
     transient.episodeCount = episodeCount
