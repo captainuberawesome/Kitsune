@@ -27,8 +27,10 @@ class NavigationObserver: NSObject {
   func addObserver(_ observer: NavigationPopObserver,
                    forPopOf viewController: UIViewController) {
     onViewControllerPopped
+      .filter({ poppedController in
+        poppedController === viewController
+      })
       .subscribe(onNext: { [weak observer] poppedController in
-        guard poppedController === viewController else { return }
         observer?.navigationObserver(self, didObserveViewControllerPop: poppedController)
       })
       .disposed(by: observer.disposeBag)
