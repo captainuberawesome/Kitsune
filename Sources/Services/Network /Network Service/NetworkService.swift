@@ -68,8 +68,7 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
                                     url: String,
                                     parameters: Parameters? = nil,
                                     encoding: ParameterEncoding = JSONEncoding.default,
-                                    headers: [String: String] = [:],
-                                    onRequestCreated: ((Request) -> Void)? = nil) -> Observable<T> {
+                                    headers: [String: String] = [:]) -> Observable<T> {
     let observableObject = Observable<T>.create { observer -> Disposable in
       let request = self.manager.request(url,
                                          method: method,
@@ -108,7 +107,6 @@ class NetworkService: NSObject, LoginStateNetworkProtocol {
           observer.onError(error)
         }
       }
-      onRequestCreated?(request)
       self.logger.logRequest(request.request)
       return Disposables.create {
         request.cancel()

@@ -24,12 +24,4 @@ class BaseNetworkTestCase: XCTestCase {
     MockingjayProtocol.removeAllStubs()
     super.tearDown()
   }
-  
-  func expectRequest(_ request: Request,
-                     toHaveMethod method: Alamofire.HTTPMethod,
-                     url: String) {
-    let urlRequest = request.request
-    expect(urlRequest?.httpMethod) == method.rawValue
-    expect(urlRequest?.url?.absoluteString.lowercased()) == url.lowercased()
-  }
 }

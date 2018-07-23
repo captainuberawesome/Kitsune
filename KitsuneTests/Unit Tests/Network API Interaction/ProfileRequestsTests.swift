@@ -44,18 +44,11 @@ class ProfileRequestsTests: BaseNetworkTestCase {
     let stub = MockingjayProtocol.addStub(matcher: uri(profileURL),
                                           builder: json(ResponseJSON.profile, status: 200, headers: nil))
     
-    var networkRequest: Request?
-    let observable = networkService.myProfile(onRequestCreated: { request in
-      networkRequest = request
-      self.expectRequest(request,
-                         toHaveMethod: .get,
-                         url: profileURL)
-    })
+    let observable = networkService.myProfile()
     let result = try? observable
       .toBlocking()
       .first()
     expect(result??.user?.id) == "161"
-    expect(networkRequest).toNot(beNil())
     MockingjayProtocol.removeStub(stub)
   }
   

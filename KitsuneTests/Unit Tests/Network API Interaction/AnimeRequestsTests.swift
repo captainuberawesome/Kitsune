@@ -33,13 +33,7 @@ class AnimeRequestsTests: BaseNetworkTestCase {
     let stub = MockingjayProtocol.addStub(matcher: uri(url),
                                           builder: json(ResponseJSON.anime,
                                                         status: 200, headers: nil))
-    var networkRequest: Request?
-    let observable = networkService.animeList(limit: limit, offset: offset, onRequestCreated: { request in
-      networkRequest = request
-      self.expectRequest(request,
-                         toHaveMethod: .get,
-                         url: url)
-    })
+    let observable = networkService.animeList(limit: limit, offset: offset)
     let result = try? observable
       .toBlocking()
       .first()
@@ -47,7 +41,6 @@ class AnimeRequestsTests: BaseNetworkTestCase {
     expect(result??.animeList[0].id) == "1"
     expect(result??.animeList[1].id) == "2"
     expect(result??.animeList[2].id) == "3"
-    expect(networkRequest).toNot(beNil())
     MockingjayProtocol.removeStub(stub)
   }
   
@@ -60,13 +53,7 @@ class AnimeRequestsTests: BaseNetworkTestCase {
     let stub = MockingjayProtocol.addStub(matcher: uri(url),
                                           builder: json(ResponseJSON.anime,
                                                         status: 200, headers: nil))
-    var networkRequest: Request?
-    let observable = networkService.animeListSearch(text: text, limit: limit, offset: offset, onRequestCreated: { request in
-      networkRequest = request
-      self.expectRequest(request,
-                         toHaveMethod: .get,
-                         url: url)
-    })
+    let observable = networkService.animeListSearch(text: text, limit: limit, offset: offset)
     let result = try? observable
       .toBlocking()
       .first()
@@ -74,7 +61,6 @@ class AnimeRequestsTests: BaseNetworkTestCase {
     expect(result??.animeList[0].id) == "1"
     expect(result??.animeList[1].id) == "2"
     expect(result??.animeList[2].id) == "3"
-    expect(networkRequest).toNot(beNil())
     MockingjayProtocol.removeStub(stub)
   }
   
