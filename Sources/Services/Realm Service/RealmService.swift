@@ -64,6 +64,7 @@ final class RealmService: NSObject {
     DispatchQueue.global().async {
       self.writeSync(block: writeBlock)
       DispatchQueue.main.async {
+        self.realm.refresh()
         completion?()
       }
     }
